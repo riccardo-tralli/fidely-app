@@ -23,7 +23,7 @@ Fidely is compatible with both Android and iOS devices.
 
 ## Roadmap
 Here are some planned features:
-- [ ] Dark/light mode
+- [x] Dark/light mode
 - [ ] Barcode scanning support
 - [ ] Color scanning support
 - [ ] Photo attachments

@@ -1,4 +1,5 @@
 import 'package:fidely_app/di.dart';
+import 'package:fidely_app/misc/themes/dark.dart';
 import 'package:fidely_app/misc/themes/light.dart';
 import 'package:fidely_app/models/loyalty_card.dart';
 import 'package:fidely_app/pages/card_page.dart';
@@ -13,6 +14,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) => DependencyInjector(
     child: MaterialApp(
       theme: LightTheme.make(),
+      darkTheme: DarkTheme.make(),
+      themeMode: ThemeMode.system,
       title: "Fidely",
       initialRoute: HomePage.route,
       routes: {
