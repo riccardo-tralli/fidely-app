@@ -6,6 +6,12 @@
 ![flutter-badge](https://img.shields.io/badge/Flutter-v3.35.3-blue)
 ![dart-badge](https://img.shields.io/badge/Dart-v3.9.2-blue)
 
+<a href="docs/images/screen-1.png" target="_blank"><img src="docs/images/screen-1.png" width="150"></a>
+<a href="docs/images/screen-2.png" target="_blank"><img src="docs/images/screen-2.png" width="150"></a>
+<a href="docs/images/screen-3.png" target="_blank"><img src="docs/images/screen-3.png" width="150"></a>
+<a href="docs/images/screen-4.png" target="_blank"><img src="docs/images/screen-4.png" width="150"></a>
+<a href="docs/images/screen-5.png" target="_blank"><img src="docs/images/screen-5.png" width="150"></a>
+
 ## Why choose Fidely?
 - Free: no fees, no subscriptions
 - No paid content or ads: completely free and ad-free experience
