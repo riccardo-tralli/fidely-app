@@ -86,7 +86,7 @@ class _CardPageState extends State<CardPage> {
             ? "Store Name"
             : titleController.text,
         code: codeController.text.isEmpty ? "123456" : codeController.text,
-        type: Barcode.fromType(typeValue),
+        type: typeValue,
         owner: ownerController.text.isEmpty ? null : ownerController.text,
         color: colorValue,
         note: noteController.text.isEmpty ? null : noteController.text,

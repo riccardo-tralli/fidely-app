@@ -77,7 +77,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
   Widget barcode(BuildContext context) => Padding(
     padding: const EdgeInsets.symmetric(vertical: 16),
     child: BarcodeWidget(
-      barcode: widget.card.type,
+      barcode: Barcode.fromType(widget.card.type),
       data: widget.card.code,
       color: textColor,
       style: Theme.of(context).textTheme.bodySmall?.copyWith(color: textColor),

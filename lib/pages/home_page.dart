@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
           13,
           (i) => String.fromCharCode(65 + (index + i) % 26),
         ).join(),
-        type: Barcode.code93(),
+        type: BarcodeType.Code93,
         owner: "Owner ${index + 1}",
         color: colors[index],
         note: "Note for card ${index + 1}",
