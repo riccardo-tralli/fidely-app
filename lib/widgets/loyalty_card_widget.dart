@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 class LoyaltyCardWidget extends StatefulWidget {
   final LoyaltyCard card;
   final bool isSelected;
+  final bool isSelectable;
 
   const LoyaltyCardWidget({
     super.key,
     required this.card,
     this.isSelected = false,
+    this.isSelectable = true,
   });
 
   @override
@@ -23,6 +25,14 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
 
   bool isSelected = false;
 
+  void onTap() {
+    if (widget.isSelectable) {
+      setState(() {
+        isSelected = !isSelected;
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -31,7 +41,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
 
   @override
   Widget build(BuildContext context) => InkWell(
-    onTap: () => setState(() => isSelected = !isSelected),
+    onTap: onTap,
     child: Container(
       width: double.infinity,
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
@@ -71,6 +81,12 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
       data: widget.card.code,
       color: textColor,
       style: Theme.of(context).textTheme.bodySmall?.copyWith(color: textColor),
+      errorBuilder: (context, error) => Text(
+        error,
+        style: Theme.of(
+          context,
+        ).textTheme.bodySmall?.copyWith(color: textColor),
+      ),
     ),
   );
 
