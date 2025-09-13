@@ -1,4 +1,5 @@
 import 'package:fidely_app/blocs/loyalty_card/loyalty_card_bloc.dart';
+import 'package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart';
 import 'package:fidely_app/repositories/loyalty_card_repository.dart';
 import 'package:fidely_app/services/loyalty_card_service.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,10 @@ class DependencyInjector extends StatelessWidget {
       BlocProvider<LoyaltyCardBloc>(
         create: (context) =>
             LoyaltyCardBloc(repository: context.read())..loadLoyaltyCards(),
+      ),
+      BlocProvider<LoyaltyCardCubit>(
+        create: (context) =>
+            LoyaltyCardCubit(repository: context.read(), bloc: context.read()),
       ),
     ],
     child: child,

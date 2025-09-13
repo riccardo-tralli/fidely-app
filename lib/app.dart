@@ -1,4 +1,5 @@
 import 'package:fidely_app/di.dart';
+import 'package:fidely_app/models/loyalty_card.dart';
 import 'package:fidely_app/pages/card_page.dart';
 import 'package:fidely_app/pages/home_page.dart';
 import 'package:fidely_app/pages/settings_page.dart';
@@ -14,8 +15,17 @@ class App extends StatelessWidget {
       initialRoute: HomePage.route,
       routes: {
         HomePage.route: (_) => const HomePage(),
-        CardPage.route: (_) => const CardPage(),
         SettingsPage.route: (_) => const SettingsPage(),
+      },
+      onGenerateRoute: (settings) {
+        if (settings.name == CardPage.route) {
+          final LoyaltyCard? card = settings.arguments as LoyaltyCard?;
+          return MaterialPageRoute(
+            builder: (_) => CardPage(card: card),
+            settings: settings,
+          );
+        }
+        return null;
       },
     ),
   );

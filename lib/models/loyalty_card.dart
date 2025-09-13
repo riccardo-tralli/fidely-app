@@ -43,10 +43,10 @@ class LoyaltyCard {
     type: BarcodeType.values.firstWhere((e) => e.name == map["type"]),
     owner: map["owner"],
     color: Color.fromARGB(
-      int.parse(map["color"].split(",")[0]),
-      int.parse(map["color"].split(",")[1]),
-      int.parse(map["color"].split(",")[2]),
-      int.parse(map["color"].split(",")[3]),
+      (double.parse(map["color"].split(",")[0]) * 255).toInt(),
+      (double.parse(map["color"].split(",")[1]) * 255).toInt(),
+      (double.parse(map["color"].split(",")[2]) * 255).toInt(),
+      (double.parse(map["color"].split(",")[3]) * 255).toInt(),
     ),
     note: map["note"],
   );
