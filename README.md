@@ -12,13 +12,21 @@
 - Offline: all data is stored on your device
 - Privacy first: no data shared with any third party
 
+### Back up your device!
+Your card data is stored exclusively locally on your device.  
+It is recommended to regularly back up your device to prevent accidental data loss.
+
 ## Platform compatibility
 Fidely is compatible with both Android and iOS devices.
+- Minimum Android version: 7 (API 24)
+- Minimum iOS version: 13
 
 ## Roadmap
-Here are some features planned for the next versions of Fidely:
+Here are some planned features:
 - [ ] Dark/light mode
 - [ ] Barcode scanning support
+- [ ] Color scanning support
+- [ ] Photo attachments
 - [ ] Multi-language translations
 - [ ] Data backup and restore
 - [ ] Automated tests and updated status badges
