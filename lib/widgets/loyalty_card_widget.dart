@@ -196,7 +196,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
   Widget owner(BuildContext context) => Container(
     padding: const EdgeInsets.all(8),
     decoration: BoxDecoration(
-      color: Theme.of(context).colorScheme.surface.withAlpha(50),
+      color: textColor.withAlpha(50),
       borderRadius: BorderRadius.circular(8),
     ),
     child: Text(
