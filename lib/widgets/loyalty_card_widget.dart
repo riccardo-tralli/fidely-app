@@ -185,7 +185,8 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
           runSpacing: 8,
           children: [
             title(context),
-            if (widget.card.owner != null) owner(context),
+            if (widget.card.owner != null && widget.card.owner!.isNotEmpty)
+              owner(context),
           ],
         ),
       ),
