@@ -22,10 +22,7 @@ class LoyaltyCardWidget extends StatefulWidget {
 }
 
 class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
-  late final Color textColor = widget.card.color.computeLuminance() > 0.4
-      ? Colors.black
-      : Colors.white;
-
+  Color textColor = Colors.white;
   bool isSelected = false;
 
   void onTap() {
@@ -125,29 +122,34 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
   }
 
   @override
-  Widget build(BuildContext context) => InkWell(
-    onTap: onTap,
-    onLongPress: () => onLongPress(context),
-    borderRadius: BorderRadius.circular(16),
+  Widget build(BuildContext context) {
+    textColor = widget.card.color.computeLuminance() > 0.4
+        ? Colors.black
+        : Colors.white;
 
-    child: Container(
-      width: double.infinity,
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-      decoration: BoxDecoration(
-        color: widget.card.color,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withAlpha(100),
-            blurRadius: 2,
-            offset: const Offset(0, 1),
-          ),
-        ],
+    return InkWell(
+      onTap: onTap,
+      onLongPress: () => onLongPress(context),
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        width: double.infinity,
+        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        decoration: BoxDecoration(
+          color: widget.card.color,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withAlpha(100),
+              blurRadius: 2,
+              offset: const Offset(0, 1),
+            ),
+          ],
+        ),
+        child: content(context),
       ),
-      child: content(context),
-    ),
-  );
+    );
+  }
 
   Widget content(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
