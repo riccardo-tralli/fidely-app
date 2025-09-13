@@ -4,11 +4,13 @@ import "package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart";
 import "package:fidely_app/cubits/loyalty_card/loyalty_card_cubit_state.dart";
 import "package:fidely_app/models/loyalty_card.dart";
 import "package:fidely_app/models/requests/loyalty_card_request.dart";
+import "package:fidely_app/widgets/hicon.dart";
 import "package:fidely_app/widgets/loyalty_card_widget.dart";
 import "package:fidely_app/widgets/top_bar.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter_colorpicker/flutter_colorpicker.dart";
+import "package:hugeicons/hugeicons.dart";
 
 class CardPage extends StatefulWidget {
   static const route = "/card";
@@ -61,8 +63,8 @@ class _CardPageState extends State<CardPage> {
               setState(() => _colorValue = _tempColor);
               Navigator.of(context).pop();
             },
-            icon: const Icon(Icons.check),
-            label: const Text("Select"),
+            icon: Hicon(HugeIcons.strokeRoundedTick01),
+            label: Text("Select"),
           ),
         ],
       ),
@@ -290,7 +292,7 @@ class _CardPageState extends State<CardPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         spacing: 12,
         children: [
-          Icon(Icons.color_lens, color: _colorValue),
+          Hicon(HugeIcons.strokeRoundedPaintBoard, color: _colorValue),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -308,7 +310,12 @@ class _CardPageState extends State<CardPage> {
 
   Widget save(BuildContext context) => FilledButton.icon(
     onPressed: () => onSave(context),
-    icon: const Icon(Icons.save),
-    label: Text("Save"),
+    icon: const Hicon(HugeIcons.strokeRoundedFloppyDisk),
+    label: Text(
+      "Save",
+      style: Theme.of(
+        context,
+      ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+    ),
   );
 }

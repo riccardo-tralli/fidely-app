@@ -2,8 +2,10 @@ import 'package:barcode_widget/barcode_widget.dart';
 import 'package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart';
 import 'package:fidely_app/models/loyalty_card.dart';
 import 'package:fidely_app/pages/card_page.dart';
+import 'package:fidely_app/widgets/hicon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hugeicons/hugeicons.dart';
 
 class LoyaltyCardWidget extends StatefulWidget {
   final LoyaltyCard card;
@@ -56,8 +58,13 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
                     Expanded(
                       child: FilledButton.icon(
                         onPressed: () => onEdit(context),
-                        icon: Icon(Icons.edit),
-                        label: Text("Edit"),
+                        icon: Hicon(HugeIcons.strokeRoundedEdit04),
+                        label: Text(
+                          "Edit",
+                          style: Theme.of(
+                            context,
+                          ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+                        ),
                       ),
                     ),
                     Expanded(
@@ -69,8 +76,13 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
                         style: ButtonStyle(
                           backgroundColor: WidgetStatePropertyAll(Colors.red),
                         ),
-                        icon: Icon(Icons.delete),
-                        label: Text("Delete"),
+                        icon: Hicon(HugeIcons.strokeRoundedDelete02),
+                        label: Text(
+                          "Delete",
+                          style: Theme.of(
+                            context,
+                          ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+                        ),
                       ),
                     ),
                   ],
@@ -97,7 +109,12 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
         actions: [
           FilledButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Text("Cancel"),
+            child: Text(
+              "Cancel",
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+            ),
           ),
           FilledButton.icon(
             onPressed: () {
@@ -107,8 +124,13 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
             style: ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(Colors.red),
             ),
-            icon: Icon(Icons.delete),
-            label: Text("Confirm"),
+            icon: Hicon(HugeIcons.strokeRoundedDelete02),
+            label: Text(
+              "Confirm",
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+            ),
           ),
         ],
       );

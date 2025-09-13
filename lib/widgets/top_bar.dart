@@ -1,5 +1,7 @@
 import 'package:fidely_app/pages/card_page.dart';
+import 'package:fidely_app/widgets/hicon.dart';
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 
 class TopBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? backgroundColor;
@@ -33,7 +35,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
   );
 
   Widget addButton(BuildContext context) => IconButton(
-    icon: const Icon(Icons.add),
+    icon: Hicon(HugeIcons.strokeRoundedAddSquare),
     onPressed: () => Navigator.pushNamed(context, CardPage.route),
   );
 }

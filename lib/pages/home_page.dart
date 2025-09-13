@@ -1,9 +1,11 @@
 import 'package:fidely_app/blocs/loyalty_card/loyalty_card_bloc.dart';
 import 'package:fidely_app/pages/card_page.dart';
+import 'package:fidely_app/widgets/hicon.dart';
 import 'package:fidely_app/widgets/loyalty_card_widget.dart';
 import 'package:fidely_app/widgets/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hugeicons/hugeicons.dart';
 
 class HomePage extends StatelessWidget {
   static const route = "/home";
@@ -57,8 +59,13 @@ class HomePage extends StatelessWidget {
         ),
         FilledButton.icon(
           onPressed: () => Navigator.of(context).pushNamed(CardPage.route),
-          icon: Icon(Icons.add),
-          label: Text("Add the first one"),
+          icon: Hicon(HugeIcons.strokeRoundedAddSquare),
+          label: Text(
+            "Add the first one",
+            style: Theme.of(
+              context,
+            ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+          ),
         ),
       ],
     ),
