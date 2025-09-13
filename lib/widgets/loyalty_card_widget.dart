@@ -42,7 +42,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
         context: context,
         builder: (context) => SafeArea(
           child: Container(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -128,6 +128,8 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
   Widget build(BuildContext context) => InkWell(
     onTap: onTap,
     onLongPress: () => onLongPress(context),
+    borderRadius: BorderRadius.circular(16),
+
     child: Container(
       width: double.infinity,
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
@@ -143,25 +145,40 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          title(context),
-          if (isSelected) barcode(context),
-          if (widget.card.owner != null) owner(context),
-          if (isSelected && widget.card.note != null) note(context),
-        ],
-      ),
+      child: content(context),
     ),
+  );
+
+  Widget content(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      SizedBox(
+        width: double.infinity,
+        child: Wrap(
+          alignment: WrapAlignment.spaceBetween,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            title(context),
+            if (widget.card.owner != null) owner(context),
+          ],
+        ),
+      ),
+      if (isSelected) barcode(context),
+      if (isSelected && widget.card.note != null) note(context),
+    ],
   );
 
   Widget title(BuildContext context) => Text(
     widget.card.title,
-    style: Theme.of(context).textTheme.titleLarge?.copyWith(color: textColor),
+    style: Theme.of(
+      context,
+    ).textTheme.headlineLarge?.copyWith(color: textColor),
   );
 
   Widget barcode(BuildContext context) => Padding(
-    padding: const EdgeInsets.symmetric(vertical: 16),
+    padding: const EdgeInsets.only(top: 16, bottom: 8),
     child: BarcodeWidget(
       barcode: Barcode.fromType(widget.card.type),
       data: widget.card.code,
@@ -176,13 +193,24 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
     ),
   );
 
-  Widget owner(BuildContext context) => Text(
-    widget.card.owner!,
-    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: textColor),
+  Widget owner(BuildContext context) => Container(
+    padding: const EdgeInsets.all(8),
+    decoration: BoxDecoration(
+      color: Theme.of(context).colorScheme.surface.withAlpha(50),
+      borderRadius: BorderRadius.circular(8),
+    ),
+    child: Text(
+      widget.card.owner!,
+      style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: textColor),
+      overflow: TextOverflow.ellipsis,
+    ),
   );
 
   Widget note(BuildContext context) => Text(
     widget.card.note!,
-    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: textColor),
+    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+      color: textColor,
+      fontStyle: FontStyle.italic,
+    ),
   );
 }

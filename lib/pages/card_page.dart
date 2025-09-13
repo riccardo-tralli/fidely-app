@@ -48,16 +48,20 @@ class _CardPageState extends State<CardPage> {
           ),
         ),
         actions: [
-          ElevatedButton(
+          FilledButton(
             onPressed: () => Navigator.of(context).pop(),
+            style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(Colors.grey.shade400),
+            ),
             child: const Text("Cancel"),
           ),
-          ElevatedButton(
+          FilledButton.icon(
             onPressed: () {
               setState(() => _colorValue = _tempColor);
               Navigator.of(context).pop();
             },
-            child: const Text("Select"),
+            icon: const Icon(Icons.check),
+            label: const Text("Select"),
           ),
         ],
       ),
@@ -127,15 +131,18 @@ class _CardPageState extends State<CardPage> {
             ).showSnackBar(SnackBar(content: Text("Error: ${state.message}")));
           }
         },
-        child: SingleChildScrollView(
-          child: Column(children: [cardPreview(context), form(context)]),
+        child: Column(
+          children: [
+            cardPreview(context),
+            Expanded(child: SingleChildScrollView(child: form(context))),
+          ],
         ),
       ),
     ),
   );
 
   Widget cardPreview(BuildContext context) => Container(
-    padding: const EdgeInsets.only(top: 8, right: 16, bottom: 16, left: 16),
+    padding: const EdgeInsets.only(right: 16, bottom: 24, left: 16),
     decoration: BoxDecoration(
       color: Theme.of(context).colorScheme.secondary,
       borderRadius: BorderRadius.only(
@@ -161,11 +168,11 @@ class _CardPageState extends State<CardPage> {
   );
 
   Widget form(BuildContext context) => Padding(
-    padding: const EdgeInsets.all(16),
+    padding: const EdgeInsets.all(24),
     child: Form(
       key: _formKey,
       child: Column(
-        spacing: 16,
+        spacing: 8,
         children: [
           title(context),
           code(context),
@@ -173,65 +180,107 @@ class _CardPageState extends State<CardPage> {
           owner(context),
           color(context),
           note(context),
-          save(context),
+          SizedBox(width: double.infinity, child: save(context)),
         ],
       ),
     ),
   );
 
-  Widget title(BuildContext context) => TextFormField(
-    controller: _titleController,
-    onChanged: (value) => setState(() {}),
-    validator: (value) => value == null || value.isEmpty ? "Required" : null,
-    decoration: const InputDecoration(labelText: "Store Name"),
-  );
-
-  Widget code(BuildContext context) => TextFormField(
-    controller: _codeController,
-    onChanged: (value) => setState(() {}),
-    validator: (value) => value == null || value.isEmpty ? "Required" : null,
-    decoration: const InputDecoration(labelText: "Card Code"),
-  );
-
-  Widget type(BuildContext context) => DropdownButtonFormField(
-    initialValue: _typeValue,
-    items: [
-      DropdownMenuItem(value: BarcodeType.Code93, child: Text("Code 93")),
-      DropdownMenuItem(value: BarcodeType.Code128, child: Text("Code 128")),
-      DropdownMenuItem(value: BarcodeType.CodeEAN13, child: Text("EAN-13")),
+  Widget title(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Padding(
+        padding: const EdgeInsets.only(left: 8),
+        child: Text("Store Name"),
+      ),
+      TextFormField(
+        controller: _titleController,
+        onChanged: (value) => setState(() {}),
+        validator: (value) =>
+            value == null || value.isEmpty ? "Required" : null,
+      ),
     ],
-    onChanged: (value) => setState(() => _typeValue = value!),
-    decoration: const InputDecoration(labelText: "Card Type"),
   );
 
-  Widget owner(BuildContext context) => TextFormField(
-    controller: _ownerController,
-    onChanged: (value) => setState(() {}),
-    decoration: const InputDecoration(labelText: "Card Owner"),
+  Widget code(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Padding(
+        padding: const EdgeInsets.only(left: 8),
+        child: Text("Card Code"),
+      ),
+      TextFormField(
+        controller: _codeController,
+        onChanged: (value) => setState(() {}),
+        validator: (value) =>
+            value == null || value.isEmpty ? "Required" : null,
+      ),
+    ],
   );
 
-  Widget note(BuildContext context) => TextFormField(
-    controller: _noteController,
-    onChanged: (value) => setState(() {}),
-    decoration: const InputDecoration(labelText: "Note"),
+  Widget type(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Padding(
+        padding: const EdgeInsets.only(left: 8),
+        child: Text("Card Type"),
+      ),
+      DropdownButtonFormField(
+        initialValue: _typeValue,
+        items: [
+          DropdownMenuItem(value: BarcodeType.Code93, child: Text("Code 93")),
+          DropdownMenuItem(value: BarcodeType.Code128, child: Text("Code 128")),
+          DropdownMenuItem(value: BarcodeType.CodeEAN13, child: Text("EAN-13")),
+        ],
+        onChanged: (value) => setState(() => _typeValue = value!),
+      ),
+    ],
+  );
+
+  Widget owner(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Padding(
+        padding: const EdgeInsets.only(left: 8),
+        child: Text("Card Owner"),
+      ),
+      TextFormField(
+        controller: _ownerController,
+        onChanged: (value) => setState(() {}),
+      ),
+    ],
+  );
+
+  Widget note(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Padding(
+        padding: const EdgeInsets.only(left: 8),
+        child: Text("Card Note"),
+      ),
+      TextFormField(
+        controller: _noteController,
+        onChanged: (value) => setState(() {}),
+        maxLines: 3,
+      ),
+    ],
   );
 
   Widget color(BuildContext context) => InkWell(
     onTap: () => onColorChange(context),
     child: Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondary.withAlpha(50),
+        color: Theme.of(context).colorScheme.secondary,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 16,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        spacing: 12,
         children: [
           Icon(Icons.color_lens, color: _colorValue),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 4,
             children: [
               Text(
                 "Card Color",
@@ -245,8 +294,9 @@ class _CardPageState extends State<CardPage> {
     ),
   );
 
-  Widget save(BuildContext context) => ElevatedButton(
+  Widget save(BuildContext context) => FilledButton.icon(
     onPressed: () => onSave(context),
-    child: const Text("Save"),
+    icon: const Icon(Icons.save),
+    label: Text("Save"),
   );
 }
