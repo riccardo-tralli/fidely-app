@@ -1,4 +1,5 @@
 import "package:barcode_widget/barcode_widget.dart";
+import "package:change_case/change_case.dart";
 import "package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart";
 import "package:fidely_app/cubits/loyalty_card/loyalty_card_cubit_state.dart";
 import "package:fidely_app/models/loyalty_card.dart";
@@ -70,6 +71,17 @@ class _CardPageState extends State<CardPage> {
 
   void onSave(BuildContext context) {
     if (_formKey.currentState!.validate()) {
+      _titleController.text = _titleController.text
+          .trim()
+          .toLowerCase()
+          .toCapitalCase();
+      _codeController.text = _codeController.text.trim().toUpperCase();
+      _ownerController.text = _ownerController.text
+          .trim()
+          .toLowerCase()
+          .toCapitalCase();
+      _noteController.text = _noteController.text.trim();
+
       if (widget.card == null) {
         context.read<LoyaltyCardCubit>().addLoyaltyCard(
           LoyaltyCardInsertRequest(
