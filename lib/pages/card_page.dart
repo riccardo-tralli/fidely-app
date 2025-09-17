@@ -31,7 +31,7 @@ class _CardPageState extends State<CardPage> {
   final TextEditingController _ownerController = TextEditingController();
   final TextEditingController _noteController = TextEditingController();
 
-  BarcodeType _typeValue = BarcodeType.Code93;
+  BarcodeType _typeValue = BarcodeType.Code39;
   Color _colorValue = Colors.white;
   Color _tempColor = Colors.white;
 
@@ -242,9 +242,16 @@ class _CardPageState extends State<CardPage> {
       DropdownButtonFormField(
         initialValue: _typeValue,
         items: [
+          DropdownMenuItem(value: BarcodeType.Code39, child: Text("Code 39")),
           DropdownMenuItem(value: BarcodeType.Code93, child: Text("Code 93")),
           DropdownMenuItem(value: BarcodeType.Code128, child: Text("Code 128")),
+          DropdownMenuItem(value: BarcodeType.CodeEAN8, child: Text("EAN-8")),
           DropdownMenuItem(value: BarcodeType.CodeEAN13, child: Text("EAN-13")),
+          DropdownMenuItem(value: BarcodeType.CodeUPCA, child: Text("UPC-A")),
+          DropdownMenuItem(value: BarcodeType.CodeUPCE, child: Text("UPC-E")),
+          DropdownMenuItem(value: BarcodeType.Aztec, child: Text("Aztec")),
+          DropdownMenuItem(value: BarcodeType.PDF417, child: Text("PDF417")),
+          DropdownMenuItem(value: BarcodeType.QrCode, child: Text("QR Code")),
         ],
         onChanged: (value) => setState(() => _typeValue = value!),
       ),

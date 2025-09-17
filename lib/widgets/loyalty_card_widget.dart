@@ -209,12 +209,32 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
       data: widget.card.code,
       color: textColor,
       style: Theme.of(context).textTheme.bodySmall?.copyWith(color: textColor),
-      errorBuilder: (context, error) => Text(
-        error,
-        style: Theme.of(
-          context,
-        ).textTheme.bodySmall?.copyWith(color: textColor),
-      ),
+      errorBuilder: (context, _) => barcodeError(context),
+    ),
+  );
+
+  Widget barcodeError(BuildContext context) => Container(
+    padding: const EdgeInsets.all(16),
+    decoration: BoxDecoration(
+      color: Theme.of(context).colorScheme.error.withAlpha(15),
+      borderRadius: BorderRadius.circular(8),
+    ),
+    child: Row(
+      spacing: 16,
+      children: [
+        Hicon(
+          HugeIcons.strokeRoundedAlertDiamond,
+          color: Theme.of(context).colorScheme.error,
+        ),
+        Expanded(
+          child: Text(
+            "Unable to generate barcode. Please check the code and type.",
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: Theme.of(context).colorScheme.error,
+            ),
+          ),
+        ),
+      ],
     ),
   );
 
