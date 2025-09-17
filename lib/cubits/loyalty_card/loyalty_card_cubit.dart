@@ -1,9 +1,11 @@
+import 'package:equatable/equatable.dart';
 import 'package:fidely_app/blocs/loyalty_card/loyalty_card_bloc.dart';
-import 'package:fidely_app/cubits/loyalty_card/loyalty_card_cubit_state.dart';
 import 'package:fidely_app/models/loyalty_card.dart';
 import 'package:fidely_app/models/requests/loyalty_card_request.dart';
 import 'package:fidely_app/repositories/loyalty_card_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+part "loyalty_card_cubit_state.dart";
 
 class LoyaltyCardCubit extends Cubit<LoyaltyCardCubitState> {
   final LoyaltyCardRepository repository;

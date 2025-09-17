@@ -12,9 +12,7 @@ class LoyaltyCardService {
   // Singleton pattern -->
   static final LoyaltyCardService instance = LoyaltyCardService._internal();
 
-  factory LoyaltyCardService() {
-    return instance;
-  }
+  factory LoyaltyCardService() => instance;
 
   LoyaltyCardService._internal();
   // <-- Singleton pattern
@@ -34,24 +32,18 @@ class LoyaltyCardService {
     );
   }
 
-  Future<List<Map<String, dynamic>>> get() async {
-    return await _db.query(_tableName);
-  }
+  Future<List<Map<String, dynamic>>> get() async => await _db.query(_tableName);
 
-  Future<int> create(LoyaltyCardInsertRequest request) async {
-    return await _db.insert(_tableName, request.toMap());
-  }
+  Future<int> create(LoyaltyCardInsertRequest request) async =>
+      await _db.insert(_tableName, request.toMap());
 
-  Future<int> update(LoyaltyCard card) async {
-    return await _db.update(
-      _tableName,
-      card.toMap(),
-      where: "id = ?",
-      whereArgs: [card.id],
-    );
-  }
+  Future<int> update(LoyaltyCard card) async => await _db.update(
+    _tableName,
+    card.toMap(),
+    where: "id = ?",
+    whereArgs: [card.id],
+  );
 
-  Future<int> delete(LoyaltyCard card) async {
-    return await _db.delete(_tableName, where: "id = ?", whereArgs: [card.id]);
-  }
+  Future<int> delete(LoyaltyCard card) async =>
+      await _db.delete(_tableName, where: "id = ?", whereArgs: [card.id]);
 }

@@ -1,5 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:fidely_app/models/loyalty_card.dart';
+part of "loyalty_card_cubit.dart";
 
 sealed class LoyaltyCardCubitState extends Equatable {
   const LoyaltyCardCubitState();
