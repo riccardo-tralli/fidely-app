@@ -7,6 +7,8 @@ class DarkTheme {
   static final onBackgroundColor = Colors.grey.shade800;
   static final surfaceColor = Colors.grey.shade900;
   static final onSurfaceColor = Colors.grey.shade300;
+  static final snackBarColor = Colors.grey.shade800;
+  static final snackBarTextColor = Colors.white;
 
   static final textColor = Colors.grey.shade300;
   static final errorColor = Colors.red.shade300;
@@ -53,6 +55,16 @@ class DarkTheme {
         minimumSize: WidgetStatePropertyAll(Size(0, 48)),
         shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        ),
+      ),
+    ),
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: snackBarColor,
+      contentTextStyle: TextStyle(color: snackBarTextColor, fontSize: 16),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
         ),
       ),
     ),

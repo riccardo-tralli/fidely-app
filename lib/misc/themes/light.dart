@@ -7,6 +7,8 @@ class LightTheme {
   static final onBackgroundColor = Colors.grey.shade200;
   static final surfaceColor = Colors.white;
   static final onSurfaceColor = Colors.black87;
+  static final snackBarColor = Colors.grey.shade800;
+  static final snackBarTextColor = Colors.white;
 
   static final textColor = Colors.black;
   static final errorColor = Colors.red.shade300;
@@ -53,6 +55,23 @@ class LightTheme {
         minimumSize: WidgetStatePropertyAll(Size(0, 48)),
         shape: WidgetStatePropertyAll(
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        ),
+      ),
+    ),
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: snackBarColor,
+      contentTextStyle: TextStyle(color: snackBarTextColor, fontSize: 16),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
+        ),
+      ),
+    ),
+    iconButtonTheme: IconButtonThemeData(
+      style: ButtonStyle(
+        shape: WidgetStatePropertyAll(
+          RoundedSuperellipseBorder(borderRadius: BorderRadius.circular(12)),
         ),
       ),
     ),
