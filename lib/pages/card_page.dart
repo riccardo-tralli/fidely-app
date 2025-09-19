@@ -13,7 +13,7 @@ import "package:flutter_bloc/flutter_bloc.dart";
 import "package:flutter_colorpicker/flutter_colorpicker.dart";
 import "package:hugeicons/hugeicons.dart";
 import "package:image_picker/image_picker.dart";
-import "package:mobile_scanner/mobile_scanner.dart" as mobile_scanner;
+import "package:mobile_scanner/mobile_scanner.dart" hide BarcodeType;
 import "package:permission_handler/permission_handler.dart";
 
 class CardPage extends StatefulWidget {
@@ -30,8 +30,7 @@ class CardPage extends StatefulWidget {
 class _CardPageState extends State<CardPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  final mobile_scanner.MobileScannerController _scannerController =
-      mobile_scanner.MobileScannerController(autoStart: true);
+  final MobileScannerController _scannerController = MobileScannerController();
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _codeController = TextEditingController();
   final TextEditingController _ownerController = TextEditingController();
@@ -87,15 +86,16 @@ class _CardPageState extends State<CardPage> {
       source: ImageSource.gallery,
     );
     if (image != null) {
-      final mobile_scanner.BarcodeCapture? capture = await _scannerController
-          .analyzeImage(image.path);
+      final BarcodeCapture? capture = await _scannerController.analyzeImage(
+        image.path,
+      );
       if (capture != null) {
         onScannerDetect(capture);
       }
     }
   }
 
-  void onScannerDetect(mobile_scanner.BarcodeCapture capture) {
+  void onScannerDetect(BarcodeCapture capture) {
     if (capture.barcodes.isNotEmpty) {
       setState(() {
         _codeController.text = capture.barcodes.first.rawValue ?? "";
@@ -312,7 +312,7 @@ class _CardPageState extends State<CardPage> {
       height: 260,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(16),
-        child: mobile_scanner.MobileScanner(
+        child: MobileScanner(
           controller: _scannerController,
           onDetect: onScannerDetect,
           overlayBuilder: (context, constraints) => Container(
@@ -332,9 +332,11 @@ class _CardPageState extends State<CardPage> {
                 spacing: 8,
                 children: [
                   IconButton.filled(
-                    onPressed: () => setState(() {
-                      _showScanner = false;
-                    }),
+                    onPressed: () {
+                      setState(() {
+                        _showScanner = false;
+                      });
+                    },
                     icon: Hicon(HugeIcons.strokeRoundedCancel01),
                   ),
                   IconButton.filled(
