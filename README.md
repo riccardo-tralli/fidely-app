@@ -12,6 +12,14 @@
 <a href="docs/images/screen-4.png" target="_blank"><img src="docs/images/screen-4.png" width="150"></a>
 <a href="docs/images/screen-5.png" target="_blank"><img src="docs/images/screen-5.png" width="150"></a>
 
+## Features
+- Manage your virtual wallet without any internet connection
+- Scan codes via front or rear camera
+- Scan codes via gallery
+- Customize cards aspect
+- Dark and light modes
+- Multiple codes format support (see below)
+ 
 ## Why choose Fidely?
 - Free: no fees, no subscriptions
 - No paid content or ads: completely free and ad-free experience
@@ -22,6 +30,18 @@
 Your card data is stored exclusively locally on your device.  
 It is recommended to regularly back up your device to prevent accidental data loss.
 
+## Codes format support
+- Code 39
+- Code 93
+- Code 128
+- EAN 8
+- EAN 13
+- UPC A
+- UPC E
+- Aztec
+- PDF 417
+- QR
+
 ## Platform compatibility
 Fidely is compatible with both Android and iOS devices.
 - Minimum Android version: 7 (API 24)
@@ -30,11 +50,13 @@ Fidely is compatible with both Android and iOS devices.
 ## Roadmap
 Here are some planned features:
 - [x] Dark/light mode
-- [ ] Barcode scanning support
+- [x] Barcode scanning support
 - [ ] Color scanning support
 - [ ] Photo attachments
 - [ ] Multi-language translations
 - [ ] Data backup and restore
+- [ ] Card sharing via custom URL scheme
+- [ ] More card customization options
 - [ ] Automated tests and updated status badges
 
 If you have suggestions or requests, feel free to open an issue or contribute directly!
