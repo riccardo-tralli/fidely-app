@@ -1,10 +1,14 @@
+import "dart:io";
+
 import "package:barcode_widget/barcode_widget.dart";
 import "package:change_case/change_case.dart";
+import "package:dotted_border/dotted_border.dart";
 import "package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart";
 import "package:fidely_app/cubits/permission/permission_cubit.dart";
 import "package:fidely_app/misc/barcode_parser.dart";
 import "package:fidely_app/models/loyalty_card.dart";
 import "package:fidely_app/models/requests/loyalty_card_request.dart";
+import "package:fidely_app/repositories/permission_repository.dart";
 import "package:fidely_app/widgets/hicon.dart";
 import "package:fidely_app/widgets/loyalty_card_widget.dart";
 import "package:fidely_app/widgets/top_bar.dart";
@@ -14,7 +18,11 @@ import "package:flutter_colorpicker/flutter_colorpicker.dart";
 import "package:hugeicons/hugeicons.dart";
 import "package:image_picker/image_picker.dart";
 import "package:mobile_scanner/mobile_scanner.dart" hide BarcodeType;
+import "package:path/path.dart";
+import "package:path_provider/path_provider.dart";
 import "package:permission_handler/permission_handler.dart";
+
+part "card_page/parts/photo_picker.dart";
 
 class CardPage extends StatefulWidget {
   static const route = "/card";
@@ -42,6 +50,8 @@ class _CardPageState extends State<CardPage> {
   bool _showScanner = false;
   bool _flashOn = false;
   bool _frontCamera = false;
+  File? _frontPhoto;
+  File? _rearPhoto;
 
   void onPickUpCode(BuildContext context) => showDialog(
     context: context,
@@ -182,6 +192,42 @@ class _CardPageState extends State<CardPage> {
     }
   }
 
+  Future<void> savePhotos(int cardId) async {
+    final Directory dir = await getApplicationDocumentsDirectory();
+    final String frontPath = join(dir.path, "${cardId}_front.jpg");
+    final String rearPath = join(dir.path, "${cardId}_rear.jpg");
+    if (_frontPhoto != null) {
+      await _frontPhoto!.copy(frontPath);
+    } else {
+      if (await File(frontPath).exists()) {
+        await File(frontPath).delete();
+      }
+    }
+    if (_rearPhoto != null) {
+      await _rearPhoto!.copy(rearPath);
+    } else {
+      if (await File(rearPath).exists()) {
+        await File(rearPath).delete();
+      }
+    }
+  }
+
+  Future<void> loadPhotos() async {
+    final Directory dir = await getApplicationDocumentsDirectory();
+    final String frontPath = join(dir.path, "${widget.card!.id}_front.jpg");
+    final String rearPath = join(dir.path, "${widget.card!.id}_rear.jpg");
+    if (await File(frontPath).exists()) {
+      setState(() {
+        _frontPhoto = File(frontPath);
+      });
+    }
+    if (await File(rearPath).exists()) {
+      setState(() {
+        _rearPhoto = File(rearPath);
+      });
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -192,6 +238,8 @@ class _CardPageState extends State<CardPage> {
       _ownerController.text = widget.card!.owner ?? "";
       _colorValue = widget.card!.color;
       _noteController.text = widget.card!.note ?? "";
+
+      loadPhotos();
     }
   }
 
@@ -207,9 +255,13 @@ class _CardPageState extends State<CardPage> {
 
   Widget cardCubitListener(BuildContext context) =>
       BlocListener<LoyaltyCardCubit, LoyaltyCardCubitState>(
-        listener: (context, state) {
-          if (state is LoyaltyCardCubitAddSuccessState ||
-              state is LoyaltyCardCubitUpdateSuccessState) {
+        listener: (context, state) async {
+          if (state is LoyaltyCardCubitAddSuccessState) {
+            await savePhotos(state.card.id);
+            Navigator.of(context).pop();
+          }
+          if (state is LoyaltyCardCubitUpdateSuccessState) {
+            await savePhotos(state.card.id);
             Navigator.of(context).pop();
           }
           if (state is LoyaltyCardCubitErrorState) {
@@ -387,6 +439,10 @@ class _CardPageState extends State<CardPage> {
           owner(context),
           color(context),
           note(context),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: photos(context),
+          ),
           SizedBox(width: double.infinity, child: save(context)),
         ],
       ),
@@ -514,6 +570,24 @@ class _CardPageState extends State<CardPage> {
         ],
       ),
     ),
+  );
+
+  Widget photos(BuildContext context) => Row(
+    spacing: 16,
+    children: [
+      PhotoPicker(
+        label: "Front Photo",
+        photo: _frontPhoto,
+        borderColor: _colorValue,
+        onPicked: (photo) => _frontPhoto = photo,
+      ),
+      PhotoPicker(
+        label: "Rear Photo",
+        photo: _rearPhoto,
+        borderColor: _colorValue,
+        onPicked: (photo) => _rearPhoto = photo,
+      ),
+    ],
   );
 
   Widget save(BuildContext context) => FilledButton.icon(
