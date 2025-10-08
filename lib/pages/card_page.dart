@@ -1,16 +1,17 @@
+// ignore_for_file: use_build_context_synchronously
+
 import "dart:io";
 
 import "package:barcode_widget/barcode_widget.dart";
 import "package:change_case/change_case.dart";
-import "package:dotted_border/dotted_border.dart";
 import "package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart";
 import "package:fidely_app/cubits/permission/permission_cubit.dart";
 import "package:fidely_app/misc/barcode_parser.dart";
 import "package:fidely_app/models/loyalty_card.dart";
 import "package:fidely_app/models/requests/loyalty_card_request.dart";
-import "package:fidely_app/repositories/permission_repository.dart";
 import "package:fidely_app/widgets/hicon.dart";
 import "package:fidely_app/widgets/loyalty_card_widget.dart";
+import "package:fidely_app/widgets/photo_container.dart";
 import "package:fidely_app/widgets/top_bar.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
@@ -21,8 +22,6 @@ import "package:mobile_scanner/mobile_scanner.dart" hide BarcodeType;
 import "package:path/path.dart";
 import "package:path_provider/path_provider.dart";
 import "package:permission_handler/permission_handler.dart";
-
-part "card_page/parts/photo_picker.dart";
 
 class CardPage extends StatefulWidget {
   static const route = "/card";
@@ -575,17 +574,17 @@ class _CardPageState extends State<CardPage> {
   Widget photos(BuildContext context) => Row(
     spacing: 16,
     children: [
-      PhotoPicker(
+      PhotoContainer(
         label: "Front Photo",
         photo: _frontPhoto,
         borderColor: _colorValue,
-        onPicked: (photo) => _frontPhoto = photo,
+        onTap: (photo) => _frontPhoto = photo,
       ),
-      PhotoPicker(
+      PhotoContainer(
         label: "Rear Photo",
         photo: _rearPhoto,
         borderColor: _colorValue,
-        onPicked: (photo) => _rearPhoto = photo,
+        onTap: (photo) => _rearPhoto = photo,
       ),
     ],
   );

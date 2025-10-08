@@ -1,26 +1,36 @@
 // ignore_for_file: use_build_context_synchronously
 
-part of "../../card_page.dart";
+import 'dart:io';
 
-class PhotoPicker extends StatefulWidget {
-  final String label;
+import 'package:dotted_border/dotted_border.dart';
+import 'package:fidely_app/repositories/permission_repository.dart';
+import 'package:fidely_app/widgets/hicon.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hugeicons/hugeicons.dart';
+import 'package:image_picker/image_picker.dart';
+
+class PhotoContainer extends StatefulWidget {
+  final String? label;
   final File? photo;
   final Color? borderColor;
-  final Function(File? photo) onPicked;
+  final bool pickable;
+  final Function(File? photo)? onTap;
 
-  const PhotoPicker({
+  const PhotoContainer({
     super.key,
-    required this.label,
+    this.label,
     this.photo,
     this.borderColor,
-    required this.onPicked,
+    this.pickable = true,
+    this.onTap,
   });
 
   @override
-  State<PhotoPicker> createState() => _PermissionState();
+  State<PhotoContainer> createState() => _PermissionState();
 }
 
-class _PermissionState extends State<PhotoPicker> {
+class _PermissionState extends State<PhotoContainer> {
   File? _pickedPhoto;
 
   void onTap(BuildContext context, {bool force = false}) => showDialog(
@@ -41,7 +51,7 @@ class _PermissionState extends State<PhotoPicker> {
         setState(() {
           _pickedPhoto = File(image.path);
         });
-        widget.onPicked(_pickedPhoto!);
+        widget.onTap?.call(_pickedPhoto!);
       }
     }
   }
@@ -53,7 +63,7 @@ class _PermissionState extends State<PhotoPicker> {
   }
 
   @override
-  void didUpdateWidget(PhotoPicker oldWidget) {
+  void didUpdateWidget(PhotoContainer oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.photo?.path != oldWidget.photo?.path) {
       setState(() {
@@ -66,7 +76,7 @@ class _PermissionState extends State<PhotoPicker> {
   Widget build(BuildContext context) => Expanded(
     child: InkWell(
       borderRadius: BorderRadius.circular(16),
-      onTap: () => onTap(context),
+      onTap: () => widget.pickable ? onTap(context) : null,
       child: DottedBorder(
         options: RoundedRectDottedBorderOptions(
           color: widget.borderColor ?? Theme.of(context).colorScheme.secondary,
@@ -90,19 +100,33 @@ class _PermissionState extends State<PhotoPicker> {
       width: double.infinity,
       height: 100,
       fit: BoxFit.cover,
-      color: Colors.black.withAlpha(100),
+      color: Colors.black.withAlpha(widget.pickable ? 100 : 0),
       colorBlendMode: BlendMode.darken,
     ),
   );
 
   Widget label(BuildContext context) => Center(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      spacing: 8,
-      children: _pickedPhoto != null
-          ? tapToChange(context)
-          : tapToPick(context),
-    ),
+    child: widget.pickable
+        ? Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 8,
+            children: _pickedPhoto != null
+                ? tapToChange(context)
+                : tapToPick(context),
+          )
+        : Text(
+            widget.label ?? "",
+            style: TextStyle(
+              color: Colors.white,
+              shadows: [
+                Shadow(
+                  color: Colors.black.withAlpha(150),
+                  offset: Offset(2, 2),
+                  blurRadius: 4,
+                ),
+              ],
+            ),
+          ),
   );
 
   List<Widget> tapToChange(BuildContext context) => [
@@ -127,7 +151,7 @@ class _PermissionState extends State<PhotoPicker> {
       HugeIcons.strokeRoundedAdd01,
       color: Theme.of(context).textTheme.bodyMedium?.color,
     ),
-    Text(widget.label),
+    if (widget.label != null && widget.label!.isNotEmpty) Text(widget.label!),
   ];
 
   Widget onEmptyPhoto(BuildContext context) => AlertDialog(
@@ -181,7 +205,7 @@ class _PermissionState extends State<PhotoPicker> {
           setState(() {
             _pickedPhoto = null;
           });
-          widget.onPicked(null);
+          widget.onTap?.call(null);
         },
         style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.red)),
         icon: Hicon(HugeIcons.strokeRoundedDelete02),

@@ -1,11 +1,16 @@
+import 'dart:io';
+
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart';
 import 'package:fidely_app/models/loyalty_card.dart';
 import 'package:fidely_app/pages/card_page.dart';
 import 'package:fidely_app/widgets/hicon.dart';
+import 'package:fidely_app/widgets/photo_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 
 class LoyaltyCardWidget extends StatefulWidget {
   final LoyaltyCard card;
@@ -35,8 +40,18 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
     }
   }
 
-  void onLongPress(BuildContext context) {
+  void onLongPress(BuildContext context) async {
     if (widget.isSelectable) {
+      final Directory dir = await getApplicationDocumentsDirectory();
+      final String frontPath = join(dir.path, "${widget.card.id}_front.jpg");
+      final String rearPath = join(dir.path, "${widget.card.id}_rear.jpg");
+      final File? frontPhoto = await File(frontPath).exists()
+          ? File(frontPath)
+          : null;
+      final File? rearPhoto = await File(rearPath).exists()
+          ? File(rearPath)
+          : null;
+
       showModalBottomSheet(
         context: context,
         builder: (context) => SafeArea(
@@ -52,6 +67,24 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
                   widget.card.title,
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
+                if (frontPhoto != null || rearPhoto != null)
+                  Row(
+                    spacing: 16,
+                    children: [
+                      if (frontPhoto != null)
+                        PhotoContainer(
+                          photo: frontPhoto,
+                          borderColor: widget.card.color,
+                          pickable: false,
+                        ),
+                      if (rearPhoto != null)
+                        PhotoContainer(
+                          photo: rearPhoto,
+                          borderColor: widget.card.color,
+                          pickable: false,
+                        ),
+                    ],
+                  ),
                 Row(
                   spacing: 16,
                   children: [
