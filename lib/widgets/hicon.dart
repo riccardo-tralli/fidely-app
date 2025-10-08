@@ -16,6 +16,6 @@ class Hicon extends StatelessWidget {
         Theme.of(context).iconTheme.color ??
         Theme.of(context).textTheme.bodyMedium?.color ??
         Colors.black,
-    size: 24,
+    size: size ?? 24,
   );
 }
