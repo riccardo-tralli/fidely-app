@@ -1,6 +1,7 @@
 import 'package:change_case/change_case.dart';
 import 'package:fidely_app/app.dart';
 import 'package:fidely_app/services/loyalty_card_service.dart';
+import 'package:fidely_app/services/photo_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -8,6 +9,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await LoyaltyCardService.instance.init();
+  await PhotoService.instance.init();
 
   // Configure ChangeCase to handle special characters (accents)
   ChangeCaseConfig.setUp(

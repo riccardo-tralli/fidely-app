@@ -9,6 +9,7 @@ import "package:fidely_app/cubits/permission/permission_cubit.dart";
 import "package:fidely_app/misc/barcode_parser.dart";
 import "package:fidely_app/models/loyalty_card.dart";
 import "package:fidely_app/models/requests/loyalty_card_request.dart";
+import "package:fidely_app/services/photo_service.dart";
 import "package:fidely_app/widgets/hicon.dart";
 import "package:fidely_app/widgets/loyalty_card_widget.dart";
 import "package:fidely_app/widgets/photo_container.dart";
@@ -19,8 +20,6 @@ import "package:flutter_colorpicker/flutter_colorpicker.dart";
 import "package:hugeicons/hugeicons.dart";
 import "package:image_picker/image_picker.dart";
 import "package:mobile_scanner/mobile_scanner.dart" hide BarcodeType;
-import "package:path/path.dart";
-import "package:path_provider/path_provider.dart";
 import "package:permission_handler/permission_handler.dart";
 
 class CardPage extends StatefulWidget {
@@ -192,39 +191,34 @@ class _CardPageState extends State<CardPage> {
   }
 
   Future<void> savePhotos(int cardId) async {
-    final Directory dir = await getApplicationDocumentsDirectory();
-    final String frontPath = join(dir.path, "${cardId}_front.jpg");
-    final String rearPath = join(dir.path, "${cardId}_rear.jpg");
     if (_frontPhoto != null) {
-      await _frontPhoto!.copy(frontPath);
-    } else {
-      if (await File(frontPath).exists()) {
-        await File(frontPath).delete();
+      if (_frontPhoto!.path !=
+          PhotoService.instance.getPath(cardId, PhotoType.front)) {
+        await PhotoService.instance.save(cardId, PhotoType.front, _frontPhoto!);
       }
+    } else {
+      await PhotoService.instance.delete(cardId, PhotoType.front);
     }
     if (_rearPhoto != null) {
-      await _rearPhoto!.copy(rearPath);
-    } else {
-      if (await File(rearPath).exists()) {
-        await File(rearPath).delete();
+      if (_rearPhoto!.path !=
+          PhotoService.instance.getPath(cardId, PhotoType.rear)) {
+        await PhotoService.instance.save(cardId, PhotoType.rear, _rearPhoto!);
       }
+    } else {
+      await PhotoService.instance.delete(cardId, PhotoType.rear);
     }
   }
 
   Future<void> loadPhotos() async {
-    final Directory dir = await getApplicationDocumentsDirectory();
-    final String frontPath = join(dir.path, "${widget.card!.id}_front.jpg");
-    final String rearPath = join(dir.path, "${widget.card!.id}_rear.jpg");
-    if (await File(frontPath).exists()) {
-      setState(() {
-        _frontPhoto = File(frontPath);
-      });
-    }
-    if (await File(rearPath).exists()) {
-      setState(() {
-        _rearPhoto = File(rearPath);
-      });
-    }
+    _frontPhoto = await PhotoService.instance.get(
+      widget.card!.id,
+      PhotoType.front,
+    );
+    _rearPhoto = await PhotoService.instance.get(
+      widget.card!.id,
+      PhotoType.rear,
+    );
+    setState(() {});
   }
 
   @override
