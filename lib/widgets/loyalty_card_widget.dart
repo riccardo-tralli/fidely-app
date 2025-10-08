@@ -4,13 +4,12 @@ import 'package:barcode_widget/barcode_widget.dart';
 import 'package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart';
 import 'package:fidely_app/models/loyalty_card.dart';
 import 'package:fidely_app/pages/card_page.dart';
+import 'package:fidely_app/services/photo_service.dart';
 import 'package:fidely_app/widgets/hicon.dart';
 import 'package:fidely_app/widgets/photo_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hugeicons/hugeicons.dart';
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
 
 class LoyaltyCardWidget extends StatefulWidget {
   final LoyaltyCard card;
@@ -42,15 +41,14 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
 
   void onLongPress(BuildContext context) async {
     if (widget.isSelectable) {
-      final Directory dir = await getApplicationDocumentsDirectory();
-      final String frontPath = join(dir.path, "${widget.card.id}_front.jpg");
-      final String rearPath = join(dir.path, "${widget.card.id}_rear.jpg");
-      final File? frontPhoto = await File(frontPath).exists()
-          ? File(frontPath)
-          : null;
-      final File? rearPhoto = await File(rearPath).exists()
-          ? File(rearPath)
-          : null;
+      final File? frontPhoto = await PhotoService.instance.get(
+        widget.card.id,
+        PhotoType.front,
+      );
+      final File? rearPhoto = await PhotoService.instance.get(
+        widget.card.id,
+        PhotoType.rear,
+      );
 
       showModalBottomSheet(
         context: context,
