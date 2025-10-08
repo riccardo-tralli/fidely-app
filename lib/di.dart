@@ -5,6 +5,7 @@ import 'package:fidely_app/repositories/loyalty_card_repository.dart';
 import 'package:fidely_app/repositories/permission_repository.dart';
 import 'package:fidely_app/services/loyalty_card_service.dart';
 import 'package:fidely_app/services/permission_service.dart';
+import 'package:fidely_app/services/photo_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pine/di/dependency_injector_helper.dart';
@@ -19,6 +20,7 @@ class DependencyInjector extends StatelessWidget {
   Widget build(BuildContext context) => DependencyInjectorHelper(
     providers: [
       Provider<PermissionService>(create: (_) => PermissionService()),
+      Provider<PhotoService>(create: (_) => PhotoService.instance),
     ],
     repositories: [
       RepositoryProvider<LoyaltyCardRepository>(
@@ -34,8 +36,11 @@ class DependencyInjector extends StatelessWidget {
             LoyaltyCardBloc(repository: context.read())..loadLoyaltyCards(),
       ),
       BlocProvider<LoyaltyCardCubit>(
-        create: (context) =>
-            LoyaltyCardCubit(repository: context.read(), bloc: context.read()),
+        create: (context) => LoyaltyCardCubit(
+          repository: context.read(),
+          bloc: context.read(),
+          photoService: context.read(),
+        ),
       ),
       BlocProvider<PermissionCubit>(
         create: (context) => PermissionCubit(repository: context.read()),
