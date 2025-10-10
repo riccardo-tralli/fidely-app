@@ -5,7 +5,7 @@ import "package:sqflite/sqflite.dart";
 
 class LoyaltyCardService {
   static const String _dbName = "cards.db";
-  static const int _dbVersion = 1;
+  static const int _dbVersion = 2;
   static const String _tableName = "cards";
   late Database _db;
 
@@ -28,6 +28,11 @@ class LoyaltyCardService {
         await db.execute(
           "CREATE TABLE $_tableName (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, code TEXT, type TEXT, owner TEXT, color TEXT, note TEXT)",
         );
+      },
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (oldVersion == 1 && newVersion == 2) {
+          await db.execute("ALTER TABLE $_tableName ADD COLUMN category TEXT");
+        }
       },
     );
   }

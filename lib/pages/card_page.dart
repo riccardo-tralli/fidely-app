@@ -7,6 +7,7 @@ import "package:change_case/change_case.dart";
 import "package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart";
 import "package:fidely_app/cubits/permission/permission_cubit.dart";
 import "package:fidely_app/misc/barcode_parser.dart";
+import "package:fidely_app/models/category.dart";
 import "package:fidely_app/models/loyalty_card.dart";
 import "package:fidely_app/models/requests/loyalty_card_request.dart";
 import "package:fidely_app/services/photo_service.dart";
@@ -44,6 +45,7 @@ class _CardPageState extends State<CardPage> {
 
   BarcodeType _typeValue = BarcodeType.Code39;
   Color _colorValue = Colors.white;
+  Category? _categoryValue;
   Color _tempColor = Colors.white;
   bool _showScanner = false;
   bool _flashOn = false;
@@ -173,6 +175,7 @@ class _CardPageState extends State<CardPage> {
             owner: _ownerController.text.isEmpty ? null : _ownerController.text,
             color: _colorValue,
             note: _noteController.text.isEmpty ? null : _noteController.text,
+            category: _categoryValue,
           ),
         );
       } else {
@@ -184,6 +187,7 @@ class _CardPageState extends State<CardPage> {
             owner: _ownerController.text.isEmpty ? "" : _ownerController.text,
             color: _colorValue,
             note: _noteController.text.isEmpty ? "" : _noteController.text,
+            category: _categoryValue,
           ),
         );
       }
@@ -231,6 +235,7 @@ class _CardPageState extends State<CardPage> {
       _ownerController.text = widget.card!.owner ?? "";
       _colorValue = widget.card!.color;
       _noteController.text = widget.card!.note ?? "";
+      _categoryValue = widget.card!.category;
 
       loadPhotos();
     }
@@ -432,6 +437,7 @@ class _CardPageState extends State<CardPage> {
           owner(context),
           color(context),
           note(context),
+          category(context),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: photos(context),
@@ -533,6 +539,55 @@ class _CardPageState extends State<CardPage> {
         controller: _noteController,
         onChanged: (value) => setState(() {}),
         maxLines: 3,
+      ),
+    ],
+  );
+
+  Widget category(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Padding(padding: const EdgeInsets.only(left: 8), child: Text("Category")),
+      DropdownButtonFormField(
+        initialValue: _categoryValue,
+        items: [
+          DropdownMenuItem(value: null, child: Text("None")),
+          DropdownMenuItem(
+            value: Category.market,
+            child: Text("Market and grocery"),
+          ),
+          DropdownMenuItem(value: Category.food, child: Text("Food")),
+          DropdownMenuItem(
+            value: Category.fuel,
+            child: Text("Fuel and energy"),
+          ),
+          DropdownMenuItem(
+            value: Category.entertainment,
+            child: Text("Entertainment"),
+          ),
+          DropdownMenuItem(
+            value: Category.fashion,
+            child: Text("Fashion and beauty"),
+          ),
+          DropdownMenuItem(
+            value: Category.electronics,
+            child: Text("Electronics"),
+          ),
+          DropdownMenuItem(
+            value: Category.health,
+            child: Text("Health and wellness"),
+          ),
+          DropdownMenuItem(
+            value: Category.travel,
+            child: Text("Travel and transport"),
+          ),
+          DropdownMenuItem(value: Category.sport, child: Text("Sport")),
+          DropdownMenuItem(value: Category.other, child: Text("Other")),
+        ],
+        onChanged: (value) {
+          setState(() {
+            _categoryValue = value;
+          });
+        },
       ),
     ],
   );

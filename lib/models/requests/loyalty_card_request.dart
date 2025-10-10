@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:barcode_widget/barcode_widget.dart';
+import 'package:fidely_app/models/category.dart';
 
 class LoyaltyCardInsertRequest {
   final String title;
@@ -9,6 +10,7 @@ class LoyaltyCardInsertRequest {
   final String? owner;
   final Color color;
   final String? note;
+  final Category? category;
 
   const LoyaltyCardInsertRequest({
     required this.title,
@@ -17,6 +19,7 @@ class LoyaltyCardInsertRequest {
     this.owner,
     required this.color,
     this.note,
+    this.category,
   });
 
   Map<String, dynamic> toMap() => {
@@ -26,5 +29,6 @@ class LoyaltyCardInsertRequest {
     "owner": owner,
     "color": "${color.a},${color.r},${color.g},${color.b}",
     "note": note,
+    "category": category?.name,
   };
 }

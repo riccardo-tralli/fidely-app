@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:barcode_widget/barcode_widget.dart';
+import 'package:fidely_app/models/category.dart';
 
 /*
   ? Add icon
-  ? Add category
 */
 
 class LoyaltyCard {
@@ -15,6 +15,7 @@ class LoyaltyCard {
   final String? owner;
   final Color color;
   final String? note;
+  final Category? category;
 
   LoyaltyCard({
     required this.id,
@@ -24,6 +25,7 @@ class LoyaltyCard {
     this.owner,
     required this.color,
     this.note,
+    this.category,
   });
 
   Map<String, dynamic> toMap() => {
@@ -34,6 +36,7 @@ class LoyaltyCard {
     "owner": owner,
     "color": "${color.a},${color.r},${color.g},${color.b}",
     "note": note,
+    "category": category?.name,
   };
 
   factory LoyaltyCard.fromMap(Map<String, dynamic> map) => LoyaltyCard(
@@ -49,6 +52,9 @@ class LoyaltyCard {
       (double.parse(map["color"].split(",")[3]) * 255).toInt(),
     ),
     note: map["note"],
+    category: map["category"] != null
+        ? Category.fromName(map["category"])
+        : null,
   );
 
   LoyaltyCard copyWith({
@@ -58,6 +64,7 @@ class LoyaltyCard {
     String? owner,
     Color? color,
     String? note,
+    Category? category,
   }) => LoyaltyCard(
     id: id,
     title: title ?? this.title,
@@ -66,5 +73,6 @@ class LoyaltyCard {
     owner: owner ?? this.owner,
     color: color ?? this.color,
     note: note ?? this.note,
+    category: category ?? this.category,
   );
 }
