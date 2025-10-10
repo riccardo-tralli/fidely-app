@@ -76,7 +76,13 @@ class _PermissionState extends State<PhotoContainer> {
   Widget build(BuildContext context) => Expanded(
     child: InkWell(
       borderRadius: BorderRadius.circular(16),
-      onTap: () => widget.pickable ? onTap(context) : null,
+      onTap: () {
+        if (widget.pickable) {
+          onTap(context);
+        } else if (widget.onTap != null && _pickedPhoto != null) {
+          widget.onTap!(_pickedPhoto);
+        }
+      },
       child: DottedBorder(
         options: RoundedRectDottedBorderOptions(
           color: widget.borderColor ?? Theme.of(context).colorScheme.secondary,

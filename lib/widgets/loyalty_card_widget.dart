@@ -31,6 +31,21 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
   Color textColor = Colors.white;
   bool isSelected = false;
 
+  void showPhoto(File photo) => showDialog(
+    barrierColor: Theme.of(context).scaffoldBackgroundColor.withAlpha(220),
+    context: context,
+    builder: (context) => Dialog(
+      child: InkWell(
+        borderRadius: BorderRadius.circular(16),
+        onTap: () => Navigator.of(context).pop(),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16),
+          child: Image.file(photo),
+        ),
+      ),
+    ),
+  );
+
   void onTap() {
     if (widget.isSelectable) {
       setState(() {
@@ -74,12 +89,14 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
                           photo: frontPhoto,
                           borderColor: widget.card.color,
                           pickable: false,
+                          onTap: (photo) => showPhoto(photo!),
                         ),
                       if (rearPhoto != null)
                         PhotoContainer(
                           photo: rearPhoto,
                           borderColor: widget.card.color,
                           pickable: false,
+                          onTap: (photo) => showPhoto(photo!),
                         ),
                     ],
                   ),
