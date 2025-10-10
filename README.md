@@ -16,6 +16,7 @@
 - Manage your virtual wallet without any internet connection
 - Scan codes via front or rear camera
 - Scan codes via gallery
+- Attach front and back photos to cards
 - Customize cards aspect
 - Dark and light modes
 - Multiple codes format support (see below)
@@ -51,8 +52,8 @@ Fidely is compatible with both Android and iOS devices.
 Here are some planned features:
 - [x] Dark/light mode
 - [x] Barcode scanning support
+- [x] Photo attachments
 - [ ] Color scanning support
-- [ ] Photo attachments
 - [ ] Multi-language translations
 - [ ] Data backup and restore
 - [ ] Card sharing via custom URL scheme
