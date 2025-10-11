@@ -9,13 +9,6 @@ class Hicon extends StatelessWidget {
   const Hicon(this.icon, {super.key, this.color, this.size});
 
   @override
-  Widget build(BuildContext context) => HugeIcon(
-    icon: icon,
-    color:
-        color ??
-        Theme.of(context).iconTheme.color ??
-        Theme.of(context).textTheme.bodyMedium?.color ??
-        Colors.black,
-    size: size ?? 24,
-  );
+  Widget build(BuildContext context) =>
+      HugeIcon(icon: icon, color: color, size: size ?? 24);
 }
