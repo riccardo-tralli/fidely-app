@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:fidely_app/models/loyalty_card.dart';
+import 'package:fidely_app/models/sort_mode.dart';
 import 'package:fidely_app/repositories/loyalty_card_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,7 +24,7 @@ class LoyaltyCardBloc extends Bloc<LoyaltyCardEvent, LoyaltyCardState> {
   ) async {
     emit(LoyaltyCardLoadingState());
     try {
-      final List<LoyaltyCard> cards = await repository.get();
+      final List<LoyaltyCard> cards = await repository.get(event.mode);
       emit(LoyaltyCardLoadedState(cards));
     } catch (e) {
       emit(LoyaltyCardErrorState(e.toString()));
@@ -77,7 +78,7 @@ class LoyaltyCardBloc extends Bloc<LoyaltyCardEvent, LoyaltyCardState> {
     }
   }
 
-  void loadLoyaltyCards() => add(LoadLoyaltyCardsEvent());
+  void loadLoyaltyCards(SortMode mode) => add(LoadLoyaltyCardsEvent(mode));
 
   void addLoyaltyCard(LoyaltyCard card) => add(AddLoyaltyCardEvent(card));
 

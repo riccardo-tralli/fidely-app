@@ -8,7 +8,12 @@ sealed class LoyaltyCardEvent extends Equatable {
 }
 
 final class LoadLoyaltyCardsEvent extends LoyaltyCardEvent {
-  const LoadLoyaltyCardsEvent();
+  final SortMode mode;
+
+  const LoadLoyaltyCardsEvent(this.mode);
+
+  @override
+  List<Object> get props => [mode];
 }
 
 final class AddLoyaltyCardEvent extends LoyaltyCardEvent {

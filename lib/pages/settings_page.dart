@@ -1,4 +1,7 @@
+import 'package:fidely_app/blocs/loyalty_card/loyalty_card_bloc.dart';
 import 'package:fidely_app/cubits/dark_mode_cubit.dart';
+import 'package:fidely_app/cubits/sort_cubit.dart';
+import 'package:fidely_app/models/sort_mode.dart';
 import 'package:fidely_app/widgets/hicon.dart';
 import 'package:fidely_app/widgets/top_bar.dart';
 import 'package:flutter/material.dart';
@@ -16,11 +19,21 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   late ThemeMode _themeMode;
+  late SortMode _sortMode;
+
+  void onSort(SortMode mode) {
+    setState(() {
+      _sortMode = mode;
+    });
+    context.read<SortCubit>().set(_sortMode);
+    context.read<LoyaltyCardBloc>().loadLoyaltyCards(_sortMode);
+  }
 
   @override
   void initState() {
     super.initState();
     _themeMode = context.read<DarkModeCubit>().state;
+    _sortMode = context.read<SortCubit>().state;
   }
 
   @override
@@ -28,7 +41,12 @@ class _SettingsPageState extends State<SettingsPage> {
     appBar: TopBar(roundedBorders: true),
     body: Padding(
       padding: const EdgeInsets.all(16),
-      child: Column(children: [themeModeOption(context)]),
+      child: SingleChildScrollView(
+        child: Column(
+          spacing: 16,
+          children: [themeModeOption(context), sortModeOption(context)],
+        ),
+      ),
     ),
   );
 
@@ -38,52 +56,111 @@ class _SettingsPageState extends State<SettingsPage> {
       Text("Theme Mode", style: Theme.of(context).textTheme.titleMedium),
       Text("Select your preferred theme mode"),
       const SizedBox(height: 8),
-      Row(
-        spacing: 16,
-        children: [
-          Expanded(
-            child: option(
-              context: context,
-              icon: HugeIcons.strokeRoundedSun02,
-              label: "Light",
-              onTap: () {
-                setState(() {
-                  _themeMode = ThemeMode.light;
-                });
-                context.read<DarkModeCubit>().set(ThemeMode.light);
-              },
-              active: _themeMode == ThemeMode.light,
+      IntrinsicHeight(
+        child: Row(
+          spacing: 16,
+          children: [
+            Expanded(
+              child: option(
+                context: context,
+                icon: HugeIcons.strokeRoundedSun02,
+                label: "Light",
+                onTap: () {
+                  setState(() {
+                    _themeMode = ThemeMode.light;
+                  });
+                  context.read<DarkModeCubit>().set(ThemeMode.light);
+                },
+                active: _themeMode == ThemeMode.light,
+              ),
             ),
-          ),
-          Expanded(
-            child: option(
-              context: context,
-              icon: HugeIcons.strokeRoundedMoon01,
-              label: "Dark",
-              onTap: () {
-                setState(() {
-                  _themeMode = ThemeMode.dark;
-                });
-                context.read<DarkModeCubit>().set(ThemeMode.dark);
-              },
-              active: _themeMode == ThemeMode.dark,
+            Expanded(
+              child: option(
+                context: context,
+                icon: HugeIcons.strokeRoundedMoon01,
+                label: "Dark",
+                onTap: () {
+                  setState(() {
+                    _themeMode = ThemeMode.dark;
+                  });
+                  context.read<DarkModeCubit>().set(ThemeMode.dark);
+                },
+                active: _themeMode == ThemeMode.dark,
+              ),
             ),
-          ),
-          Expanded(
-            child: option(
-              context: context,
-              icon: HugeIcons.strokeRoundedSmartPhone02,
-              label: "System",
-              onTap: () {
-                setState(() {
-                  _themeMode = ThemeMode.system;
-                });
-                context.read<DarkModeCubit>().set(ThemeMode.system);
-              },
-              active: _themeMode == ThemeMode.system,
+            Expanded(
+              child: option(
+                context: context,
+                icon: HugeIcons.strokeRoundedSmartPhone02,
+                label: "System",
+                onTap: () {
+                  setState(() {
+                    _themeMode = ThemeMode.system;
+                  });
+                  context.read<DarkModeCubit>().set(ThemeMode.system);
+                },
+                active: _themeMode == ThemeMode.system,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
+      ),
+    ],
+  );
+
+  Widget sortModeOption(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text("Sort Mode", style: Theme.of(context).textTheme.titleMedium),
+      Text("Select your preferred sort mode"),
+      const SizedBox(height: 8),
+      IntrinsicHeight(
+        child: Row(
+          spacing: 16,
+          children: [
+            Expanded(
+              child: option(
+                context: context,
+                icon: HugeIcons.strokeRoundedClock01,
+                label: "Recently Added",
+                onTap: () =>
+                    onSort(_sortMode.copyWith(option: SortOption.creationDate)),
+                active: _sortMode.option == SortOption.creationDate,
+              ),
+            ),
+            Expanded(
+              child: option(
+                context: context,
+                icon: _sortMode.reverse
+                    ? HugeIcons.strokeRoundedArrangeByLettersZA
+                    : HugeIcons.strokeRoundedArrangeByLettersAZ,
+                label: "Alphabetical",
+                onTap: () =>
+                    onSort(_sortMode.copyWith(option: SortOption.alphabetical)),
+                active: _sortMode.option == SortOption.alphabetical,
+              ),
+            ),
+            Expanded(
+              child: option(
+                context: context,
+                icon: HugeIcons.strokeRoundedTag01,
+                label: "Category",
+                onTap: () =>
+                    onSort(_sortMode.copyWith(option: SortOption.category)),
+                active: _sortMode.option == SortOption.category,
+              ),
+            ),
+          ],
+        ),
+      ),
+      const SizedBox(height: 8),
+      SwitchListTile(
+        title: Text("Reverse"),
+        subtitle: Text(
+          "Cards are actually sorted in ${_sortMode.reverse ? "descending" : "ascending"} order",
+        ),
+        value: _sortMode.reverse,
+        onChanged: (value) => onSort(_sortMode.copyWith(reverse: value)),
       ),
     ],
   );
@@ -107,10 +184,15 @@ class _SettingsPageState extends State<SettingsPage> {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         spacing: 8,
         children: [
           Hicon(icon, color: active ? Colors.white : null),
-          Text(label, style: TextStyle(color: active ? Colors.white : null)),
+          Text(
+            label,
+            style: TextStyle(color: active ? Colors.white : null),
+            textAlign: TextAlign.center,
+          ),
         ],
       ),
     ),

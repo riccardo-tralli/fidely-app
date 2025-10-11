@@ -1,5 +1,6 @@
 import "package:fidely_app/models/loyalty_card.dart";
 import "package:fidely_app/models/requests/loyalty_card_request.dart";
+import "package:fidely_app/models/sort_mode.dart";
 import "package:path/path.dart";
 import "package:sqflite/sqflite.dart";
 
@@ -37,7 +38,15 @@ class LoyaltyCardService {
     );
   }
 
-  Future<List<Map<String, dynamic>>> get() async => await _db.query(_tableName);
+  Future<List<Map<String, dynamic>>> get(SortMode mode) async =>
+      await _db.query(
+        _tableName,
+        orderBy: switch (mode.option) {
+          SortOption.creationDate => "id ${mode.reverse ? "DESC" : "ASC"}",
+          SortOption.alphabetical => "title ${mode.reverse ? "DESC" : "ASC"}",
+          SortOption.category => "category ${mode.reverse ? "DESC" : "ASC"}",
+        },
+      );
 
   Future<int> create(LoyaltyCardInsertRequest request) async =>
       await _db.insert(_tableName, request.toMap());

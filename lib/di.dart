@@ -2,6 +2,7 @@ import 'package:fidely_app/blocs/loyalty_card/loyalty_card_bloc.dart';
 import 'package:fidely_app/cubits/dark_mode_cubit.dart';
 import 'package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart';
 import 'package:fidely_app/cubits/permission/permission_cubit.dart';
+import 'package:fidely_app/cubits/sort_cubit.dart';
 import 'package:fidely_app/repositories/loyalty_card_repository.dart';
 import 'package:fidely_app/repositories/permission_repository.dart';
 import 'package:fidely_app/services/loyalty_card_service.dart';
@@ -32,9 +33,11 @@ class DependencyInjector extends StatelessWidget {
       ),
     ],
     blocs: [
+      BlocProvider<SortCubit>(create: (_) => SortCubit()),
       BlocProvider<LoyaltyCardBloc>(
         create: (context) =>
-            LoyaltyCardBloc(repository: context.read())..loadLoyaltyCards(),
+            LoyaltyCardBloc(repository: context.read())
+              ..loadLoyaltyCards(context.read<SortCubit>().state),
       ),
       BlocProvider<LoyaltyCardCubit>(
         create: (context) => LoyaltyCardCubit(

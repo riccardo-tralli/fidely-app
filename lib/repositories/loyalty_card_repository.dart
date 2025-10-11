@@ -1,5 +1,6 @@
 import 'package:fidely_app/models/loyalty_card.dart';
 import 'package:fidely_app/models/requests/loyalty_card_request.dart';
+import 'package:fidely_app/models/sort_mode.dart';
 import 'package:fidely_app/services/loyalty_card_service.dart';
 
 class LoyaltyCardRepository {
@@ -7,9 +8,9 @@ class LoyaltyCardRepository {
 
   LoyaltyCardRepository(this.service);
 
-  Future<List<LoyaltyCard>> get() async {
+  Future<List<LoyaltyCard>> get(SortMode mode) async {
     try {
-      final List<Map<String, dynamic>> data = await service.get();
+      final List<Map<String, dynamic>> data = await service.get(mode);
       return data.map((e) => LoyaltyCard.fromMap(e)).toList();
     } catch (e) {
       rethrow;
