@@ -1,20 +1,19 @@
-import 'package:fidely_app/pages/card_page.dart';
-import 'package:fidely_app/widgets/hicon.dart';
 import 'package:flutter/material.dart';
-import 'package:hugeicons/hugeicons.dart';
 
 class TopBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? backgroundColor;
   final bool roundedBorders;
   final bool showTitle;
-  final bool showActions;
+  final Widget? leading;
+  final List<Widget>? trailing;
 
   const TopBar({
     super.key,
     this.backgroundColor,
     this.roundedBorders = false,
     this.showTitle = true,
-    this.showActions = true,
+    this.leading,
+    this.trailing,
   });
 
   @override
@@ -31,11 +30,8 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
           : BorderRadius.zero,
     ),
     title: showTitle ? const Text("Fidely") : null,
-    actions: showActions ? [addButton(context)] : null,
-  );
-
-  Widget addButton(BuildContext context) => IconButton(
-    icon: Hicon(HugeIcons.strokeRoundedAddSquare),
-    onPressed: () => Navigator.pushNamed(context, CardPage.route),
+    centerTitle: true,
+    leading: leading,
+    actions: trailing,
   );
 }

@@ -1,5 +1,6 @@
 import 'package:fidely_app/blocs/loyalty_card/loyalty_card_bloc.dart';
 import 'package:fidely_app/pages/card_page.dart';
+import 'package:fidely_app/pages/settings_page.dart';
 import 'package:fidely_app/widgets/hicon.dart';
 import 'package:fidely_app/widgets/loyalty_card_widget.dart';
 import 'package:fidely_app/widgets/top_bar.dart';
@@ -14,11 +15,25 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: TopBar(roundedBorders: true),
+    appBar: TopBar(
+      roundedBorders: true,
+      leading: settingsButton(context),
+      trailing: [addButton(context)],
+    ),
     body: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: cardList(context),
     ),
+  );
+
+  Widget settingsButton(BuildContext context) => IconButton(
+    icon: Hicon(HugeIcons.strokeRoundedSettings01),
+    onPressed: () => Navigator.pushNamed(context, SettingsPage.route),
+  );
+
+  Widget addButton(BuildContext context) => IconButton(
+    icon: Hicon(HugeIcons.strokeRoundedAddSquare),
+    onPressed: () => Navigator.pushNamed(context, CardPage.route),
   );
 
   Widget cardList(BuildContext context) =>

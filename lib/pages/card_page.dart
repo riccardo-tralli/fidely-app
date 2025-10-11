@@ -246,7 +246,6 @@ class _CardPageState extends State<CardPage> {
     appBar: TopBar(
       backgroundColor: Theme.of(context).colorScheme.secondary,
       showTitle: false,
-      showActions: false,
     ),
     body: SafeArea(child: cardCubitListener(context)),
   );
