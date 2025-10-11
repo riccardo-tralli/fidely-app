@@ -21,6 +21,7 @@ class LightTheme {
       secondary: secondaryColor,
       surface: surfaceColor,
       onSurface: onSurfaceColor,
+      outline: onBackgroundColor,
     ),
     textTheme: TextTheme(
       bodyLarge: TextStyle(color: textColor),
