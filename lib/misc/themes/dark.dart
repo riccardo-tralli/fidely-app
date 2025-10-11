@@ -16,11 +16,13 @@ class DarkTheme {
   static ThemeData make() => ThemeData(
     primaryColor: primaryColor,
     scaffoldBackgroundColor: backgroundColor,
-    colorScheme: ColorScheme.light(
+    colorScheme: ColorScheme.dark(
       primary: primaryColor,
       secondary: secondaryColor,
       surface: surfaceColor,
       onSurface: onSurfaceColor,
+      outline: onBackgroundColor,
+      shadow: Colors.white.withAlpha(100),
     ),
     textTheme: TextTheme(
       bodyLarge: TextStyle(color: textColor),
@@ -65,6 +67,13 @@ class DarkTheme {
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(16),
           topRight: Radius.circular(16),
+        ),
+      ),
+    ),
+    iconButtonTheme: IconButtonThemeData(
+      style: ButtonStyle(
+        shape: WidgetStatePropertyAll(
+          RoundedSuperellipseBorder(borderRadius: BorderRadius.circular(12)),
         ),
       ),
     ),

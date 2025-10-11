@@ -106,7 +106,10 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
                     Expanded(
                       child: FilledButton.icon(
                         onPressed: () => onEdit(context),
-                        icon: Hicon(HugeIcons.strokeRoundedEdit04),
+                        icon: Hicon(
+                          HugeIcons.strokeRoundedEdit04,
+                          color: Colors.white,
+                        ),
                         label: Text(
                           "Edit",
                           style: Theme.of(
@@ -124,7 +127,10 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
                         style: ButtonStyle(
                           backgroundColor: WidgetStatePropertyAll(Colors.red),
                         ),
-                        icon: Hicon(HugeIcons.strokeRoundedDelete02),
+                        icon: Hicon(
+                          HugeIcons.strokeRoundedDelete02,
+                          color: Colors.white,
+                        ),
                         label: Text(
                           "Delete",
                           style: Theme.of(
@@ -172,7 +178,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
             style: ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(Colors.red),
             ),
-            icon: Hicon(HugeIcons.strokeRoundedDelete02),
+            icon: Hicon(HugeIcons.strokeRoundedDelete02, color: Colors.white),
             label: Text(
               "Confirm",
               style: Theme.of(
@@ -210,7 +216,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withAlpha(100),
+              color: Theme.of(context).colorScheme.shadow,
               blurRadius: 2,
               offset: const Offset(0, 1),
             ),

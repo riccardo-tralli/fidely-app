@@ -65,7 +65,7 @@ class _CardPageState extends State<CardPage> {
               context.read<PermissionCubit>().requestCameraPermission();
               Navigator.of(context).pop();
             },
-            icon: Hicon(HugeIcons.strokeRoundedCamera01),
+            icon: Hicon(HugeIcons.strokeRoundedCamera01, color: Colors.white),
             label: Text(
               "Camera",
               style: Theme.of(
@@ -78,7 +78,7 @@ class _CardPageState extends State<CardPage> {
               context.read<PermissionCubit>().requestGalleryPermission();
               Navigator.of(context).pop();
             },
-            icon: Hicon(HugeIcons.strokeRoundedAlbum02),
+            icon: Hicon(HugeIcons.strokeRoundedAlbum02, color: Colors.white),
             label: Text(
               "Gallery",
               style: Theme.of(
@@ -136,17 +136,17 @@ class _CardPageState extends State<CardPage> {
           FilledButton(
             onPressed: () => Navigator.of(context).pop(),
             style: ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(Colors.grey.shade400),
+              backgroundColor: WidgetStatePropertyAll(Colors.grey),
             ),
-            child: const Text("Cancel"),
+            child: const Text("Cancel", style: TextStyle(color: Colors.white)),
           ),
           FilledButton.icon(
             onPressed: () {
               setState(() => _colorValue = _tempColor);
               Navigator.of(context).pop();
             },
-            icon: Hicon(HugeIcons.strokeRoundedTick01),
-            label: Text("Select"),
+            icon: Hicon(HugeIcons.strokeRoundedTick01, color: Colors.white),
+            label: Text("Select", style: TextStyle(color: Colors.white)),
           ),
         ],
       ),
@@ -290,12 +290,7 @@ class _CardPageState extends State<CardPage> {
             content: Row(
               spacing: 16,
               children: [
-                Hicon(
-                  HugeIcons.strokeRoundedAlert02,
-                  color: Theme.of(
-                    context,
-                  ).snackBarTheme.contentTextStyle?.color,
-                ),
+                Hicon(HugeIcons.strokeRoundedAlert02),
                 Expanded(
                   child: Text(
                     "Permission denied. Please go to device settings to enable it.",
@@ -386,7 +381,10 @@ class _CardPageState extends State<CardPage> {
                         _showScanner = false;
                       });
                     },
-                    icon: Hicon(HugeIcons.strokeRoundedCancel01),
+                    icon: Hicon(
+                      HugeIcons.strokeRoundedCancel01,
+                      color: Colors.white,
+                    ),
                   ),
                   IconButton.filled(
                     onPressed: () {
@@ -399,6 +397,7 @@ class _CardPageState extends State<CardPage> {
                       _flashOn
                           ? HugeIcons.strokeRoundedFlash
                           : HugeIcons.strokeRoundedFlashOff,
+                      color: Colors.white,
                     ),
                   ),
                   IconButton.filled(
@@ -412,6 +411,7 @@ class _CardPageState extends State<CardPage> {
                       _frontCamera
                           ? HugeIcons.strokeRoundedCamera01
                           : HugeIcons.strokeRoundedFaceId,
+                      color: Colors.white,
                     ),
                   ),
                 ],
@@ -597,6 +597,7 @@ class _CardPageState extends State<CardPage> {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,
+        border: Border.all(color: Theme.of(context).colorScheme.outline),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Row(
@@ -639,7 +640,7 @@ class _CardPageState extends State<CardPage> {
 
   Widget save(BuildContext context) => FilledButton.icon(
     onPressed: () => onSave(context),
-    icon: const Hicon(HugeIcons.strokeRoundedFloppyDisk),
+    icon: const Hicon(HugeIcons.strokeRoundedFloppyDisk, color: Colors.white),
     label: Text(
       "Save",
       style: Theme.of(

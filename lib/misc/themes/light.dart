@@ -22,6 +22,7 @@ class LightTheme {
       surface: surfaceColor,
       onSurface: onSurfaceColor,
       outline: onBackgroundColor,
+      shadow: Colors.black.withAlpha(100),
     ),
     textTheme: TextTheme(
       bodyLarge: TextStyle(color: textColor),

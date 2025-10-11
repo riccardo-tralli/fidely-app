@@ -166,7 +166,7 @@ class _PermissionState extends State<PhotoContainer> {
     actions: [
       FilledButton.icon(
         onPressed: () => pickPhoto(context, ImageSource.camera),
-        icon: Hicon(HugeIcons.strokeRoundedCamera01),
+        icon: Hicon(HugeIcons.strokeRoundedCamera01, color: Colors.white),
         label: Text(
           "Camera",
           style: Theme.of(
@@ -176,7 +176,7 @@ class _PermissionState extends State<PhotoContainer> {
       ),
       FilledButton.icon(
         onPressed: () => pickPhoto(context, ImageSource.gallery),
-        icon: Hicon(HugeIcons.strokeRoundedAlbum02),
+        icon: Hicon(HugeIcons.strokeRoundedAlbum02, color: Colors.white),
         label: Text(
           "Gallery",
           style: Theme.of(
@@ -197,7 +197,7 @@ class _PermissionState extends State<PhotoContainer> {
           Navigator.of(context).pop();
           onTap(context, force: true);
         },
-        icon: Hicon(HugeIcons.strokeRoundedEdit01),
+        icon: Hicon(HugeIcons.strokeRoundedEdit01, color: Colors.white),
         label: Text(
           "Pick a new photo",
           style: Theme.of(
@@ -214,7 +214,7 @@ class _PermissionState extends State<PhotoContainer> {
           widget.onTap?.call(null);
         },
         style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.red)),
-        icon: Hicon(HugeIcons.strokeRoundedDelete02),
+        icon: Hicon(HugeIcons.strokeRoundedDelete02, color: Colors.white),
         label: Text(
           "Remove photo",
           style: Theme.of(
