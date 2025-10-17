@@ -1,3 +1,4 @@
+import 'package:fidely_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
 class TopBar extends StatelessWidget implements PreferredSizeWidget {
@@ -29,7 +30,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
           ? BorderRadius.vertical(bottom: Radius.circular(16))
           : BorderRadius.zero,
     ),
-    title: showTitle ? const Text("Fidely") : null,
+    title: showTitle ? Text(L10n.of(context)?.app_title ?? "Fidely") : null,
     centerTitle: true,
     leading: leading,
     actions: trailing,

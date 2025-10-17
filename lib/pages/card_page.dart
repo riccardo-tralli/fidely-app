@@ -6,6 +6,7 @@ import "package:barcode_widget/barcode_widget.dart";
 import "package:change_case/change_case.dart";
 import "package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart";
 import "package:fidely_app/cubits/permission/permission_cubit.dart";
+import "package:fidely_app/l10n/l10n.dart";
 import "package:fidely_app/misc/barcode_parser.dart";
 import "package:fidely_app/models/category.dart";
 import "package:fidely_app/models/loyalty_card.dart";
@@ -57,8 +58,8 @@ class _CardPageState extends State<CardPage> {
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: Text("Pick a code"),
-        content: Text("How would you like to pick a code?"),
+        title: Text(L10n.of(context)!.card_page_code_pick_title),
+        content: Text(L10n.of(context)!.card_page_code_pick_description),
         actions: [
           FilledButton.icon(
             onPressed: () {
@@ -67,7 +68,7 @@ class _CardPageState extends State<CardPage> {
             },
             icon: Hicon(HugeIcons.strokeRoundedCamera01, color: Colors.white),
             label: Text(
-              "Camera",
+              L10n.of(context)!.card_page_code_pick_buttons_camera,
               style: Theme.of(
                 context,
               ).textTheme.bodyLarge?.copyWith(color: Colors.white),
@@ -80,7 +81,7 @@ class _CardPageState extends State<CardPage> {
             },
             icon: Hicon(HugeIcons.strokeRoundedAlbum02, color: Colors.white),
             label: Text(
-              "Gallery",
+              L10n.of(context)!.card_page_code_pick_buttons_gallery,
               style: Theme.of(
                 context,
               ).textTheme.bodyLarge?.copyWith(color: Colors.white),
@@ -121,7 +122,7 @@ class _CardPageState extends State<CardPage> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text("Pick a color"),
+        title: Text(L10n.of(context)!.card_page_color_pick_title),
         content: SingleChildScrollView(
           child: ColorPicker(
             pickerColor: _colorValue,
@@ -138,7 +139,10 @@ class _CardPageState extends State<CardPage> {
             style: ButtonStyle(
               backgroundColor: WidgetStatePropertyAll(Colors.grey),
             ),
-            child: const Text("Cancel", style: TextStyle(color: Colors.white)),
+            child: Text(
+              L10n.of(context)!.card_page_color_pick_buttons_cancel,
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           FilledButton.icon(
             onPressed: () {
@@ -146,7 +150,10 @@ class _CardPageState extends State<CardPage> {
               Navigator.of(context).pop();
             },
             icon: Hicon(HugeIcons.strokeRoundedTick01, color: Colors.white),
-            label: Text("Select", style: TextStyle(color: Colors.white)),
+            label: Text(
+              L10n.of(context)!.card_page_color_pick_buttons_confirm,
+              style: TextStyle(color: Colors.white),
+            ),
           ),
         ],
       ),
@@ -250,65 +257,69 @@ class _CardPageState extends State<CardPage> {
     body: SafeArea(child: cardCubitListener(context)),
   );
 
-  Widget cardCubitListener(BuildContext context) =>
-      BlocListener<LoyaltyCardCubit, LoyaltyCardCubitState>(
-        listener: (context, state) async {
-          if (state is LoyaltyCardCubitAddSuccessState) {
-            await savePhotos(state.card.id);
-            Navigator.of(context).pop();
-          }
-          if (state is LoyaltyCardCubitUpdateSuccessState) {
-            await savePhotos(state.card.id);
-            Navigator.of(context).pop();
-          }
-          if (state is LoyaltyCardCubitErrorState) {
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text("Error: ${state.message}")));
-          }
-        },
-        child: permissionCubitListener(context),
-      );
-
-  Widget permissionCubitListener(
+  Widget cardCubitListener(
     BuildContext context,
-  ) => BlocConsumer<PermissionCubit, PermissionState>(
-    listener: (context, state) {
-      if (state is PermissionGrantedState) {
-        if (state.permission == Permission.camera) {
-          setState(() {
-            _showScanner = true;
-          });
-        }
-        if (state.permission == Permission.photos) {
-          onGalleryScan();
-        }
+  ) => BlocListener<LoyaltyCardCubit, LoyaltyCardCubitState>(
+    listener: (context, state) async {
+      if (state is LoyaltyCardCubitAddSuccessState) {
+        await savePhotos(state.card.id);
+        Navigator.of(context).pop();
       }
-      if (state is PermissionDeniedState) {
+      if (state is LoyaltyCardCubitUpdateSuccessState) {
+        await savePhotos(state.card.id);
+        Navigator.of(context).pop();
+      }
+      if (state is LoyaltyCardCubitErrorState) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Row(
-              spacing: 16,
-              children: [
-                Hicon(HugeIcons.strokeRoundedAlert02),
-                Expanded(
-                  child: Text(
-                    "Permission denied. Please go to device settings to enable it.",
-                  ),
-                ),
-              ],
+            content: Text(
+              "${L10n.of(context)!.card_page_generic_error_title}: ${state.message}",
             ),
           ),
         );
       }
     },
-    builder: (context, state) => body(
-      context,
-      _showScanner &&
-          (state is PermissionGrantedState &&
-              state.permission == Permission.camera),
-    ),
+    child: permissionCubitListener(context),
   );
+
+  Widget permissionCubitListener(BuildContext context) =>
+      BlocConsumer<PermissionCubit, PermissionState>(
+        listener: (context, state) {
+          if (state is PermissionGrantedState) {
+            if (state.permission == Permission.camera) {
+              setState(() {
+                _showScanner = true;
+              });
+            }
+            if (state.permission == Permission.photos) {
+              onGalleryScan();
+            }
+          }
+          if (state is PermissionDeniedState) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Row(
+                  spacing: 16,
+                  children: [
+                    Hicon(HugeIcons.strokeRoundedAlert02),
+                    Expanded(
+                      child: Text(
+                        L10n.of(context)!.card_page_permission_error_title,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }
+        },
+        builder: (context, state) => body(
+          context,
+          _showScanner &&
+              (state is PermissionGrantedState &&
+                  state.permission == Permission.camera),
+        ),
+      );
 
   Widget body(BuildContext context, bool showScanner) => Column(
     children: [
@@ -332,10 +343,10 @@ class _CardPageState extends State<CardPage> {
             card: LoyaltyCard(
               id: 0,
               title: _titleController.text.isEmpty
-                  ? "Store Name"
+                  ? L10n.of(context)!.card_page_card_preview_title
                   : _titleController.text,
               code: _codeController.text.isEmpty
-                  ? "123456"
+                  ? L10n.of(context)!.card_page_card_preview_code
                   : _codeController.text,
               type: _typeValue,
               owner: _ownerController.text.isEmpty
@@ -452,13 +463,14 @@ class _CardPageState extends State<CardPage> {
     children: [
       Padding(
         padding: const EdgeInsets.only(left: 8),
-        child: Text("Store Name"),
+        child: Text(L10n.of(context)!.card_page_input_store_name_title),
       ),
       TextFormField(
         controller: _titleController,
         onChanged: (value) => setState(() {}),
-        validator: (value) =>
-            value == null || value.isEmpty ? "Required" : null,
+        validator: (value) => value == null || value.isEmpty
+            ? L10n.of(context)!.card_page_input_error_required
+            : null,
       ),
     ],
   );
@@ -468,13 +480,14 @@ class _CardPageState extends State<CardPage> {
     children: [
       Padding(
         padding: const EdgeInsets.only(left: 8),
-        child: Text("Card Code"),
+        child: Text(L10n.of(context)!.card_page_input_code_title),
       ),
       TextFormField(
         controller: _codeController,
         onChanged: (value) => setState(() {}),
-        validator: (value) =>
-            value == null || value.isEmpty ? "Required" : null,
+        validator: (value) => value == null || value.isEmpty
+            ? L10n.of(context)!.card_page_input_error_required
+            : null,
         decoration: showScanner
             ? null
             : InputDecoration(
@@ -492,7 +505,7 @@ class _CardPageState extends State<CardPage> {
     children: [
       Padding(
         padding: const EdgeInsets.only(left: 8),
-        child: Text("Card Type"),
+        child: Text(L10n.of(context)!.card_page_input_type_title),
       ),
       DropdownButtonFormField(
         initialValue: _typeValue,
@@ -518,7 +531,7 @@ class _CardPageState extends State<CardPage> {
     children: [
       Padding(
         padding: const EdgeInsets.only(left: 8),
-        child: Text("Card Owner"),
+        child: Text(L10n.of(context)!.card_page_input_owner_title),
       ),
       TextFormField(
         controller: _ownerController,
@@ -532,7 +545,7 @@ class _CardPageState extends State<CardPage> {
     children: [
       Padding(
         padding: const EdgeInsets.only(left: 8),
-        child: Text("Card Note"),
+        child: Text(L10n.of(context)!.card_page_input_notes_title),
       ),
       TextFormField(
         controller: _noteController,
@@ -545,42 +558,73 @@ class _CardPageState extends State<CardPage> {
   Widget category(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Padding(padding: const EdgeInsets.only(left: 8), child: Text("Category")),
+      Padding(
+        padding: const EdgeInsets.only(left: 8),
+        child: Text(L10n.of(context)!.card_page_input_category_title),
+      ),
       DropdownButtonFormField(
         initialValue: _categoryValue,
         items: [
-          DropdownMenuItem(value: null, child: Text("None")),
+          DropdownMenuItem(
+            value: null,
+            child: Text(L10n.of(context)!.card_page_input_category_option_none),
+          ),
           DropdownMenuItem(
             value: Category.market,
-            child: Text("Market and grocery"),
+            child: Text(
+              L10n.of(context)!.card_page_input_category_option_grocery,
+            ),
           ),
-          DropdownMenuItem(value: Category.food, child: Text("Food")),
+          DropdownMenuItem(
+            value: Category.food,
+            child: Text(L10n.of(context)!.card_page_input_category_option_food),
+          ),
           DropdownMenuItem(
             value: Category.fuel,
-            child: Text("Fuel and energy"),
+            child: Text(L10n.of(context)!.card_page_input_category_option_fuel),
           ),
           DropdownMenuItem(
             value: Category.entertainment,
-            child: Text("Entertainment"),
+            child: Text(
+              L10n.of(context)!.card_page_input_category_option_entertainment,
+            ),
           ),
           DropdownMenuItem(
             value: Category.fashion,
-            child: Text("Fashion and beauty"),
+            child: Text(
+              L10n.of(context)!.card_page_input_category_option_fashion,
+            ),
           ),
           DropdownMenuItem(
             value: Category.electronics,
-            child: Text("Electronics"),
+            child: Text(
+              L10n.of(context)!.card_page_input_category_option_electronics,
+            ),
           ),
           DropdownMenuItem(
             value: Category.health,
-            child: Text("Health and wellness"),
+            child: Text(
+              L10n.of(context)!.card_page_input_category_option_health,
+            ),
           ),
           DropdownMenuItem(
             value: Category.travel,
-            child: Text("Travel and transport"),
+            child: Text(
+              L10n.of(context)!.card_page_input_category_option_travel,
+            ),
           ),
-          DropdownMenuItem(value: Category.sport, child: Text("Sport")),
-          DropdownMenuItem(value: Category.other, child: Text("Other")),
+          DropdownMenuItem(
+            value: Category.sport,
+            child: Text(
+              L10n.of(context)!.card_page_input_category_option_sport,
+            ),
+          ),
+          DropdownMenuItem(
+            value: Category.other,
+            child: Text(
+              L10n.of(context)!.card_page_input_category_option_other,
+            ),
+          ),
         ],
         onChanged: (value) {
           setState(() {
@@ -609,10 +653,10 @@ class _CardPageState extends State<CardPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Card Color",
+                L10n.of(context)!.card_page_color_title,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
-              Text("Select a surface color for your card"),
+              Text(L10n.of(context)!.card_page_color_description),
             ],
           ),
         ],
@@ -624,13 +668,13 @@ class _CardPageState extends State<CardPage> {
     spacing: 16,
     children: [
       PhotoContainer(
-        label: "Front Photo",
+        label: L10n.of(context)!.card_page_photo_front_title,
         photo: _frontPhoto,
         borderColor: _colorValue,
         onTap: (photo) => _frontPhoto = photo,
       ),
       PhotoContainer(
-        label: "Rear Photo",
+        label: L10n.of(context)!.card_page_photo_rear_title,
         photo: _rearPhoto,
         borderColor: _colorValue,
         onTap: (photo) => _rearPhoto = photo,
@@ -642,7 +686,7 @@ class _CardPageState extends State<CardPage> {
     onPressed: () => onSave(context),
     icon: const Hicon(HugeIcons.strokeRoundedFloppyDisk, color: Colors.white),
     label: Text(
-      "Save",
+      L10n.of(context)!.card_page_save_button_title,
       style: Theme.of(
         context,
       ).textTheme.bodyLarge?.copyWith(color: Colors.white),

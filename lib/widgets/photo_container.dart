@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
+import 'package:fidely_app/l10n/l10n.dart';
 import 'package:fidely_app/misc/themes/light.dart';
 import 'package:fidely_app/repositories/permission_repository.dart';
 import 'package:fidely_app/widgets/hicon.dart';
@@ -54,7 +55,7 @@ class _PermissionState extends State<PhotoContainer> {
           sourcePath: image.path,
           uiSettings: [
             AndroidUiSettings(
-              toolbarTitle: 'Crop Photo',
+              toolbarTitle: L10n.of(context)?.photo_crop_title,
               toolbarColor: Colors.black,
               toolbarWidgetColor: Colors.white,
               statusBarLight: false,
@@ -62,7 +63,10 @@ class _PermissionState extends State<PhotoContainer> {
               lockAspectRatio: false,
               activeControlsWidgetColor: LightTheme.primaryColor,
             ),
-            IOSUiSettings(title: 'Crop Photo', aspectRatioLockEnabled: true),
+            IOSUiSettings(
+              title: L10n.of(context)?.photo_crop_title,
+              aspectRatioLockEnabled: true,
+            ),
           ],
         );
         setState(() {
@@ -155,7 +159,7 @@ class _PermissionState extends State<PhotoContainer> {
   List<Widget> tapToChange(BuildContext context) => [
     Hicon(HugeIcons.strokeRoundedEdit01, color: Colors.white),
     Text(
-      "Tap to change",
+      L10n.of(context)!.photo_change_tap,
       style: TextStyle(
         color: Colors.white,
         shadows: [
@@ -178,14 +182,14 @@ class _PermissionState extends State<PhotoContainer> {
   ];
 
   Widget onEmptyPhoto(BuildContext context) => AlertDialog(
-    title: Text("Pick a photo"),
-    content: Text("How would you like to pick a photo?"),
+    title: Text(L10n.of(context)!.photo_pick_title),
+    content: Text(L10n.of(context)!.photo_pick_description),
     actions: [
       FilledButton.icon(
         onPressed: () => pickPhoto(context, ImageSource.camera),
         icon: Hicon(HugeIcons.strokeRoundedCamera01, color: Colors.white),
         label: Text(
-          "Camera",
+          L10n.of(context)!.photo_pick_buttons_camera,
           style: Theme.of(
             context,
           ).textTheme.bodyLarge?.copyWith(color: Colors.white),
@@ -195,7 +199,7 @@ class _PermissionState extends State<PhotoContainer> {
         onPressed: () => pickPhoto(context, ImageSource.gallery),
         icon: Hicon(HugeIcons.strokeRoundedAlbum02, color: Colors.white),
         label: Text(
-          "Gallery",
+          L10n.of(context)!.photo_pick_buttons_gallery,
           style: Theme.of(
             context,
           ).textTheme.bodyLarge?.copyWith(color: Colors.white),
@@ -205,8 +209,8 @@ class _PermissionState extends State<PhotoContainer> {
   );
 
   Widget onFilledPhoto(BuildContext context) => AlertDialog(
-    title: Text("Change photo"),
-    content: Text("How would you like to change the photo?"),
+    title: Text(L10n.of(context)!.photo_change_title),
+    content: Text(L10n.of(context)!.photo_change_description),
     actionsOverflowButtonSpacing: 8,
     actions: [
       FilledButton.icon(
@@ -216,7 +220,7 @@ class _PermissionState extends State<PhotoContainer> {
         },
         icon: Hicon(HugeIcons.strokeRoundedEdit01, color: Colors.white),
         label: Text(
-          "Pick a new photo",
+          L10n.of(context)!.photo_change_buttons_repick,
           style: Theme.of(
             context,
           ).textTheme.bodyLarge?.copyWith(color: Colors.white),
@@ -233,7 +237,7 @@ class _PermissionState extends State<PhotoContainer> {
         style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.red)),
         icon: Hicon(HugeIcons.strokeRoundedDelete02, color: Colors.white),
         label: Text(
-          "Remove photo",
+          L10n.of(context)!.photo_change_buttons_remove,
           style: Theme.of(
             context,
           ).textTheme.bodyLarge?.copyWith(color: Colors.white),

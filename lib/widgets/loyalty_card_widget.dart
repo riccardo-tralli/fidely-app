@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart';
+import 'package:fidely_app/l10n/l10n.dart';
 import 'package:fidely_app/models/loyalty_card.dart';
 import 'package:fidely_app/pages/card_page.dart';
 import 'package:fidely_app/services/photo_service.dart';
@@ -111,7 +112,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
                           color: Colors.white,
                         ),
                         label: Text(
-                          "Edit",
+                          L10n.of(context)!.card_edit_title,
                           style: Theme.of(
                             context,
                           ).textTheme.bodyLarge?.copyWith(color: Colors.white),
@@ -132,7 +133,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
                           color: Colors.white,
                         ),
                         label: Text(
-                          "Delete",
+                          L10n.of(context)!.card_delete_title,
                           style: Theme.of(
                             context,
                           ).textTheme.bodyLarge?.copyWith(color: Colors.white),
@@ -158,13 +159,13 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
     context: context,
     builder: (context) {
       return AlertDialog(
-        title: Text("Delete"),
-        content: Text("Are you sure you want to delete this loyalty card?"),
+        title: Text(L10n.of(context)!.card_delete_title),
+        content: Text(L10n.of(context)!.card_delete_description),
         actions: [
           FilledButton(
             onPressed: () => Navigator.of(context).pop(),
             child: Text(
-              "Cancel",
+              L10n.of(context)!.card_delete_cancel,
               style: Theme.of(
                 context,
               ).textTheme.bodyLarge?.copyWith(color: Colors.white),
@@ -180,7 +181,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
             ),
             icon: Hicon(HugeIcons.strokeRoundedDelete02, color: Colors.white),
             label: Text(
-              "Confirm",
+              L10n.of(context)!.card_delete_confirm,
               style: Theme.of(
                 context,
               ).textTheme.bodyLarge?.copyWith(color: Colors.white),
@@ -282,7 +283,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
         ),
         Expanded(
           child: Text(
-            "Unable to generate barcode. Please check the code and type.",
+            L10n.of(context)!.card_barcode_invalid,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: Theme.of(context).colorScheme.error,
             ),

@@ -1,0 +1,363 @@
+{
+    "@@locale": "en",
+    "app_title": "Fidely",
+    "@app_title": {
+        "description": "The title of the application shown in the app bar and launcher",
+        "type": "text"
+    },
+    
+    "card_edit_title": "Edit",
+    "@card_edit_title": {
+        "description": "Label for edit action on a loyalty card",
+        "type": "text"
+    },
+
+    "card_delete_title": "Delete",
+    "@card_delete_title": {
+        "description": "Title for the delete confirmation dialog",
+        "type": "text"
+    },
+    "card_delete_description": "Are you sure you want to delete this loyalty card?",
+    "@card_delete_description": {
+        "description": "Confirmation message shown when the user attempts to delete a card",
+        "type": "text"
+    },
+    "card_delete_confirm": "Confirm",
+    "@card_delete_confirm": {
+        "description": "Confirm button label in delete dialog",
+        "type": "text"
+    },
+    "card_delete_cancel": "Cancel",
+    "@card_delete_cancel": {
+        "description": "Cancel button label in delete dialog",
+        "type": "text"
+    },
+    
+    "card_barcode_invalid":"Unable to generate barcode. Please check the code and type.",
+    "@card_barcode_invalid": {
+        "description": "Error message shown when barcode generation fails",
+        "type": "text"
+    },
+
+    "card_page_code_pick_title": "Pick a code",
+    "@card_page_code_pick_title": {
+        "description": "Title for code source selection dialog",
+        "type": "text"
+    },
+    "card_page_code_pick_description": "How would you like to pick a code?",
+    "@card_page_code_pick_description": {
+        "description": "Subtitle explaining options for picking a code",
+        "type": "text"
+    },
+    "card_page_code_pick_buttons_camera": "Camera",
+    "@card_page_code_pick_buttons_camera": {
+        "description": "Option to pick code using camera",
+        "type": "text"
+    },
+    "card_page_code_pick_buttons_gallery": "Gallery",
+    "@card_page_code_pick_buttons_gallery": {
+        "description": "Option to pick code from gallery",
+        "type": "text"
+    },
+
+    "card_page_color_pick_title": "Pick a color",
+    "@card_page_color_pick_title": {
+        "description": "Title for color picker dialog",
+        "type": "text"
+    },
+    "card_page_color_pick_buttons_confirm": "Select",
+    "@card_page_color_pick_buttons_confirm": {
+        "description": "Confirm button label in color picker",
+        "type": "text"
+    },
+    "card_page_color_pick_buttons_cancel": "Cancel",
+    "@card_page_color_pick_buttons_cancel": {
+        "description": "Cancel button label in color picker",
+        "type": "text"
+    },
+
+    "card_page_generic_error_title": "Error",
+    "@card_page_generic_error_title": {
+        "description": "Generic error dialog title",
+        "type": "text"
+    },
+    "card_page_permission_error_title": "Permission denied. Please go to device settings to enable it.",
+    "@card_page_permission_error_title": {
+        "description": "Message shown when required permission is denied",
+        "type": "text"
+    },
+
+    "card_page_card_preview_title": "Store Name",
+    "@card_page_card_preview_title": {
+        "description": "Placeholder store name shown in card preview",
+        "type": "text"
+    },
+    "card_page_card_preview_code": "123456",
+    "@card_page_card_preview_code": {
+        "description": "Placeholder code shown in card preview",
+        "type": "text"
+    },
+
+    "card_page_input_store_name_title": "Store Name",
+    "@card_page_input_store_name_title": {
+        "description": "Label for the store name input field",
+        "type": "text"
+    },
+    "card_page_input_code_title": "Card Code",
+    "@card_page_input_code_title": {
+        "description": "Label for the card code input field",
+        "type": "text"
+    },
+    "card_page_input_type_title": "Card Type",
+    "@card_page_input_type_title": {
+        "description": "Label for the card type input",
+        "type": "text"
+    },
+    "card_page_input_owner_title": "Owner Name",
+    "@card_page_input_owner_title": {
+        "description": "Label for owner name input field",
+        "type": "text"
+    },
+    "card_page_input_notes_title": "Notes",
+    "@card_page_input_notes_title": {
+        "description": "Label for notes input field",
+        "type": "text"
+    },
+    "card_page_input_category_title": "Category",
+    "@card_page_input_category_title": {
+        "description": "Label for category selection",
+        "type": "text"
+    },
+    "card_page_input_category_option_none": "None",
+    "@card_page_input_category_option_none": {
+        "description": "Category option: none",
+        "type": "text"
+    },
+    "card_page_input_category_option_grocery": "🛒 Market and Grocery",
+    "@card_page_input_category_option_grocery": {
+        "description": "Category option: market and grocery",
+        "type": "text"
+    },
+    "card_page_input_category_option_food": "🍕 Food",
+    "@card_page_input_category_option_food": {
+        "description": "Category option: food",
+        "type": "text"
+    },
+    "card_page_input_category_option_fuel": "⛽ Fuel and Energy",
+    "@card_page_input_category_option_fuel": {
+        "description": "Category option: fuel and energy",
+        "type": "text"
+    },
+    "card_page_input_category_option_entertainment": "🎉 Entertainment",
+    "@card_page_input_category_option_entertainment": {
+        "description": "Category option: entertainment",
+        "type": "text"
+    },
+    "card_page_input_category_option_fashion": "👗 Fashion and Beauty",
+    "@card_page_input_category_option_fashion": {
+        "description": "Category option: fashion and beauty",
+        "type": "text"
+    },
+    "card_page_input_category_option_electronics": "📺 Electronics",
+    "@card_page_input_category_option_electronics": {
+        "description": "Category option: electronics",
+        "type": "text"
+    },
+    "card_page_input_category_option_health": "❤️‍🩹 Health and Wellness",
+    "@card_page_input_category_option_health": {
+        "description": "Category option: health and wellness",
+        "type": "text"
+    },
+    "card_page_input_category_option_travel": "✈️ Travel and Transportation",
+    "@card_page_input_category_option_travel": {
+        "description": "Category option: travel and transportation",
+        "type": "text"
+    },
+    "card_page_input_category_option_sport": "⚽️ Sport",
+    "@card_page_input_category_option_sport": {
+        "description": "Category option: sport",
+        "type": "text"
+    },
+    "card_page_input_category_option_other": "Other",
+    "@card_page_input_category_option_other": {
+        "description": "Category option: other",
+        "type": "text"
+    },
+
+    "card_page_color_title": "Card Color",
+    "@card_page_color_title": {
+        "description": "Title for card color selection",
+        "type": "text"
+    },
+    "card_page_color_description": "Select a surface color for your card",
+    "@card_page_color_description": {
+        "description": "Helper text describing card color selection",
+        "type": "text"
+    },
+
+    "card_page_photo_front_title": "Front Photo",
+    "@card_page_photo_front_title": {
+        "description": "Label for front photo of the card",
+        "type": "text"
+    },
+    "card_page_photo_rear_title": "Rear Photo",
+    "@card_page_photo_rear_title": {
+        "description": "Label for rear photo of the card",
+        "type": "text"
+    },
+
+    "card_page_save_button_title": "Save",
+    "@card_page_save_button_title": {
+        "description": "Save button label on card page",
+        "type": "text"
+    },
+
+    "home_page_no_cards_title": "No loyalty cards found",
+    "@home_page_no_cards_title": {
+        "description": "Message shown on home when no cards are present",
+        "type": "text"
+    },
+    "home_page_no_cards_add_button": "Add the first one",
+    "@home_page_no_cards_add_button": {
+        "description": "CTA to add the first card",
+        "type": "text"
+    },
+    "home_page_generic_error_title": "Something went wrong",
+    "@home_page_generic_error_title": {
+        "description": "Generic error shown on home page",
+        "type": "text"
+    },
+    
+    "photo_pick_title": "Pick a photo",
+    "@photo_pick_title": {
+        "description": "Title for photo source selection dialog",
+        "type": "text"
+    },
+    "photo_pick_description": "How would you like to pick a photo?",
+    "@photo_pick_description": {
+        "description": "Subtitle for photo pick dialog",
+        "type": "text"
+    },
+    "photo_pick_buttons_camera": "Camera",
+    "@photo_pick_buttons_camera": {
+        "description": "Option to pick photo using camera",
+        "type": "text"
+    },
+    "photo_pick_buttons_gallery": "Gallery",
+    "@photo_pick_buttons_gallery": {
+        "description": "Option to pick photo from gallery",
+        "type": "text"
+    },
+    
+    "photo_change_tap": "Tap to change",
+    "@photo_change_tap": {
+        "description": "Hint shown on photo widget to change it",
+        "type": "text"
+    },
+    "photo_change_title": "Change Photo",
+    "@photo_change_title": {
+        "description": "Title for the change photo dialog",
+        "type": "text"
+    },
+    "photo_change_description": "How would you like to change the photo?",
+    "@photo_change_description": {
+        "description": "Subtitle for change photo dialog",
+        "type": "text"
+    },
+    "photo_change_buttons_repick": "Pick a new photo",
+    "@photo_change_buttons_repick": {
+        "description": "Option to pick a new photo",
+        "type": "text"
+    },
+    "photo_change_buttons_remove": "Remove photo",
+    "@photo_change_buttons_remove": {
+        "description": "Option to remove the current photo",
+        "type": "text"
+    },
+
+    "photo_crop_title": "Crop Photo",
+    "@photo_crop_title": {
+        "description": "Title for photo cropping screen",
+        "type": "text"
+    },
+
+    "settings_page_theme_title": "Theme Mode",
+    "@settings_page_theme_title": {
+        "description": "Title for theme selection in settings",
+        "type": "text"
+    },
+    "settings_page_theme_description": "Select your preferred theme mode",
+    "@settings_page_theme_description": {
+        "description": "Description explaining theme selection",
+        "type": "text"
+    },
+    "settings_page_theme_mode_light": "Light",
+    "@settings_page_theme_mode_light": {
+        "description": "Theme option: light",
+        "type": "text"
+    },
+    "settings_page_theme_mode_dark": "Dark",
+    "@settings_page_theme_mode_dark": {
+        "description": "Theme option: dark",
+        "type": "text"
+    },
+    "settings_page_theme_mode_system": "System",
+    "@settings_page_theme_mode_system": {
+        "description": "Theme option: system default",
+        "type": "text"
+    },
+
+    "settings_page_sort_title": "Sort Mode",
+    "@settings_page_sort_title": {
+        "description": "Title for sort mode selection",
+        "type": "text"
+    },
+    "settings_page_sort_description": "Select your preferred sort mode",
+    "@settings_page_sort_description": {
+        "description": "Description for sort mode selection",
+        "type": "text"
+    },
+    "settings_page_sort_mode_date": "Recently Added",
+    "@settings_page_sort_mode_date": {
+        "description": "Sort option: recently added",
+        "type": "text"
+    },
+    "settings_page_sort_mode_name": "Alphabetical",
+    "@settings_page_sort_mode_name": {
+        "description": "Sort option: alphabetical",
+        "type": "text"
+    },
+    "settings_page_sort_mode_category": "Category",
+    "@settings_page_sort_mode_category": {
+        "description": "Sort option: by category",
+        "type": "text"
+    },
+    "settings_page_sort_reverse_title": "Reverse",
+    "@settings_page_sort_reverse_title": {
+        "description": "Label for reversing the sort order",
+        "type": "text"
+    },
+    "settings_page_sort_reverse_description": "Cards are actually sorted in {direction} order",
+    "@settings_page_sort_reverse_description": {
+        "description": "Explains the current sort direction. {direction} is replaced with ascending or descending.",
+        "placeholders": {
+            "direction": {
+                "type": "String",
+                "example": "ascending"
+            }
+        },
+        "type": "text"
+    },
+    "settings_page_sort_reverse_direction_asc": "ascending",
+    "@settings_page_sort_reverse_direction_asc": {
+        "description": "Label to indicate ascending sort direction",
+        "type": "text"
+    },
+    "settings_page_sort_reverse_direction_desc": "descending",
+    "@settings_page_sort_reverse_direction_desc": {
+        "description": "Label to indicate descending sort direction",
+        "type": "text"
+    },
+    
+    "@@last_modified": "2025-10-17"
+}

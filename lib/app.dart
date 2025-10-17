@@ -1,5 +1,6 @@
-import 'package:fidely_app/cubits/dark_mode_cubit.dart';
+import 'package:fidely_app/cubits/settings/dark_mode_cubit.dart';
 import 'package:fidely_app/di.dart';
+import 'package:fidely_app/l10n/l10n.dart';
 import 'package:fidely_app/misc/themes/dark.dart';
 import 'package:fidely_app/misc/themes/light.dart';
 import 'package:fidely_app/models/loyalty_card.dart';
@@ -20,7 +21,9 @@ class App extends StatelessWidget {
           theme: LightTheme.make(),
           darkTheme: DarkTheme.make(),
           themeMode: state,
-          title: "Fidely",
+          localizationsDelegates: L10n.localizationsDelegates,
+          supportedLocales: L10n.supportedLocales,
+          title: L10n.of(context)?.app_title ?? "Fidely",
           initialRoute: HomePage.route,
           routes: {
             HomePage.route: (_) => const HomePage(),

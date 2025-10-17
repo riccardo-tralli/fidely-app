@@ -1,6 +1,7 @@
 import 'package:fidely_app/blocs/loyalty_card/loyalty_card_bloc.dart';
-import 'package:fidely_app/cubits/dark_mode_cubit.dart';
-import 'package:fidely_app/cubits/sort_cubit.dart';
+import 'package:fidely_app/cubits/settings/dark_mode_cubit.dart';
+import 'package:fidely_app/cubits/settings/sort_cubit.dart';
+import 'package:fidely_app/l10n/l10n.dart';
 import 'package:fidely_app/models/sort_mode.dart';
 import 'package:fidely_app/widgets/hicon.dart';
 import 'package:fidely_app/widgets/top_bar.dart';
@@ -53,8 +54,11 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget themeModeOption(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text("Theme Mode", style: Theme.of(context).textTheme.titleMedium),
-      Text("Select your preferred theme mode"),
+      Text(
+        L10n.of(context)!.settings_page_theme_title,
+        style: Theme.of(context).textTheme.titleMedium,
+      ),
+      Text(L10n.of(context)!.settings_page_theme_description),
       const SizedBox(height: 8),
       IntrinsicHeight(
         child: Row(
@@ -64,7 +68,7 @@ class _SettingsPageState extends State<SettingsPage> {
               child: option(
                 context: context,
                 icon: HugeIcons.strokeRoundedSun02,
-                label: "Light",
+                label: L10n.of(context)!.settings_page_theme_mode_light,
                 onTap: () {
                   setState(() {
                     _themeMode = ThemeMode.light;
@@ -78,7 +82,7 @@ class _SettingsPageState extends State<SettingsPage> {
               child: option(
                 context: context,
                 icon: HugeIcons.strokeRoundedMoon01,
-                label: "Dark",
+                label: L10n.of(context)!.settings_page_theme_mode_dark,
                 onTap: () {
                   setState(() {
                     _themeMode = ThemeMode.dark;
@@ -92,7 +96,7 @@ class _SettingsPageState extends State<SettingsPage> {
               child: option(
                 context: context,
                 icon: HugeIcons.strokeRoundedSmartPhone02,
-                label: "System",
+                label: L10n.of(context)!.settings_page_theme_mode_system,
                 onTap: () {
                   setState(() {
                     _themeMode = ThemeMode.system;
@@ -111,8 +115,11 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget sortModeOption(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text("Sort Mode", style: Theme.of(context).textTheme.titleMedium),
-      Text("Select your preferred sort mode"),
+      Text(
+        L10n.of(context)!.settings_page_sort_title,
+        style: Theme.of(context).textTheme.titleMedium,
+      ),
+      Text(L10n.of(context)!.settings_page_sort_description),
       const SizedBox(height: 8),
       IntrinsicHeight(
         child: Row(
@@ -122,7 +129,7 @@ class _SettingsPageState extends State<SettingsPage> {
               child: option(
                 context: context,
                 icon: HugeIcons.strokeRoundedClock01,
-                label: "Recently Added",
+                label: L10n.of(context)!.settings_page_sort_mode_date,
                 onTap: () =>
                     onSort(_sortMode.copyWith(option: SortOption.creationDate)),
                 active: _sortMode.option == SortOption.creationDate,
@@ -134,7 +141,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 icon: _sortMode.reverse
                     ? HugeIcons.strokeRoundedArrangeByLettersZA
                     : HugeIcons.strokeRoundedArrangeByLettersAZ,
-                label: "Alphabetical",
+                label: L10n.of(context)!.settings_page_sort_mode_name,
                 onTap: () =>
                     onSort(_sortMode.copyWith(option: SortOption.alphabetical)),
                 active: _sortMode.option == SortOption.alphabetical,
@@ -144,7 +151,7 @@ class _SettingsPageState extends State<SettingsPage> {
               child: option(
                 context: context,
                 icon: HugeIcons.strokeRoundedTag01,
-                label: "Category",
+                label: L10n.of(context)!.settings_page_sort_mode_category,
                 onTap: () =>
                     onSort(_sortMode.copyWith(option: SortOption.category)),
                 active: _sortMode.option == SortOption.category,
@@ -155,9 +162,13 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
       const SizedBox(height: 8),
       SwitchListTile(
-        title: Text("Reverse"),
+        title: Text(L10n.of(context)!.settings_page_sort_reverse_title),
         subtitle: Text(
-          "Cards are actually sorted in ${_sortMode.reverse ? "descending" : "ascending"} order",
+          L10n.of(context)!.settings_page_sort_reverse_description(
+            _sortMode.reverse
+                ? L10n.of(context)!.settings_page_sort_reverse_direction_desc
+                : L10n.of(context)!.settings_page_sort_reverse_direction_asc,
+          ),
         ),
         value: _sortMode.reverse,
         onChanged: (value) => onSort(_sortMode.copyWith(reverse: value)),

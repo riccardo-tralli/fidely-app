@@ -51,6 +51,9 @@ dependencies:
   path_provider: ^2.1.5
   hydrated_bloc: ^10.1.1
   image_cropper: ^11.0.0
+  intl: ^0.20.2
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +71,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

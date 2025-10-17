@@ -1,4 +1,5 @@
 import 'package:fidely_app/blocs/loyalty_card/loyalty_card_bloc.dart';
+import 'package:fidely_app/l10n/l10n.dart';
 import 'package:fidely_app/pages/card_page.dart';
 import 'package:fidely_app/pages/settings_page.dart';
 import 'package:fidely_app/widgets/hicon.dart';
@@ -69,14 +70,14 @@ class HomePage extends StatelessWidget {
       children: [
         Image.asset("assets/images/empty.png", width: 250),
         Text(
-          "No loyalty cards found",
+          L10n.of(context)!.home_page_no_cards_title,
           style: Theme.of(context).textTheme.titleLarge,
         ),
         FilledButton.icon(
           onPressed: () => Navigator.of(context).pushNamed(CardPage.route),
           icon: Hicon(HugeIcons.strokeRoundedAddSquare),
           label: Text(
-            "Add the first one",
+            L10n.of(context)!.home_page_no_cards_add_button,
             style: Theme.of(
               context,
             ).textTheme.bodyLarge?.copyWith(color: Colors.white),
@@ -94,7 +95,7 @@ class HomePage extends StatelessWidget {
       children: [
         Image.asset("assets/images/error.png", width: 250),
         Text(
-          "Something went wrong",
+          L10n.of(context)!.home_page_generic_error_title,
           style: Theme.of(context).textTheme.titleLarge,
         ),
         Text(message),
