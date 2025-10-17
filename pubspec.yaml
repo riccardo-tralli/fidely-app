@@ -50,6 +50,7 @@ dependencies:
   dotted_border: ^3.1.0
   path_provider: ^2.1.5
   hydrated_bloc: ^10.1.1
+  image_cropper: ^11.0.0
 
 dev_dependencies:
   flutter_test:

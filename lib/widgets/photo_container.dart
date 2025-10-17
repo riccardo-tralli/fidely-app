@@ -3,11 +3,13 @@
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
+import 'package:fidely_app/misc/themes/light.dart';
 import 'package:fidely_app/repositories/permission_repository.dart';
 import 'package:fidely_app/widgets/hicon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class PhotoContainer extends StatefulWidget {
@@ -48,8 +50,23 @@ class _PermissionState extends State<PhotoContainer> {
       Navigator.of(context).pop();
       final XFile? image = await ImagePicker().pickImage(source: source);
       if (image != null) {
+        final CroppedFile? cropped = await ImageCropper().cropImage(
+          sourcePath: image.path,
+          uiSettings: [
+            AndroidUiSettings(
+              toolbarTitle: 'Crop Photo',
+              toolbarColor: Colors.black,
+              toolbarWidgetColor: Colors.white,
+              statusBarLight: false,
+              initAspectRatio: CropAspectRatioPreset.ratio16x9,
+              lockAspectRatio: false,
+              activeControlsWidgetColor: LightTheme.primaryColor,
+            ),
+            IOSUiSettings(title: 'Crop Photo', aspectRatioLockEnabled: true),
+          ],
+        );
         setState(() {
-          _pickedPhoto = File(image.path);
+          _pickedPhoto = File(cropped?.path ?? image.path);
         });
         widget.onTap?.call(_pickedPhoto!);
       }
