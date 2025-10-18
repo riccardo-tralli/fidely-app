@@ -67,6 +67,9 @@ class L10nEn extends L10n {
   String get card_page_card_preview_code => '123456';
 
   @override
+  String get card_page_input_error_required => 'This field is required';
+
+  @override
   String get card_page_input_store_name_title => 'Store Name';
 
   @override

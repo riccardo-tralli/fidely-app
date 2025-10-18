@@ -6,6 +6,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'l10n_en.dart';
+import 'l10n_es.dart';
+import 'l10n_fr.dart';
+import 'l10n_it.dart';
 
 // ignore_for_file: type=lint
 
@@ -91,7 +94,12 @@ abstract class L10n {
       ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('en')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('en'),
+    Locale('es'),
+    Locale('fr'),
+    Locale('it'),
+  ];
 
   /// The title of the application shown in the app bar and launcher
   ///
@@ -200,6 +208,12 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'123456'**
   String get card_page_card_preview_code;
+
+  /// Validation error message for required fields
+  ///
+  /// In en, this message translates to:
+  /// **'This field is required'**
+  String get card_page_input_error_required;
 
   /// Label for the store name input field
   ///
@@ -506,7 +520,7 @@ class _L10nDelegate extends LocalizationsDelegate<L10n> {
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en'].contains(locale.languageCode);
+      <String>['en', 'es', 'fr', 'it'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_L10nDelegate old) => false;
@@ -517,6 +531,12 @@ L10n lookupL10n(Locale locale) {
   switch (locale.languageCode) {
     case 'en':
       return L10nEn();
+    case 'es':
+      return L10nEs();
+    case 'fr':
+      return L10nFr();
+    case 'it':
+      return L10nIt();
   }
 
   throw FlutterError(

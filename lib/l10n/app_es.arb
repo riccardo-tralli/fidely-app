@@ -1,0 +1,90 @@
+{
+    "@@locale": "es",
+    "@@last_modified": "2025-10-17",
+
+    "app_title": "Fidely",
+
+    "card_edit_title": "Editar",
+
+    "card_delete_title": "Eliminar",
+    "card_delete_description": "¿Estás seguro de que deseas eliminar esta tarjeta de fidelidad?",
+    "card_delete_confirm": "Confirmar",
+    "card_delete_cancel": "Cancelar",
+
+    "card_barcode_invalid": "No se puede generar el código de barras. Comprueba el código y el tipo.",
+
+    "card_page_code_pick_title": "Elegir un código",
+    "card_page_code_pick_description": "¿Cómo te gustaría obtener el código?",
+    "card_page_code_pick_buttons_camera": "Cámara",
+    "card_page_code_pick_buttons_gallery": "Galería",
+
+    "card_page_color_pick_title": "Elegir un color",
+    "card_page_color_pick_buttons_confirm": "Seleccionar",
+    "card_page_color_pick_buttons_cancel": "Cancelar",
+
+    "card_page_generic_error_title": "Error",
+    "card_page_permission_error_title": "Permiso denegado. Ve a la configuración del dispositivo para habilitarlo.",
+
+    "card_page_card_preview_title": "Nombre de la tienda",
+    "card_page_card_preview_code": "123456",
+
+    "card_page_input_error_required": "Este campo es obligatorio",
+    "card_page_input_store_name_title": "Nombre de la tienda",
+    "card_page_input_code_title": "Código de la tarjeta",
+    "card_page_input_type_title": "Tipo de tarjeta",
+    "card_page_input_owner_title": "Nombre del dueño",
+    "card_page_input_notes_title": "Notas",
+    "card_page_input_category_title": "Categoría",
+    "card_page_input_category_option_none": "Ninguna",
+    "card_page_input_category_option_grocery": "🛒 Supermercado y Tienda",
+    "card_page_input_category_option_food": "🍕 Comida",
+    "card_page_input_category_option_fuel": "⛽ Combustible y Energía",
+    "card_page_input_category_option_entertainment": "🎉 Entretenimiento",
+    "card_page_input_category_option_fashion": "👗 Moda y Belleza",
+    "card_page_input_category_option_electronics": "📺 Electrónica",
+    "card_page_input_category_option_health": "❤️‍🩹 Salud y Bienestar",
+    "card_page_input_category_option_travel": "✈️ Viajes y Transporte",
+    "card_page_input_category_option_sport": "⚽️ Deporte",
+    "card_page_input_category_option_other": "Otro",
+
+    "card_page_color_title": "Color de la tarjeta",
+    "card_page_color_description": "Selecciona un color de superficie para tu tarjeta",
+
+    "card_page_photo_front_title": "Foto frontal",
+    "card_page_photo_rear_title": "Foto trasera",
+
+    "card_page_save_button_title": "Guardar",
+
+    "home_page_no_cards_title": "No se encontraron tarjetas de fidelidad",
+    "home_page_no_cards_add_button": "Agregar la primera",
+    "home_page_generic_error_title": "Algo salió mal",
+
+    "photo_pick_title": "Elegir una foto",
+    "photo_pick_description": "¿Cómo te gustaría elegir la foto?",
+    "photo_pick_buttons_camera": "Cámara",
+    "photo_pick_buttons_gallery": "Galería",
+
+    "photo_change_tap": "Toca para cambiar",
+    "photo_change_title": "Cambiar foto",
+    "photo_change_description": "¿Cómo te gustaría cambiar la foto?",
+    "photo_change_buttons_repick": "Elegir una nueva foto",
+    "photo_change_buttons_remove": "Eliminar foto",
+
+    "photo_crop_title": "Recortar foto",
+
+    "settings_page_theme_title": "Modo de tema",
+    "settings_page_theme_description": "Selecciona tu modo de tema preferido",
+    "settings_page_theme_mode_light": "Claro",
+    "settings_page_theme_mode_dark": "Oscuro",
+    "settings_page_theme_mode_system": "Sistema",
+
+    "settings_page_sort_title": "Modo de ordenamiento",
+    "settings_page_sort_description": "Selecciona tu modo de ordenamiento preferido",
+    "settings_page_sort_mode_date": "Recientemente añadidas",
+    "settings_page_sort_mode_name": "Alfabético",
+    "settings_page_sort_mode_category": "Categoría",
+    "settings_page_sort_reverse_title": "Invertir",
+    "settings_page_sort_reverse_description": "Las tarjetas están ordenadas en orden {direction}",
+    "settings_page_sort_reverse_direction_asc": "ascendente",
+    "settings_page_sort_reverse_direction_desc": "descendente"
+}

@@ -1,5 +1,7 @@
 {
     "@@locale": "en",
+    "@@last_modified": "2025-10-17",
+
     "app_title": "Fidely",
     "@app_title": {
         "description": "The title of the application shown in the app bar and launcher",
@@ -98,6 +100,11 @@
         "type": "text"
     },
 
+    "card_page_input_error_required": "This field is required",
+    "@card_page_input_error_required": {
+        "description": "Validation error message for required fields",
+        "type": "text"
+    },
     "card_page_input_store_name_title": "Store Name",
     "@card_page_input_store_name_title": {
         "description": "Label for the store name input field",
@@ -357,7 +364,5 @@
     "@settings_page_sort_reverse_direction_desc": {
         "description": "Label to indicate descending sort direction",
         "type": "text"
-    },
-    
-    "@@last_modified": "2025-10-17"
+    }
 }
