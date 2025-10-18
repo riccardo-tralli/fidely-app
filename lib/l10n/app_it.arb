@@ -86,5 +86,13 @@
     "settings_page_sort_reverse_title": "Inverti",
     "settings_page_sort_reverse_description": "Le carte sono ordinate in ordine {direction}",
     "settings_page_sort_reverse_direction_asc": "crescente",
-    "settings_page_sort_reverse_direction_desc": "decrescente"
+    "settings_page_sort_reverse_direction_desc": "decrescente",
+
+    "settings_page_language_title": "Lingua",
+    "settings_page_language_description": "Seleziona la lingua preferita",
+    "settings_page_language_option_system": "Sistema",
+    "settings_page_language_option_english": "Inglese",
+    "settings_page_language_option_french": "Francese",
+    "settings_page_language_option_spanish": "Spagnolo",
+    "settings_page_language_option_italian": "Italiano"
 }

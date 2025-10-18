@@ -508,6 +508,48 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'descending'**
   String get settings_page_sort_reverse_direction_desc;
+
+  /// Title for language selection in settings
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get settings_page_language_title;
+
+  /// Description explaining language selection
+  ///
+  /// In en, this message translates to:
+  /// **'Select your preferred language'**
+  String get settings_page_language_description;
+
+  /// Language option: system default
+  ///
+  /// In en, this message translates to:
+  /// **'System Default'**
+  String get settings_page_language_option_system;
+
+  /// Language option: English
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get settings_page_language_option_english;
+
+  /// Language option: French
+  ///
+  /// In en, this message translates to:
+  /// **'French'**
+  String get settings_page_language_option_french;
+
+  /// Language option: Spanish
+  ///
+  /// In en, this message translates to:
+  /// **'Spanish'**
+  String get settings_page_language_option_spanish;
+
+  /// Language option: Italian
+  ///
+  /// In en, this message translates to:
+  /// **'Italian'**
+  String get settings_page_language_option_italian;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

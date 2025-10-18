@@ -364,5 +364,41 @@
     "@settings_page_sort_reverse_direction_desc": {
         "description": "Label to indicate descending sort direction",
         "type": "text"
+    },
+
+    "settings_page_language_title": "Language",
+    "@settings_page_language_title": {
+        "description": "Title for language selection in settings",
+        "type": "text"
+    },
+    "settings_page_language_description": "Select your preferred language",
+    "@settings_page_language_description": {
+        "description": "Description explaining language selection",
+        "type": "text"
+    },
+    "settings_page_language_option_system": "System Default",
+    "@settings_page_language_option_system": {
+        "description": "Language option: system default",
+        "type": "text"
+    },
+    "settings_page_language_option_english": "English",
+    "@settings_page_language_option_english": {
+        "description": "Language option: English",
+        "type": "text"
+    },
+    "settings_page_language_option_french": "French",
+    "@settings_page_language_option_french": {
+        "description": "Language option: French",
+        "type": "text"
+    },
+    "settings_page_language_option_spanish": "Spanish",
+    "@settings_page_language_option_spanish": {
+        "description": "Language option: Spanish",
+        "type": "text"
+    },
+    "settings_page_language_option_italian": "Italian",
+    "@settings_page_language_option_italian": {
+        "description": "Language option: Italian",
+        "type": "text"
     }
 }

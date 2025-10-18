@@ -1,5 +1,6 @@
 import 'package:fidely_app/blocs/loyalty_card/loyalty_card_bloc.dart';
 import 'package:fidely_app/cubits/settings/dark_mode_cubit.dart';
+import 'package:fidely_app/cubits/settings/language_cubit.dart';
 import 'package:fidely_app/cubits/settings/sort_cubit.dart';
 import 'package:fidely_app/l10n/l10n.dart';
 import 'package:fidely_app/models/sort_mode.dart';
@@ -21,6 +22,7 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   late ThemeMode _themeMode;
   late SortMode _sortMode;
+  late String? _languageCode;
 
   void onSort(SortMode mode) {
     setState(() {
@@ -30,11 +32,19 @@ class _SettingsPageState extends State<SettingsPage> {
     context.read<LoyaltyCardBloc>().loadLoyaltyCards(_sortMode);
   }
 
+  void onLanguageChange(String? languageCode) {
+    setState(() {
+      _languageCode = languageCode;
+    });
+    context.read<LanguageCubit>().set(languageCode);
+  }
+
   @override
   void initState() {
     super.initState();
     _themeMode = context.read<DarkModeCubit>().state;
     _sortMode = context.read<SortCubit>().state;
+    _languageCode = context.read<LanguageCubit>().state;
   }
 
   @override
@@ -45,7 +55,11 @@ class _SettingsPageState extends State<SettingsPage> {
       child: SingleChildScrollView(
         child: Column(
           spacing: 16,
-          children: [themeModeOption(context), sortModeOption(context)],
+          children: [
+            themeModeOption(context),
+            sortModeOption(context),
+            languageOption(context),
+          ],
         ),
       ),
     ),
@@ -172,6 +186,50 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         value: _sortMode.reverse,
         onChanged: (value) => onSort(_sortMode.copyWith(reverse: value)),
+      ),
+    ],
+  );
+
+  Widget languageOption(BuildContext context) => Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        L10n.of(context)!.settings_page_language_title,
+        style: Theme.of(context).textTheme.titleMedium,
+      ),
+      Text(L10n.of(context)!.settings_page_language_description),
+      const SizedBox(height: 8),
+      DropdownButtonFormField(
+        initialValue: _languageCode,
+        items: [
+          DropdownMenuItem(
+            value: null,
+            child: Text(L10n.of(context)!.settings_page_language_option_system),
+          ),
+          DropdownMenuItem(
+            value: "en",
+            child: Text(
+              L10n.of(context)!.settings_page_language_option_english,
+            ),
+          ),
+          DropdownMenuItem(
+            value: "fr",
+            child: Text(L10n.of(context)!.settings_page_language_option_french),
+          ),
+          DropdownMenuItem(
+            value: "es",
+            child: Text(
+              L10n.of(context)!.settings_page_language_option_spanish,
+            ),
+          ),
+          DropdownMenuItem(
+            value: "it",
+            child: Text(
+              L10n.of(context)!.settings_page_language_option_italian,
+            ),
+          ),
+        ],
+        onChanged: (value) => onLanguageChange(value),
       ),
     ],
   );

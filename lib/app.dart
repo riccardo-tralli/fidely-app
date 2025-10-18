@@ -1,4 +1,5 @@
 import 'package:fidely_app/cubits/settings/dark_mode_cubit.dart';
+import 'package:fidely_app/cubits/settings/language_cubit.dart';
 import 'package:fidely_app/di.dart';
 import 'package:fidely_app/l10n/l10n.dart';
 import 'package:fidely_app/misc/themes/dark.dart';
@@ -16,13 +17,14 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) => DependencyInjector(
     child: BlocBuilder<DarkModeCubit, ThemeMode>(
-      builder: (context, state) {
-        return MaterialApp(
+      builder: (context, themeState) => BlocBuilder<LanguageCubit, String?>(
+        builder: (context, languageState) => MaterialApp(
           theme: LightTheme.make(),
           darkTheme: DarkTheme.make(),
-          themeMode: state,
+          themeMode: themeState,
           localizationsDelegates: L10n.localizationsDelegates,
           supportedLocales: L10n.supportedLocales,
+          locale: languageState != null ? Locale(languageState) : null,
           title: L10n.of(context)?.app_title ?? "Fidely",
           initialRoute: HomePage.route,
           routes: {
@@ -39,8 +41,8 @@ class App extends StatelessWidget {
             }
             return null;
           },
-        );
-      },
+        ),
+      ),
     ),
   );
 }

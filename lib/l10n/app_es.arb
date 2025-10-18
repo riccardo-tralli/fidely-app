@@ -86,5 +86,13 @@
     "settings_page_sort_reverse_title": "Invertir",
     "settings_page_sort_reverse_description": "Las tarjetas están ordenadas en orden {direction}",
     "settings_page_sort_reverse_direction_asc": "ascendente",
-    "settings_page_sort_reverse_direction_desc": "descendente"
+    "settings_page_sort_reverse_direction_desc": "descendente",
+
+    "settings_page_language_title": "Idioma",
+    "settings_page_language_description": "Selecciona tu idioma preferido",
+    "settings_page_language_option_system": "Sistema",
+    "settings_page_language_option_english": "Inglés",
+    "settings_page_language_option_french": "Francés",
+    "settings_page_language_option_spanish": "Español",
+    "settings_page_language_option_italian": "Italiano"
 }

@@ -224,4 +224,26 @@ class L10nEn extends L10n {
 
   @override
   String get settings_page_sort_reverse_direction_desc => 'descending';
+
+  @override
+  String get settings_page_language_title => 'Language';
+
+  @override
+  String get settings_page_language_description =>
+      'Select your preferred language';
+
+  @override
+  String get settings_page_language_option_system => 'System Default';
+
+  @override
+  String get settings_page_language_option_english => 'English';
+
+  @override
+  String get settings_page_language_option_french => 'French';
+
+  @override
+  String get settings_page_language_option_spanish => 'Spanish';
+
+  @override
+  String get settings_page_language_option_italian => 'Italian';
 }
