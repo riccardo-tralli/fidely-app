@@ -19,19 +19,28 @@
 - Attach front and back photos to cards
 - Customize cards aspect
 - Dark and light modes
-- Multiple codes format support (see below)
+- Multiple languages support ([see below](#supported-languages))
+- Multiple codes format support ([see below](#codes-format-support))
  
 ## Why choose Fidely?
-- Free: no fees, no subscriptions
-- No paid content or ads: completely free and ad-free experience
-- Offline: all data is stored on your device
-- Privacy first: no data shared with any third party
+- 💸 Free: no fees, no subscriptions
+- 📺 No paid content or ads: completely free and ad-free experience
+- 📡 Offline: all data is stored on your device
+- 🤐 Privacy first: no data shared with any third party
 
-### Back up your device!
+### Back up your device! 💾
 Your card data is stored exclusively locally on your device.  
 It is recommended to regularly back up your device to prevent accidental data loss.
 
-## Codes format support
+## Supported languages
+- English
+- French
+- Spanish
+- Italian
+
+All translations were made using AI. Feel free to suggest better _"human-made"_ translations! 😉
+
+## Codes format support 
 - Code 39
 - Code 93
 - Code 128
@@ -43,24 +52,24 @@ It is recommended to regularly back up your device to prevent accidental data lo
 - PDF 417
 - QR
 
-## Platform compatibility
+## Platform compatibility 📱
 Fidely is compatible with both Android and iOS devices.
 - Minimum Android version: 7 (API 24)
 - Minimum iOS version: 13
 
-## Roadmap
+## Roadmap 🚧
 Here are some planned features:
 - [x] Dark/light mode
 - [x] Barcode scanning support
 - [x] Photo attachments
-- [ ] Color scanning support
-- [ ] Multi-language translations
+- [x] Multi-language translations
 - [ ] Data backup and restore
 - [ ] Card sharing via custom URL scheme
 - [ ] More card customization options
+- [ ] Additional card display modes
 - [ ] Automated tests and updated status badges
 
-If you have suggestions or requests, feel free to open an issue or contribute directly!
+If you have suggestions or requests, feel free to open an issue or contribute directly! 🙏
 
-## License
+## License 📖
 This repository is available under the [GPL-3.0 License](./LICENSE).
