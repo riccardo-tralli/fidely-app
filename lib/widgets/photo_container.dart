@@ -55,7 +55,7 @@ class _PermissionState extends State<PhotoContainer> {
           sourcePath: image.path,
           uiSettings: [
             AndroidUiSettings(
-              toolbarTitle: L10n.of(context)?.photo_crop_title,
+              toolbarTitle: "",
               toolbarColor: Colors.black,
               toolbarWidgetColor: Colors.white,
               statusBarLight: false,
@@ -63,10 +63,7 @@ class _PermissionState extends State<PhotoContainer> {
               lockAspectRatio: false,
               activeControlsWidgetColor: LightTheme.primaryColor,
             ),
-            IOSUiSettings(
-              title: L10n.of(context)?.photo_crop_title,
-              aspectRatioLockEnabled: true,
-            ),
+            IOSUiSettings(title: "", aspectRatioLockEnabled: true),
           ],
         );
         setState(() {
@@ -184,6 +181,7 @@ class _PermissionState extends State<PhotoContainer> {
   Widget onEmptyPhoto(BuildContext context) => AlertDialog(
     title: Text(L10n.of(context)!.photo_pick_title),
     content: Text(L10n.of(context)!.photo_pick_description),
+    actionsOverflowButtonSpacing: 8,
     actions: [
       FilledButton.icon(
         onPressed: () => pickPhoto(context, ImageSource.camera),

@@ -60,6 +60,7 @@ class _CardPageState extends State<CardPage> {
       return AlertDialog(
         title: Text(L10n.of(context)!.card_page_code_pick_title),
         content: Text(L10n.of(context)!.card_page_code_pick_description),
+        actionsOverflowButtonSpacing: 8,
         actions: [
           FilledButton.icon(
             onPressed: () {
@@ -133,6 +134,7 @@ class _CardPageState extends State<CardPage> {
             pickerAreaBorderRadius: BorderRadius.circular(16),
           ),
         ),
+        actionsOverflowButtonSpacing: 8,
         actions: [
           FilledButton(
             onPressed: () => Navigator.of(context).pop(),
@@ -649,15 +651,17 @@ class _CardPageState extends State<CardPage> {
         spacing: 12,
         children: [
           Hicon(HugeIcons.strokeRoundedPaintBoard, color: _colorValue),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                L10n.of(context)!.card_page_color_title,
-                style: Theme.of(context).textTheme.titleMedium,
-              ),
-              Text(L10n.of(context)!.card_page_color_description),
-            ],
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  L10n.of(context)!.card_page_color_title,
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                Text(L10n.of(context)!.card_page_color_description),
+              ],
+            ),
           ),
         ],
       ),
