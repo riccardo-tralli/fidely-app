@@ -350,13 +350,19 @@ abstract class L10n {
   /// Message shown on home when no cards are present
   ///
   /// In en, this message translates to:
-  /// **'No loyalty cards found'**
+  /// **'Whoa, such empty!'**
   String get home_page_no_cards_title;
+
+  /// Description shown on home when no cards are present
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'t have any loyalty cards yet.\nStart by adding your first one!'**
+  String get home_page_no_cards_description;
 
   /// CTA to add the first card
   ///
   /// In en, this message translates to:
-  /// **'Add the first one'**
+  /// **'Add your first card'**
   String get home_page_no_cards_add_button;
 
   /// Generic error shown on home page

@@ -140,10 +140,14 @@ class L10nFr extends L10n {
   String get card_page_save_button_title => 'Enregistrer';
 
   @override
-  String get home_page_no_cards_title => 'Aucune carte de fidélité trouvée';
+  String get home_page_no_cards_title => 'Woah, tellement vide !';
 
   @override
-  String get home_page_no_cards_add_button => 'Ajouter la première';
+  String get home_page_no_cards_description =>
+      'Vous n\'avez pas encore de cartes de fidélité.\nAjoutez la première pour commencer !';
+
+  @override
+  String get home_page_no_cards_add_button => 'Ajouter la première carte';
 
   @override
   String get home_page_generic_error_title => 'Une erreur est survenue';

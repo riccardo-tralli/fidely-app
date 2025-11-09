@@ -55,8 +55,9 @@
 
     "card_page_save_button_title": "Enregistrer",
 
-    "home_page_no_cards_title": "Aucune carte de fidélité trouvée",
-    "home_page_no_cards_add_button": "Ajouter la première",
+    "home_page_no_cards_title": "Woah, tellement vide !",
+    "home_page_no_cards_description": "Vous n'avez pas encore de cartes de fidélité.\nAjoutez la première pour commencer !",
+    "home_page_no_cards_add_button": "Ajouter la première carte",
     "home_page_generic_error_title": "Une erreur est survenue",
 
     "photo_pick_title": "Choisir une photo",

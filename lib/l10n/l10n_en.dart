@@ -140,10 +140,14 @@ class L10nEn extends L10n {
   String get card_page_save_button_title => 'Save';
 
   @override
-  String get home_page_no_cards_title => 'No loyalty cards found';
+  String get home_page_no_cards_title => 'Whoa, such empty!';
 
   @override
-  String get home_page_no_cards_add_button => 'Add the first one';
+  String get home_page_no_cards_description =>
+      'You don\'t have any loyalty cards yet.\nStart by adding your first one!';
+
+  @override
+  String get home_page_no_cards_add_button => 'Add your first card';
 
   @override
   String get home_page_generic_error_title => 'Something went wrong';

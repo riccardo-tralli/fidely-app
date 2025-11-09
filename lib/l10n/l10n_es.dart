@@ -140,11 +140,14 @@ class L10nEs extends L10n {
   String get card_page_save_button_title => 'Guardar';
 
   @override
-  String get home_page_no_cards_title =>
-      'No se encontraron tarjetas de fidelidad';
+  String get home_page_no_cards_title => 'Woah, así vacío!';
 
   @override
-  String get home_page_no_cards_add_button => 'Agregar la primera';
+  String get home_page_no_cards_description =>
+      'No tienes tarjetas de fidelidad aún.\n¡Agrega la primera para comenzar!';
+
+  @override
+  String get home_page_no_cards_add_button => 'Agregar la primera tarjeta';
 
   @override
   String get home_page_generic_error_title => 'Algo salió mal';

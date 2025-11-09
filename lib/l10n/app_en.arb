@@ -219,12 +219,17 @@
         "type": "text"
     },
 
-    "home_page_no_cards_title": "No loyalty cards found",
+    "home_page_no_cards_title": "Whoa, such empty!",
     "@home_page_no_cards_title": {
         "description": "Message shown on home when no cards are present",
         "type": "text"
     },
-    "home_page_no_cards_add_button": "Add the first one",
+    "home_page_no_cards_description": "You don't have any loyalty cards yet.\nStart by adding your first one!",
+    "@home_page_no_cards_description": {
+        "description": "Description shown on home when no cards are present",
+        "type": "text"
+    },
+    "home_page_no_cards_add_button": "Add your first card",
     "@home_page_no_cards_add_button": {
         "description": "CTA to add the first card",
         "type": "text"
