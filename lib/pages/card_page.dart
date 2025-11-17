@@ -8,6 +8,8 @@ import "package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart";
 import "package:fidely_app/cubits/permission/permission_cubit.dart";
 import "package:fidely_app/l10n/l10n.dart";
 import "package:fidely_app/misc/barcode_parser.dart";
+import "package:fidely_app/misc/themes/rradius.dart";
+import "package:fidely_app/misc/themes/spaces.dart";
 import "package:fidely_app/models/category.dart";
 import "package:fidely_app/models/loyalty_card.dart";
 import "package:fidely_app/models/requests/loyalty_card_request.dart";
@@ -253,7 +255,7 @@ class _CardPageState extends State<CardPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: TopBar(
-      backgroundColor: Theme.of(context).colorScheme.secondary,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       showTitle: false,
     ),
     body: SafeArea(child: cardCubitListener(context)),
@@ -331,13 +333,23 @@ class _CardPageState extends State<CardPage> {
   );
 
   Widget cardPreview(BuildContext context, bool showScanner) => Container(
-    padding: const EdgeInsets.only(right: 16, bottom: 24, left: 16),
+    padding: EdgeInsets.only(
+      right: Spaces.medium,
+      bottom: Spaces.large,
+      left: Spaces.medium,
+    ),
     decoration: BoxDecoration(
-      color: Theme.of(context).colorScheme.secondary,
+      color: Theme.of(context).colorScheme.primary,
       borderRadius: BorderRadius.only(
-        bottomLeft: Radius.circular(32),
-        bottomRight: Radius.circular(32),
+        bottomLeft: Radius.circular(RRadius.large),
+        bottomRight: Radius.circular(RRadius.large),
       ),
+      boxShadow: [
+        BoxShadow(
+          color: Theme.of(context).colorScheme.onSurface,
+          blurRadius: 5,
+        ),
+      ],
     ),
     child: showScanner
         ? scanner(context)
@@ -437,24 +449,27 @@ class _CardPageState extends State<CardPage> {
   );
 
   Widget form(BuildContext context, bool showScanner) => Padding(
-    padding: const EdgeInsets.all(24),
+    padding: EdgeInsets.all(Spaces.large),
     child: Form(
       key: _formKey,
       child: Column(
-        spacing: 8,
+        spacing: Spaces.small,
         children: [
           title(context),
           code(context, showScanner),
           type(context),
-          owner(context),
-          color(context),
-          note(context),
-          category(context),
+          // owner(context),
+          // color(context),
+          // note(context),
+          // category(context),
+          // Padding(
+          //   padding: EdgeInsets.symmetric(vertical: Spaces.small),
+          //   child: photos(context),
+          // ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: photos(context),
+            padding: EdgeInsets.only(top: Spaces.medium),
+            child: SizedBox(width: double.infinity, child: save(context)),
           ),
-          SizedBox(width: double.infinity, child: save(context)),
         ],
       ),
     ),
@@ -464,8 +479,11 @@ class _CardPageState extends State<CardPage> {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Padding(
-        padding: const EdgeInsets.only(left: 8),
-        child: Text(L10n.of(context)!.card_page_input_store_name_title),
+        padding: EdgeInsets.only(left: Spaces.small),
+        child: Text(
+          L10n.of(context)!.card_page_input_store_name_title,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
       ),
       TextFormField(
         controller: _titleController,
@@ -481,8 +499,11 @@ class _CardPageState extends State<CardPage> {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Padding(
-        padding: const EdgeInsets.only(left: 8),
-        child: Text(L10n.of(context)!.card_page_input_code_title),
+        padding: EdgeInsets.only(left: Spaces.small),
+        child: Text(
+          L10n.of(context)!.card_page_input_code_title,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
       ),
       TextFormField(
         controller: _codeController,
@@ -506,8 +527,11 @@ class _CardPageState extends State<CardPage> {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Padding(
-        padding: const EdgeInsets.only(left: 8),
-        child: Text(L10n.of(context)!.card_page_input_type_title),
+        padding: EdgeInsets.only(left: Spaces.small),
+        child: Text(
+          L10n.of(context)!.card_page_input_type_title,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
       ),
       DropdownButtonFormField(
         initialValue: _typeValue,
@@ -524,6 +548,7 @@ class _CardPageState extends State<CardPage> {
           DropdownMenuItem(value: BarcodeType.QrCode, child: Text("QR Code")),
         ],
         onChanged: (value) => setState(() => _typeValue = value!),
+        style: Theme.of(context).textTheme.bodyLarge,
       ),
     ],
   );
@@ -532,7 +557,7 @@ class _CardPageState extends State<CardPage> {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Padding(
-        padding: const EdgeInsets.only(left: 8),
+        padding: EdgeInsets.only(left: Spaces.small),
         child: Text(L10n.of(context)!.card_page_input_owner_title),
       ),
       TextFormField(
@@ -546,7 +571,7 @@ class _CardPageState extends State<CardPage> {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Padding(
-        padding: const EdgeInsets.only(left: 8),
+        padding: EdgeInsets.only(left: Spaces.small),
         child: Text(L10n.of(context)!.card_page_input_notes_title),
       ),
       TextFormField(
@@ -561,7 +586,7 @@ class _CardPageState extends State<CardPage> {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Padding(
-        padding: const EdgeInsets.only(left: 8),
+        padding: EdgeInsets.only(left: Spaces.small),
         child: Text(L10n.of(context)!.card_page_input_category_title),
       ),
       DropdownButtonFormField(
@@ -688,12 +713,18 @@ class _CardPageState extends State<CardPage> {
 
   Widget save(BuildContext context) => FilledButton.icon(
     onPressed: () => onSave(context),
-    icon: const Hicon(HugeIcons.strokeRoundedFloppyDisk, color: Colors.white),
+    icon: Hicon(
+      HugeIcons.strokeRoundedFloppyDisk,
+      color: Theme.of(context).textTheme.bodyLarge?.color,
+    ),
     label: Text(
       L10n.of(context)!.card_page_save_button_title,
-      style: Theme.of(
-        context,
-      ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+      style: Theme.of(context).textTheme.bodyLarge,
+    ),
+    style: Theme.of(context).filledButtonTheme.style?.copyWith(
+      backgroundColor: WidgetStatePropertyAll(
+        Theme.of(context).colorScheme.secondary,
+      ),
     ),
   );
 }
