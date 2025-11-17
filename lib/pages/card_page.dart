@@ -325,10 +325,11 @@ class _CardPageState extends State<CardPage> {
         ),
       );
 
-  Widget body(BuildContext context, bool showScanner) => Column(
+  Widget body(BuildContext context, bool showScanner) => Stack(
     children: [
-      cardPreview(context, showScanner),
       Expanded(child: SingleChildScrollView(child: form(context, showScanner))),
+      cardPreview(context, showScanner),
+      save(context),
     ],
   );
 
@@ -449,11 +450,16 @@ class _CardPageState extends State<CardPage> {
   );
 
   Widget form(BuildContext context, bool showScanner) => Padding(
-    padding: EdgeInsets.all(Spaces.large),
+    padding: EdgeInsets.only(
+      top: 300, // * Space under card preview
+      right: Spaces.large,
+      bottom: Spaces.large,
+      left: Spaces.large,
+    ),
     child: Form(
       key: _formKey,
       child: Column(
-        spacing: Spaces.small,
+        spacing: Spaces.medium,
         children: [
           title(context),
           code(context, showScanner),
@@ -463,13 +469,10 @@ class _CardPageState extends State<CardPage> {
           // note(context),
           // category(context),
           // Padding(
-          //   padding: EdgeInsets.symmetric(vertical: Spaces.small),
+          //   padding: EdgeInsets.symmetric(vertical: Spaces.medium),
           //   child: photos(context),
           // ),
-          Padding(
-            padding: EdgeInsets.only(top: Spaces.medium),
-            child: SizedBox(width: double.infinity, child: save(context)),
-          ),
+          SizedBox(height: 50), // * Space under save button
         ],
       ),
     ),
@@ -699,31 +702,47 @@ class _CardPageState extends State<CardPage> {
       PhotoContainer(
         label: L10n.of(context)!.card_page_photo_front_title,
         photo: _frontPhoto,
-        borderColor: _colorValue,
         onTap: (photo) => _frontPhoto = photo,
       ),
       PhotoContainer(
         label: L10n.of(context)!.card_page_photo_rear_title,
         photo: _rearPhoto,
-        borderColor: _colorValue,
         onTap: (photo) => _rearPhoto = photo,
       ),
     ],
   );
 
-  Widget save(BuildContext context) => FilledButton.icon(
-    onPressed: () => onSave(context),
-    icon: Hicon(
-      HugeIcons.strokeRoundedFloppyDisk,
-      color: Theme.of(context).textTheme.bodyLarge?.color,
-    ),
-    label: Text(
-      L10n.of(context)!.card_page_save_button_title,
-      style: Theme.of(context).textTheme.bodyLarge,
-    ),
-    style: Theme.of(context).filledButtonTheme.style?.copyWith(
-      backgroundColor: WidgetStatePropertyAll(
-        Theme.of(context).colorScheme.secondary,
+  Widget save(BuildContext context) => Align(
+    alignment: Alignment.bottomCenter,
+    child: Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surface,
+        border: Border(
+          top: BorderSide(color: Theme.of(context).colorScheme.outline),
+        ),
+      ),
+      child: Padding(
+        padding: EdgeInsets.only(
+          top: Spaces.large,
+          left: Spaces.large,
+          right: Spaces.large,
+          bottom: Spaces.small,
+        ),
+        child: SizedBox(
+          width: double.infinity,
+          child: FilledButton(
+            onPressed: () => onSave(context),
+            style: Theme.of(context).filledButtonTheme.style?.copyWith(
+              backgroundColor: WidgetStatePropertyAll(
+                Theme.of(context).colorScheme.secondary,
+              ),
+            ),
+            child: Text(
+              L10n.of(context)!.card_page_save_button_title,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+          ),
+        ),
       ),
     ),
   );

@@ -208,22 +208,24 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
       onTap: onTap,
       onLongPress: () => onLongPress(context),
       borderRadius: BorderRadius.circular(16),
-      child: Container(
-        width: double.infinity,
-        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-        decoration: BoxDecoration(
-          color: widget.card.color,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Theme.of(context).colorScheme.shadow,
-              blurRadius: 2,
-              offset: const Offset(0, 1),
-            ),
-          ],
+      child: IntrinsicHeight(
+        child: Container(
+          width: double.infinity,
+          margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          decoration: BoxDecoration(
+            color: widget.card.color,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Theme.of(context).colorScheme.shadow,
+                blurRadius: 2,
+                offset: const Offset(0, 1),
+              ),
+            ],
+          ),
+          child: content(context),
         ),
-        child: content(context),
       ),
     );
   }
@@ -265,6 +267,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
       color: textColor,
       style: Theme.of(context).textTheme.bodySmall?.copyWith(color: textColor),
       errorBuilder: (context, _) => barcodeError(context),
+      height: 150,
     ),
   );
 
