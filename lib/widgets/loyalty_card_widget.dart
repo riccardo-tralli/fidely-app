@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
 import 'package:barcode_widget/barcode_widget.dart';
@@ -16,12 +18,14 @@ class LoyaltyCardWidget extends StatefulWidget {
   final LoyaltyCard card;
   final bool isSelected;
   final bool isSelectable;
+  final double? height;
 
   const LoyaltyCardWidget({
     super.key,
     required this.card,
     this.isSelected = false,
     this.isSelectable = true,
+    this.height,
   });
 
   @override
@@ -252,12 +256,13 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
     ],
   );
 
-  Widget title(BuildContext context) => Text(
-    widget.card.title,
-    style: Theme.of(
-      context,
-    ).textTheme.headlineLarge?.copyWith(color: textColor),
-  );
+  Widget title(BuildContext context) {
+    TextStyle? style = widget.height != null && widget.height! <= 70
+        ? Theme.of(context).textTheme.headlineSmall
+        : Theme.of(context).textTheme.headlineLarge;
+
+    return Text(widget.card.title, style: style?.copyWith(color: textColor));
+  }
 
   Widget barcode(BuildContext context) => Padding(
     padding: const EdgeInsets.only(top: 16, bottom: 8),
@@ -267,7 +272,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
       color: textColor,
       style: Theme.of(context).textTheme.bodySmall?.copyWith(color: textColor),
       errorBuilder: (context, _) => barcodeError(context),
-      height: 150,
+      height: widget.height ?? 150,
     ),
   );
 

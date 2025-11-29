@@ -17,6 +17,7 @@ import "package:fidely_app/services/photo_service.dart";
 import "package:fidely_app/widgets/hicon.dart";
 import "package:fidely_app/widgets/loyalty_card_widget.dart";
 import "package:fidely_app/widgets/photo_container.dart";
+import "package:fidely_app/widgets/text_divider.dart";
 import "package:fidely_app/widgets/top_bar.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
@@ -39,6 +40,8 @@ class CardPage extends StatefulWidget {
 
 class _CardPageState extends State<CardPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey _cardPreviewKey = GlobalKey();
+  final GlobalKey _customDividerKey = GlobalKey();
 
   final MobileScannerController _scannerController = MobileScannerController();
   final TextEditingController _titleController = TextEditingController();
@@ -55,6 +58,25 @@ class _CardPageState extends State<CardPage> {
   bool _frontCamera = false;
   File? _frontPhoto;
   File? _rearPhoto;
+
+  ScrollController scrollController = ScrollController();
+  double _cardPreviewSpace = 0;
+  double _minScroll = 0;
+  final double _minBarcodeHeight = 50;
+  final double _maxBarcodeHeight = 150;
+  double _barcodeHeight = 150;
+
+  void onScroll() {
+    final double height =
+        _maxBarcodeHeight - (scrollController.offset - _minScroll);
+    if ((scrollController.offset > _minScroll && height > _minBarcodeHeight) ||
+        (scrollController.offset <= _minScroll &&
+            height <= _maxBarcodeHeight)) {
+      setState(() {
+        _barcodeHeight = height;
+      });
+    }
+  }
 
   void onPickUpCode(BuildContext context) => showDialog(
     context: context,
@@ -250,10 +272,36 @@ class _CardPageState extends State<CardPage> {
 
       loadPhotos();
     }
+
+    scrollController.addListener(onScroll);
+
+    // Calculate card preview space and min scroll after first frame rendered
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final RenderBox dividerBox =
+          _customDividerKey.currentContext?.findRenderObject() as RenderBox;
+      final RenderBox cardBox =
+          _cardPreviewKey.currentContext?.findRenderObject() as RenderBox;
+
+      // Set state with calculated values
+      setState(() {
+        _cardPreviewSpace = cardBox.size.height + Spaces.medium;
+        _minScroll =
+            dividerBox.localToGlobal(Offset.zero).dy -
+            kToolbarHeight -
+            Spaces.medium;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
+    resizeToAvoidBottomInset: false,
     appBar: TopBar(
       backgroundColor: Theme.of(context).colorScheme.primary,
       showTitle: false,
@@ -327,13 +375,19 @@ class _CardPageState extends State<CardPage> {
 
   Widget body(BuildContext context, bool showScanner) => Stack(
     children: [
-      Expanded(child: SingleChildScrollView(child: form(context, showScanner))),
+      Expanded(
+        child: SingleChildScrollView(
+          controller: scrollController,
+          child: form(context, showScanner),
+        ),
+      ),
       cardPreview(context, showScanner),
       save(context),
     ],
   );
 
   Widget cardPreview(BuildContext context, bool showScanner) => Container(
+    key: _cardPreviewKey,
     padding: EdgeInsets.only(
       right: Spaces.medium,
       bottom: Spaces.large,
@@ -372,6 +426,7 @@ class _CardPageState extends State<CardPage> {
             ),
             isSelected: true,
             isSelectable: false,
+            height: _barcodeHeight,
           ),
   );
 
@@ -451,28 +506,46 @@ class _CardPageState extends State<CardPage> {
 
   Widget form(BuildContext context, bool showScanner) => Padding(
     padding: EdgeInsets.only(
-      top: 300, // * Space under card preview
-      right: Spaces.large,
+      top: _cardPreviewSpace, // * Space under card preview
       bottom: Spaces.large,
-      left: Spaces.large,
     ),
     child: Form(
       key: _formKey,
       child: Column(
-        spacing: Spaces.medium,
         children: [
-          title(context),
-          code(context, showScanner),
-          type(context),
-          // owner(context),
-          // color(context),
-          // note(context),
-          // category(context),
-          // Padding(
-          //   padding: EdgeInsets.symmetric(vertical: Spaces.medium),
-          //   child: photos(context),
-          // ),
-          SizedBox(height: 50), // * Space under save button
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: Spaces.medium),
+            child: Column(
+              spacing: Spaces.medium,
+              children: [
+                title(context),
+                code(context, showScanner),
+                type(context),
+              ],
+            ),
+          ),
+          Padding(
+            key: _customDividerKey,
+            padding: EdgeInsets.only(top: Spaces.large, bottom: Spaces.medium),
+            child: TextDivider(title: "Personalizza la carta", size: .5),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: Spaces.medium),
+            child: Column(
+              spacing: Spaces.medium,
+              children: [
+                owner(context),
+                note(context),
+                category(context),
+                color(context),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: Spaces.medium),
+                  child: photos(context),
+                ),
+                SizedBox(height: 40), // * Space under save button
+              ],
+            ),
+          ),
         ],
       ),
     ),
