@@ -84,7 +84,7 @@ class _CardPageState extends State<CardPage> {
       return AlertDialog(
         title: Text(L10n.of(context)!.card_page_code_pick_title),
         content: Text(L10n.of(context)!.card_page_code_pick_description),
-        actionsOverflowButtonSpacing: 8,
+        actionsOverflowButtonSpacing: Spaces.small,
         actions: [
           FilledButton.icon(
             onPressed: () {
@@ -155,10 +155,10 @@ class _CardPageState extends State<CardPage> {
             pickerAreaHeightPercent: 0.8,
             enableAlpha: false,
             labelTypes: [],
-            pickerAreaBorderRadius: BorderRadius.circular(16),
+            pickerAreaBorderRadius: BorderRadius.circular(RRadius.medium),
           ),
         ),
-        actionsOverflowButtonSpacing: 8,
+        actionsOverflowButtonSpacing: Spaces.small,
         actions: [
           FilledButton(
             onPressed: () => Navigator.of(context).pop(),
@@ -351,7 +351,7 @@ class _CardPageState extends State<CardPage> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Row(
-                  spacing: 16,
+                  spacing: Spaces.medium,
                   children: [
                     Hicon(HugeIcons.strokeRoundedAlert02),
                     Expanded(
@@ -431,30 +431,30 @@ class _CardPageState extends State<CardPage> {
   );
 
   Widget scanner(BuildContext context) => Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 8),
+    padding: EdgeInsets.symmetric(horizontal: Spaces.small),
     child: SizedBox(
       width: double.infinity,
       height: 260,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(RRadius.medium),
         child: MobileScanner(
           controller: _scannerController,
           onDetect: onScannerDetect,
           overlayBuilder: (context, constraints) => Container(
             margin: EdgeInsets.only(
-              top: 16,
-              right: 16,
-              bottom: 16,
+              top: Spaces.medium,
+              right: Spaces.medium,
+              bottom: Spaces.medium,
               left: constraints.maxWidth - 76,
             ),
-            padding: const EdgeInsets.all(8),
+            padding: EdgeInsets.all(Spaces.small),
             decoration: BoxDecoration(
               color: Colors.black.withAlpha(100),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(RRadius.medium),
             ),
             child: SingleChildScrollView(
               child: Column(
-                spacing: 8,
+                spacing: Spaces.small,
                 children: [
                   IconButton.filled(
                     onPressed: () {
@@ -539,7 +539,7 @@ class _CardPageState extends State<CardPage> {
                 category(context),
                 color(context),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: Spaces.medium),
+                  padding: EdgeInsets.only(bottom: Spaces.large),
                   child: photos(context),
                 ),
                 SizedBox(height: 40), // * Space under save button
@@ -624,7 +624,7 @@ class _CardPageState extends State<CardPage> {
           DropdownMenuItem(value: BarcodeType.QrCode, child: Text("QR Code")),
         ],
         onChanged: (value) => setState(() => _typeValue = value!),
-        style: Theme.of(context).textTheme.bodyMedium,
+        style: Theme.of(context).textTheme.bodyLarge,
       ),
     ],
   );
@@ -804,7 +804,7 @@ class _CardPageState extends State<CardPage> {
             _categoryValue = value;
           });
         },
-        style: Theme.of(context).textTheme.bodyMedium,
+        style: Theme.of(context).textTheme.bodyLarge,
       ),
     ],
   );
@@ -851,7 +851,7 @@ class _CardPageState extends State<CardPage> {
   );
 
   Widget photos(BuildContext context) => Row(
-    spacing: 16,
+    spacing: Spaces.medium,
     children: [
       PhotoContainer(
         label: L10n.of(context)!.card_page_photo_front_title,
