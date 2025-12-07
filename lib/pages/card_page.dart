@@ -812,15 +812,22 @@ class _CardPageState extends State<CardPage> {
   Widget color(BuildContext context) => InkWell(
     onTap: () => onColorChange(context),
     child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: EdgeInsets.symmetric(
+        horizontal: Spaces.medium,
+        vertical: Spaces.medium,
+      ),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondary,
-        border: Border.all(color: Theme.of(context).colorScheme.outline),
-        borderRadius: BorderRadius.circular(16),
+        color: Theme.of(context).inputDecorationTheme.fillColor,
+        border: Border.all(
+          color: Theme.of(
+            context,
+          ).inputDecorationTheme.border!.borderSide.color,
+        ),
+        borderRadius: BorderRadius.circular(RRadius.medium),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        spacing: 12,
+        spacing: 12, // Looks better than 8 or 16
         children: [
           Hicon(HugeIcons.strokeRoundedPaintBoard, color: _colorValue),
           Flexible(
@@ -829,9 +836,12 @@ class _CardPageState extends State<CardPage> {
               children: [
                 Text(
                   L10n.of(context)!.card_page_color_title,
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
-                Text(L10n.of(context)!.card_page_color_description),
+                Text(
+                  L10n.of(context)!.card_page_color_description,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
               ],
             ),
           ),
