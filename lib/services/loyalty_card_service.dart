@@ -27,7 +27,7 @@ class LoyaltyCardService {
       version: _dbVersion,
       onCreate: (db, version) async {
         await db.execute(
-          "CREATE TABLE $_tableName (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, code TEXT, type TEXT, owner TEXT, color TEXT, note TEXT)",
+          "CREATE TABLE $_tableName (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, code TEXT, type TEXT, owner TEXT, color TEXT, note TEXT, category TEXT)",
         );
       },
       onUpgrade: (db, oldVersion, newVersion) async {
