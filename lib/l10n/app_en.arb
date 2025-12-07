@@ -140,47 +140,47 @@
         "description": "Category option: none",
         "type": "text"
     },
-    "card_page_input_category_option_grocery": "🛒 Market and Grocery",
+    "card_page_input_category_option_grocery": "Market and Grocery",
     "@card_page_input_category_option_grocery": {
         "description": "Category option: market and grocery",
         "type": "text"
     },
-    "card_page_input_category_option_food": "🍕 Food",
+    "card_page_input_category_option_food": "Food",
     "@card_page_input_category_option_food": {
         "description": "Category option: food",
         "type": "text"
     },
-    "card_page_input_category_option_fuel": "⛽ Fuel and Energy",
+    "card_page_input_category_option_fuel": "Fuel and Energy",
     "@card_page_input_category_option_fuel": {
         "description": "Category option: fuel and energy",
         "type": "text"
     },
-    "card_page_input_category_option_entertainment": "🎉 Entertainment",
+    "card_page_input_category_option_entertainment": "Entertainment",
     "@card_page_input_category_option_entertainment": {
         "description": "Category option: entertainment",
         "type": "text"
     },
-    "card_page_input_category_option_fashion": "👗 Fashion and Beauty",
+    "card_page_input_category_option_fashion": "Fashion and Beauty",
     "@card_page_input_category_option_fashion": {
         "description": "Category option: fashion and beauty",
         "type": "text"
     },
-    "card_page_input_category_option_electronics": "📺 Electronics",
+    "card_page_input_category_option_electronics": "Electronics",
     "@card_page_input_category_option_electronics": {
         "description": "Category option: electronics",
         "type": "text"
     },
-    "card_page_input_category_option_health": "❤️‍🩹 Health and Wellness",
+    "card_page_input_category_option_health": "Health and Wellness",
     "@card_page_input_category_option_health": {
         "description": "Category option: health and wellness",
         "type": "text"
     },
-    "card_page_input_category_option_travel": "✈️ Travel and Transportation",
+    "card_page_input_category_option_travel": "Travel and Transportation",
     "@card_page_input_category_option_travel": {
         "description": "Category option: travel and transportation",
         "type": "text"
     },
-    "card_page_input_category_option_sport": "⚽️ Sport",
+    "card_page_input_category_option_sport": "Sport",
     "@card_page_input_category_option_sport": {
         "description": "Category option: sport",
         "type": "text"

@@ -91,34 +91,31 @@ class L10nEs extends L10n {
   String get card_page_input_category_option_none => 'Ninguna';
 
   @override
-  String get card_page_input_category_option_grocery =>
-      '🛒 Supermercado y Tienda';
+  String get card_page_input_category_option_grocery => 'Supermercado y Tienda';
 
   @override
-  String get card_page_input_category_option_food => '🍕 Comida';
+  String get card_page_input_category_option_food => 'Comida';
 
   @override
-  String get card_page_input_category_option_fuel => '⛽ Combustible y Energía';
+  String get card_page_input_category_option_fuel => 'Combustible y Energía';
 
   @override
-  String get card_page_input_category_option_entertainment =>
-      '🎉 Entretenimiento';
+  String get card_page_input_category_option_entertainment => 'Entretenimiento';
 
   @override
-  String get card_page_input_category_option_fashion => '👗 Moda y Belleza';
+  String get card_page_input_category_option_fashion => 'Moda y Belleza';
 
   @override
-  String get card_page_input_category_option_electronics => '📺 Electrónica';
+  String get card_page_input_category_option_electronics => 'Electrónica';
 
   @override
-  String get card_page_input_category_option_health =>
-      '❤️‍🩹 Salud y Bienestar';
+  String get card_page_input_category_option_health => 'Salud y Bienestar';
 
   @override
-  String get card_page_input_category_option_travel => '✈️ Viajes y Transporte';
+  String get card_page_input_category_option_travel => 'Viajes y Transporte';
 
   @override
-  String get card_page_input_category_option_sport => '⚽️ Deporte';
+  String get card_page_input_category_option_sport => 'Deporte';
 
   @override
   String get card_page_input_category_option_other => 'Otro';

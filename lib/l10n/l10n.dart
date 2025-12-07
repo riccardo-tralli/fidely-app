@@ -260,55 +260,55 @@ abstract class L10n {
   /// Category option: market and grocery
   ///
   /// In en, this message translates to:
-  /// **'🛒 Market and Grocery'**
+  /// **'Market and Grocery'**
   String get card_page_input_category_option_grocery;
 
   /// Category option: food
   ///
   /// In en, this message translates to:
-  /// **'🍕 Food'**
+  /// **'Food'**
   String get card_page_input_category_option_food;
 
   /// Category option: fuel and energy
   ///
   /// In en, this message translates to:
-  /// **'⛽ Fuel and Energy'**
+  /// **'Fuel and Energy'**
   String get card_page_input_category_option_fuel;
 
   /// Category option: entertainment
   ///
   /// In en, this message translates to:
-  /// **'🎉 Entertainment'**
+  /// **'Entertainment'**
   String get card_page_input_category_option_entertainment;
 
   /// Category option: fashion and beauty
   ///
   /// In en, this message translates to:
-  /// **'👗 Fashion and Beauty'**
+  /// **'Fashion and Beauty'**
   String get card_page_input_category_option_fashion;
 
   /// Category option: electronics
   ///
   /// In en, this message translates to:
-  /// **'📺 Electronics'**
+  /// **'Electronics'**
   String get card_page_input_category_option_electronics;
 
   /// Category option: health and wellness
   ///
   /// In en, this message translates to:
-  /// **'❤️‍🩹 Health and Wellness'**
+  /// **'Health and Wellness'**
   String get card_page_input_category_option_health;
 
   /// Category option: travel and transportation
   ///
   /// In en, this message translates to:
-  /// **'✈️ Travel and Transportation'**
+  /// **'Travel and Transportation'**
   String get card_page_input_category_option_travel;
 
   /// Category option: sport
   ///
   /// In en, this message translates to:
-  /// **'⚽️ Sport'**
+  /// **'Sport'**
   String get card_page_input_category_option_sport;
 
   /// Category option: other

@@ -91,34 +91,32 @@ class L10nEn extends L10n {
   String get card_page_input_category_option_none => 'None';
 
   @override
-  String get card_page_input_category_option_grocery => '🛒 Market and Grocery';
+  String get card_page_input_category_option_grocery => 'Market and Grocery';
 
   @override
-  String get card_page_input_category_option_food => '🍕 Food';
+  String get card_page_input_category_option_food => 'Food';
 
   @override
-  String get card_page_input_category_option_fuel => '⛽ Fuel and Energy';
+  String get card_page_input_category_option_fuel => 'Fuel and Energy';
 
   @override
-  String get card_page_input_category_option_entertainment =>
-      '🎉 Entertainment';
+  String get card_page_input_category_option_entertainment => 'Entertainment';
 
   @override
-  String get card_page_input_category_option_fashion => '👗 Fashion and Beauty';
+  String get card_page_input_category_option_fashion => 'Fashion and Beauty';
 
   @override
-  String get card_page_input_category_option_electronics => '📺 Electronics';
+  String get card_page_input_category_option_electronics => 'Electronics';
 
   @override
-  String get card_page_input_category_option_health =>
-      '❤️‍🩹 Health and Wellness';
+  String get card_page_input_category_option_health => 'Health and Wellness';
 
   @override
   String get card_page_input_category_option_travel =>
-      '✈️ Travel and Transportation';
+      'Travel and Transportation';
 
   @override
-  String get card_page_input_category_option_sport => '⚽️ Sport';
+  String get card_page_input_category_option_sport => 'Sport';
 
   @override
   String get card_page_input_category_option_other => 'Other';

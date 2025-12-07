@@ -624,7 +624,7 @@ class _CardPageState extends State<CardPage> {
           DropdownMenuItem(value: BarcodeType.QrCode, child: Text("QR Code")),
         ],
         onChanged: (value) => setState(() => _typeValue = value!),
-        style: Theme.of(context).textTheme.bodyLarge,
+        style: Theme.of(context).textTheme.bodyMedium,
       ),
     ],
   );
@@ -674,58 +674,128 @@ class _CardPageState extends State<CardPage> {
           ),
           DropdownMenuItem(
             value: Category.market,
-            child: Text(
-              L10n.of(context)!.card_page_input_category_option_grocery,
+            child: Row(
+              spacing: Spaces.small,
+              children: [
+                Hicon(HugeIcons.strokeRoundedShoppingCart02),
+                Text(
+                  L10n.of(context)!.card_page_input_category_option_grocery,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
           DropdownMenuItem(
             value: Category.food,
-            child: Text(L10n.of(context)!.card_page_input_category_option_food),
+            child: Row(
+              spacing: Spaces.small,
+              children: [
+                Hicon(HugeIcons.strokeRoundedPizza02),
+                Text(
+                  L10n.of(context)!.card_page_input_category_option_food,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
           ),
           DropdownMenuItem(
             value: Category.fuel,
-            child: Text(L10n.of(context)!.card_page_input_category_option_fuel),
+            child: Row(
+              spacing: Spaces.small,
+              children: [
+                Hicon(HugeIcons.strokeRoundedFuel),
+                Text(
+                  L10n.of(context)!.card_page_input_category_option_fuel,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
           ),
           DropdownMenuItem(
             value: Category.entertainment,
-            child: Text(
-              L10n.of(context)!.card_page_input_category_option_entertainment,
+            child: Row(
+              spacing: Spaces.small,
+              children: [
+                Hicon(HugeIcons.strokeRoundedFlimSlate),
+                Text(
+                  L10n.of(
+                    context,
+                  )!.card_page_input_category_option_entertainment,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
           DropdownMenuItem(
             value: Category.fashion,
-            child: Text(
-              L10n.of(context)!.card_page_input_category_option_fashion,
+            child: Row(
+              spacing: Spaces.small,
+              children: [
+                Hicon(HugeIcons.strokeRoundedDress03),
+                Text(
+                  L10n.of(context)!.card_page_input_category_option_fashion,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
           DropdownMenuItem(
             value: Category.electronics,
-            child: Text(
-              L10n.of(context)!.card_page_input_category_option_electronics,
+            child: Row(
+              spacing: Spaces.small,
+              children: [
+                Hicon(HugeIcons.strokeRoundedElectricPlugs),
+                Text(
+                  L10n.of(context)!.card_page_input_category_option_electronics,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
           DropdownMenuItem(
             value: Category.health,
-            child: Text(
-              L10n.of(context)!.card_page_input_category_option_health,
+            child: Row(
+              spacing: Spaces.small,
+              children: [
+                Hicon(HugeIcons.strokeRoundedMedicineSyrup),
+                Text(
+                  L10n.of(context)!.card_page_input_category_option_health,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
           DropdownMenuItem(
             value: Category.travel,
-            child: Text(
-              L10n.of(context)!.card_page_input_category_option_travel,
+            child: Row(
+              spacing: Spaces.small,
+              children: [
+                Hicon(HugeIcons.strokeRoundedAirplane02),
+                Text(
+                  L10n.of(context)!.card_page_input_category_option_travel,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
           DropdownMenuItem(
             value: Category.sport,
-            child: Text(
-              L10n.of(context)!.card_page_input_category_option_sport,
+            child: Row(
+              spacing: Spaces.small,
+              children: [
+                Hicon(HugeIcons.strokeRoundedFootball),
+                Text(
+                  L10n.of(context)!.card_page_input_category_option_sport,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
           DropdownMenuItem(
             value: Category.other,
             child: Text(
               L10n.of(context)!.card_page_input_category_option_other,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],
@@ -734,6 +804,7 @@ class _CardPageState extends State<CardPage> {
             _categoryValue = value;
           });
         },
+        style: Theme.of(context).textTheme.bodyMedium,
       ),
     ],
   );
