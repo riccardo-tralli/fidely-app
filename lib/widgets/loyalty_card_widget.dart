@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart';
 import 'package:fidely_app/l10n/l10n.dart';
+import 'package:fidely_app/misc/themes/spaces.dart';
 import 'package:fidely_app/models/loyalty_card.dart';
 import 'package:fidely_app/pages/card_page.dart';
 import 'package:fidely_app/services/photo_service.dart';
@@ -79,15 +80,15 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 16,
+              spacing: Spaces.medium,
               children: [
                 Text(
                   widget.card.title,
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 if (frontPhoto != null || rearPhoto != null)
                   Row(
-                    spacing: 16,
+                    spacing: Spaces.medium,
                     children: [
                       if (frontPhoto != null)
                         PhotoContainer(
@@ -106,7 +107,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
                     ],
                   ),
                 Row(
-                  spacing: 16,
+                  spacing: Spaces.medium,
                   children: [
                     Expanded(
                       child: FilledButton.icon(
@@ -119,7 +120,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
                           L10n.of(context)!.card_edit_title,
                           style: Theme.of(
                             context,
-                          ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+                          ).textTheme.bodyMedium?.copyWith(color: Colors.white),
                         ),
                       ),
                     ),
@@ -140,7 +141,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
                           L10n.of(context)!.card_delete_title,
                           style: Theme.of(
                             context,
-                          ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+                          ).textTheme.bodyMedium?.copyWith(color: Colors.white),
                         ),
                       ),
                     ),
@@ -165,16 +166,9 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
       return AlertDialog(
         title: Text(L10n.of(context)!.card_delete_title),
         content: Text(L10n.of(context)!.card_delete_description),
+        actionsOverflowAlignment: OverflowBarAlignment.end,
+        actionsOverflowButtonSpacing: Spaces.medium,
         actions: [
-          FilledButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(
-              L10n.of(context)!.card_delete_cancel,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyLarge?.copyWith(color: Colors.white),
-            ),
-          ),
           FilledButton.icon(
             onPressed: () {
               Navigator.of(context).pop();
@@ -188,7 +182,16 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
               L10n.of(context)!.card_delete_confirm,
               style: Theme.of(
                 context,
-              ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+              ).textTheme.bodyMedium?.copyWith(color: Colors.white),
+            ),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(
+              L10n.of(context)!.card_delete_cancel,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: Colors.white),
             ),
           ),
         ],
