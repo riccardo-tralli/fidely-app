@@ -149,12 +149,6 @@ abstract class L10n {
   /// **'Pick a code'**
   String get card_page_code_pick_title;
 
-  /// Subtitle explaining options for picking a code
-  ///
-  /// In en, this message translates to:
-  /// **'How would you like to pick a code?'**
-  String get card_page_code_pick_description;
-
   /// Option to pick code using camera
   ///
   /// In en, this message translates to:

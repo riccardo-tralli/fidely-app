@@ -46,11 +46,6 @@
         "description": "Title for code source selection dialog",
         "type": "text"
     },
-    "card_page_code_pick_description": "How would you like to pick a code?",
-    "@card_page_code_pick_description": {
-        "description": "Subtitle explaining options for picking a code",
-        "type": "text"
-    },
     "card_page_code_pick_buttons_camera": "Camera",
     "@card_page_code_pick_buttons_camera": {
         "description": "Option to pick code using camera",

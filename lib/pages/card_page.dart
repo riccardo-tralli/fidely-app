@@ -78,43 +78,67 @@ class _CardPageState extends State<CardPage> {
     }
   }
 
-  void onPickUpCode(BuildContext context) => showDialog(
+  void onPickUpCode(BuildContext context) => showModalBottomSheet(
     context: context,
-    builder: (context) {
-      return AlertDialog(
-        title: Text(L10n.of(context)!.card_page_code_pick_title),
-        content: Text(L10n.of(context)!.card_page_code_pick_description),
-        actionsOverflowButtonSpacing: Spaces.small,
-        actions: [
-          FilledButton.icon(
-            onPressed: () {
-              context.read<PermissionCubit>().requestCameraPermission();
-              Navigator.of(context).pop();
-            },
-            icon: Hicon(HugeIcons.strokeRoundedCamera01, color: Colors.white),
-            label: Text(
-              L10n.of(context)!.card_page_code_pick_buttons_camera,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+    builder: (context) => SafeArea(
+      child: Padding(
+        padding: EdgeInsets.all(Spaces.medium),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: Spaces.medium,
+          children: [
+            Text(
+              L10n.of(context)!.card_page_code_pick_title,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
-          ),
-          FilledButton.icon(
-            onPressed: () {
-              context.read<PermissionCubit>().requestGalleryPermission();
-              Navigator.of(context).pop();
-            },
-            icon: Hicon(HugeIcons.strokeRoundedAlbum02, color: Colors.white),
-            label: Text(
-              L10n.of(context)!.card_page_code_pick_buttons_gallery,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+            Row(
+              spacing: Spaces.medium,
+              children: [
+                Expanded(
+                  child: FilledButton.icon(
+                    onPressed: () {
+                      context.read<PermissionCubit>().requestCameraPermission();
+                      Navigator.of(context).pop();
+                    },
+                    icon: Hicon(
+                      HugeIcons.strokeRoundedCamera01,
+                      color: Colors.white,
+                    ),
+                    label: Text(
+                      L10n.of(context)!.card_page_code_pick_buttons_camera,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyMedium?.copyWith(color: Colors.white),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: FilledButton.icon(
+                    onPressed: () {
+                      context
+                          .read<PermissionCubit>()
+                          .requestGalleryPermission();
+                      Navigator.of(context).pop();
+                    },
+                    icon: Hicon(
+                      HugeIcons.strokeRoundedAlbum02,
+                      color: Colors.white,
+                    ),
+                    label: Text(
+                      L10n.of(context)!.card_page_code_pick_buttons_gallery,
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyMedium?.copyWith(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      );
-    },
+          ],
+        ),
+      ),
+    ),
   );
 
   void onGalleryScan() async {
@@ -665,6 +689,7 @@ class _CardPageState extends State<CardPage> {
         padding: EdgeInsets.only(left: Spaces.small),
         child: Text(L10n.of(context)!.card_page_input_category_title),
       ),
+      // TODO: add pet category
       DropdownButtonFormField(
         initialValue: _categoryValue,
         items: [
@@ -885,6 +910,7 @@ class _CardPageState extends State<CardPage> {
         child: SizedBox(
           width: double.infinity,
           child: FilledButton(
+            // TODO: disable button when loading/saving
             onPressed: () => onSave(context),
             style: Theme.of(context).filledButtonTheme.style?.copyWith(
               backgroundColor: WidgetStatePropertyAll(

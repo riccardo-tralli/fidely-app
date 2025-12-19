@@ -35,10 +35,6 @@ class L10nEs extends L10n {
   String get card_page_code_pick_title => 'Elegir un código';
 
   @override
-  String get card_page_code_pick_description =>
-      '¿Cómo te gustaría obtener el código?';
-
-  @override
   String get card_page_code_pick_buttons_camera => 'Cámara';
 
   @override

@@ -249,7 +249,7 @@ class _PermissionState extends State<PhotoContainer> {
                 L10n.of(context)!.photo_change_buttons_repick,
                 style: Theme.of(
                   context,
-                ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+                ).textTheme.bodyMedium?.copyWith(color: Colors.white),
               ),
             ),
           ),
@@ -270,7 +270,7 @@ class _PermissionState extends State<PhotoContainer> {
                 L10n.of(context)!.photo_change_buttons_remove,
                 style: Theme.of(
                   context,
-                ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+                ).textTheme.bodyMedium?.copyWith(color: Colors.white),
               ),
             ),
           ),

@@ -14,7 +14,6 @@
     "card_barcode_invalid": "No se puede generar el código de barras. Comprueba el código y el tipo.",
 
     "card_page_code_pick_title": "Elegir un código",
-    "card_page_code_pick_description": "¿Cómo te gustaría obtener el código?",
     "card_page_code_pick_buttons_camera": "Cámara",
     "card_page_code_pick_buttons_gallery": "Galería",
 
