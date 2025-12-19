@@ -251,7 +251,7 @@ class _SettingsPageState extends State<SettingsPage> {
       decoration: BoxDecoration(
         color: active
             ? Theme.of(context).colorScheme.primary
-            : Theme.of(context).cardColor,
+            : Theme.of(context).inputDecorationTheme.fillColor,
         border: Border.all(color: Theme.of(context).colorScheme.outline),
         borderRadius: BorderRadius.circular(RRadius.medium),
       ),
