@@ -3,6 +3,8 @@ import 'package:fidely_app/cubits/settings/dark_mode_cubit.dart';
 import 'package:fidely_app/cubits/settings/language_cubit.dart';
 import 'package:fidely_app/cubits/settings/sort_cubit.dart';
 import 'package:fidely_app/l10n/l10n.dart';
+import 'package:fidely_app/misc/themes/rradius.dart';
+import 'package:fidely_app/misc/themes/spaces.dart';
 import 'package:fidely_app/models/sort_mode.dart';
 import 'package:fidely_app/widgets/hicon.dart';
 import 'package:fidely_app/widgets/top_bar.dart';
@@ -49,12 +51,12 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: TopBar(roundedBorders: true),
+    appBar: TopBar(),
     body: Padding(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(Spaces.medium),
       child: SingleChildScrollView(
         child: Column(
-          spacing: 16,
+          spacing: Spaces.medium,
           children: [
             themeModeOption(context),
             sortModeOption(context),
@@ -70,13 +72,13 @@ class _SettingsPageState extends State<SettingsPage> {
     children: [
       Text(
         L10n.of(context)!.settings_page_theme_title,
-        style: Theme.of(context).textTheme.titleMedium,
+        style: Theme.of(context).textTheme.headlineSmall,
       ),
       Text(L10n.of(context)!.settings_page_theme_description),
-      const SizedBox(height: 8),
+      SizedBox(height: Spaces.small),
       IntrinsicHeight(
         child: Row(
-          spacing: 16,
+          spacing: Spaces.medium,
           children: [
             Expanded(
               child: option(
@@ -131,13 +133,13 @@ class _SettingsPageState extends State<SettingsPage> {
     children: [
       Text(
         L10n.of(context)!.settings_page_sort_title,
-        style: Theme.of(context).textTheme.titleMedium,
+        style: Theme.of(context).textTheme.headlineSmall,
       ),
       Text(L10n.of(context)!.settings_page_sort_description),
-      const SizedBox(height: 8),
+      SizedBox(height: Spaces.small),
       IntrinsicHeight(
         child: Row(
-          spacing: 16,
+          spacing: Spaces.medium,
           children: [
             Expanded(
               child: option(
@@ -174,7 +176,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ],
         ),
       ),
-      const SizedBox(height: 8),
+      SizedBox(height: Spaces.small),
       SwitchListTile(
         title: Text(L10n.of(context)!.settings_page_sort_reverse_title),
         subtitle: Text(
@@ -195,10 +197,10 @@ class _SettingsPageState extends State<SettingsPage> {
     children: [
       Text(
         L10n.of(context)!.settings_page_language_title,
-        style: Theme.of(context).textTheme.titleMedium,
+        style: Theme.of(context).textTheme.headlineSmall,
       ),
       Text(L10n.of(context)!.settings_page_language_description),
-      const SizedBox(height: 8),
+      SizedBox(height: Spaces.small),
       DropdownButtonFormField(
         initialValue: _languageCode,
         items: [
@@ -230,6 +232,7 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
         ],
         onChanged: (value) => onLanguageChange(value),
+        style: Theme.of(context).textTheme.bodyLarge,
       ),
     ],
   );
@@ -241,25 +244,27 @@ class _SettingsPageState extends State<SettingsPage> {
     required Function onTap,
     bool active = false,
   }) => InkWell(
-    borderRadius: BorderRadius.circular(16),
+    borderRadius: BorderRadius.circular(RRadius.medium),
     onTap: () => onTap(),
     child: Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(Spaces.medium),
       decoration: BoxDecoration(
         color: active
             ? Theme.of(context).colorScheme.primary
             : Theme.of(context).cardColor,
         border: Border.all(color: Theme.of(context).colorScheme.outline),
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(RRadius.medium),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        spacing: 8,
+        spacing: Spaces.small,
         children: [
           Hicon(icon, color: active ? Colors.white : null),
           Text(
             label,
-            style: TextStyle(color: active ? Colors.white : null),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: active ? Colors.white : null,
+            ),
             textAlign: TextAlign.center,
           ),
         ],
