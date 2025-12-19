@@ -61,15 +61,13 @@
     "home_page_generic_error_title": "Qualcosa è andato storto",
 
     "photo_pick_title": "Scegli una foto",
-    "photo_pick_description": "Come preferisci scegliere la foto?",
     "photo_pick_buttons_camera": "Fotocamera",
     "photo_pick_buttons_gallery": "Galleria",
 
     "photo_change_tap": "Tocca per cambiare",
     "photo_change_title": "Cambia foto",
-    "photo_change_description": "Come preferisci cambiare la foto?",
-    "photo_change_buttons_repick": "Scegli una nuova foto",
-    "photo_change_buttons_remove": "Rimuovi foto",
+    "photo_change_buttons_repick": "Scegli",
+    "photo_change_buttons_remove": "Rimuovi",
 
     "photo_crop_title": "Ritaglia foto",
 

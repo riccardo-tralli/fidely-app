@@ -61,15 +61,13 @@
     "home_page_generic_error_title": "Une erreur est survenue",
 
     "photo_pick_title": "Choisir une photo",
-    "photo_pick_description": "Comment souhaitez-vous choisir la photo ?",
     "photo_pick_buttons_camera": "Caméra",
     "photo_pick_buttons_gallery": "Galerie",
 
     "photo_change_tap": "Appuyez pour changer",
     "photo_change_title": "Changer la photo",
-    "photo_change_description": "Comment souhaitez-vous changer la photo ?",
-    "photo_change_buttons_repick": "Choisir une nouvelle photo",
-    "photo_change_buttons_remove": "Supprimer la photo",
+    "photo_change_buttons_repick": "Choisir",
+    "photo_change_buttons_remove": "Supprimer",
 
     "photo_crop_title": "Rogner la photo",
 

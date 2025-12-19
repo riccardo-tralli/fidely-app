@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:fidely_app/l10n/l10n.dart';
 import 'package:fidely_app/misc/themes/light.dart';
+import 'package:fidely_app/misc/themes/spaces.dart';
 import 'package:fidely_app/repositories/permission_repository.dart';
 import 'package:fidely_app/widgets/hicon.dart';
 import 'package:flutter/material.dart';
@@ -36,12 +37,18 @@ class PhotoContainer extends StatefulWidget {
 class _PermissionState extends State<PhotoContainer> {
   File? _pickedPhoto;
 
-  void onTap(BuildContext context, {bool force = false}) => showDialog(
-    context: context,
-    builder: (context) => _pickedPhoto == null || force
-        ? onEmptyPhoto(context)
-        : onFilledPhoto(context),
-  );
+  void onTap(BuildContext context, {bool force = false}) =>
+      showModalBottomSheet(
+        context: context,
+        builder: (context) => Padding(
+          padding: EdgeInsets.all(Spaces.medium),
+          child: SafeArea(
+            child: _pickedPhoto == null || force
+                ? onEmptyPhoto(context)
+                : onFilledPhoto(context),
+          ),
+        ),
+      );
 
   void pickPhoto(BuildContext context, ImageSource source) async {
     final bool granted = source == ImageSource.camera
@@ -103,7 +110,7 @@ class _PermissionState extends State<PhotoContainer> {
       },
       child: DottedBorder(
         options: RoundedRectDottedBorderOptions(
-          color: widget.borderColor ?? Theme.of(context).colorScheme.secondary,
+          color: widget.borderColor ?? Theme.of(context).colorScheme.primary,
           radius: Radius.circular(16),
           dashPattern: [8, 4],
         ),
@@ -178,68 +185,96 @@ class _PermissionState extends State<PhotoContainer> {
     if (widget.label != null && widget.label!.isNotEmpty) Text(widget.label!),
   ];
 
-  Widget onEmptyPhoto(BuildContext context) => AlertDialog(
-    title: Text(L10n.of(context)!.photo_pick_title),
-    content: Text(L10n.of(context)!.photo_pick_description),
-    actionsOverflowButtonSpacing: 8,
-    actions: [
-      FilledButton.icon(
-        onPressed: () => pickPhoto(context, ImageSource.camera),
-        icon: Hicon(HugeIcons.strokeRoundedCamera01, color: Colors.white),
-        label: Text(
-          L10n.of(context)!.photo_pick_buttons_camera,
-          style: Theme.of(
-            context,
-          ).textTheme.bodyLarge?.copyWith(color: Colors.white),
-        ),
+  Widget onEmptyPhoto(BuildContext context) => Column(
+    mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    spacing: Spaces.medium,
+    children: [
+      Text(
+        L10n.of(context)!.photo_pick_title,
+        style: Theme.of(context).textTheme.headlineSmall,
       ),
-      FilledButton.icon(
-        onPressed: () => pickPhoto(context, ImageSource.gallery),
-        icon: Hicon(HugeIcons.strokeRoundedAlbum02, color: Colors.white),
-        label: Text(
-          L10n.of(context)!.photo_pick_buttons_gallery,
-          style: Theme.of(
-            context,
-          ).textTheme.bodyLarge?.copyWith(color: Colors.white),
-        ),
+      Row(
+        spacing: Spaces.medium,
+        children: [
+          Expanded(
+            child: FilledButton.icon(
+              onPressed: () => pickPhoto(context, ImageSource.camera),
+              icon: Hicon(HugeIcons.strokeRoundedCamera01, color: Colors.white),
+              label: Text(
+                L10n.of(context)!.photo_pick_buttons_camera,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(color: Colors.white),
+              ),
+            ),
+          ),
+          Expanded(
+            child: FilledButton.icon(
+              onPressed: () => pickPhoto(context, ImageSource.gallery),
+              icon: Hicon(HugeIcons.strokeRoundedAlbum02, color: Colors.white),
+              label: Text(
+                L10n.of(context)!.photo_pick_buttons_gallery,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(color: Colors.white),
+              ),
+            ),
+          ),
+        ],
       ),
     ],
   );
 
-  Widget onFilledPhoto(BuildContext context) => AlertDialog(
-    title: Text(L10n.of(context)!.photo_change_title),
-    content: Text(L10n.of(context)!.photo_change_description),
-    actionsOverflowButtonSpacing: 8,
-    actions: [
-      FilledButton.icon(
-        onPressed: () {
-          Navigator.of(context).pop();
-          onTap(context, force: true);
-        },
-        icon: Hicon(HugeIcons.strokeRoundedEdit01, color: Colors.white),
-        label: Text(
-          L10n.of(context)!.photo_change_buttons_repick,
-          style: Theme.of(
-            context,
-          ).textTheme.bodyLarge?.copyWith(color: Colors.white),
-        ),
+  Widget onFilledPhoto(BuildContext context) => Column(
+    mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    spacing: Spaces.medium,
+    children: [
+      Text(
+        L10n.of(context)!.photo_change_title,
+        style: Theme.of(context).textTheme.headlineSmall,
       ),
-      FilledButton.icon(
-        onPressed: () {
-          Navigator.of(context).pop();
-          setState(() {
-            _pickedPhoto = null;
-          });
-          widget.onTap?.call(null);
-        },
-        style: ButtonStyle(backgroundColor: WidgetStatePropertyAll(Colors.red)),
-        icon: Hicon(HugeIcons.strokeRoundedDelete02, color: Colors.white),
-        label: Text(
-          L10n.of(context)!.photo_change_buttons_remove,
-          style: Theme.of(
-            context,
-          ).textTheme.bodyLarge?.copyWith(color: Colors.white),
-        ),
+      Row(
+        spacing: Spaces.medium,
+        children: [
+          Expanded(
+            child: FilledButton.icon(
+              onPressed: () {
+                Navigator.of(context).pop();
+                onTap(context, force: true);
+              },
+              icon: Hicon(HugeIcons.strokeRoundedEdit01, color: Colors.white),
+              label: Text(
+                L10n.of(context)!.photo_change_buttons_repick,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+              ),
+            ),
+          ),
+          Expanded(
+            child: FilledButton.icon(
+              onPressed: () {
+                Navigator.of(context).pop();
+                setState(() {
+                  _pickedPhoto = null;
+                });
+                widget.onTap?.call(null);
+              },
+              style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(Colors.red),
+              ),
+              icon: Hicon(HugeIcons.strokeRoundedDelete02, color: Colors.white),
+              label: Text(
+                L10n.of(context)!.photo_change_buttons_remove,
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+              ),
+            ),
+          ),
+        ],
       ),
     ],
   );

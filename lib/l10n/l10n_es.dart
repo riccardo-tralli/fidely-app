@@ -153,9 +153,6 @@ class L10nEs extends L10n {
   String get photo_pick_title => 'Elegir una foto';
 
   @override
-  String get photo_pick_description => '¿Cómo te gustaría elegir la foto?';
-
-  @override
   String get photo_pick_buttons_camera => 'Cámara';
 
   @override
@@ -168,13 +165,10 @@ class L10nEs extends L10n {
   String get photo_change_title => 'Cambiar foto';
 
   @override
-  String get photo_change_description => '¿Cómo te gustaría cambiar la foto?';
+  String get photo_change_buttons_repick => 'Elegir';
 
   @override
-  String get photo_change_buttons_repick => 'Elegir una nueva foto';
-
-  @override
-  String get photo_change_buttons_remove => 'Eliminar foto';
+  String get photo_change_buttons_remove => 'Eliminar';
 
   @override
   String get photo_crop_title => 'Recortar foto';
