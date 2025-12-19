@@ -56,13 +56,13 @@ class LightTheme {
       ),
       titleMedium: TextStyle(
         color: textColor,
-        fontFamily: Fonts.epilogue,
+        fontFamily: Fonts.leckerliOne,
         fontSize: textInitialSize * 1.8,
         fontWeight: FontWeight.bold,
       ),
       titleSmall: TextStyle(
         color: textColor,
-        fontFamily: Fonts.epilogue,
+        fontFamily: Fonts.leckerliOne,
         fontSize: textInitialSize * 1.6,
       ),
     ),
