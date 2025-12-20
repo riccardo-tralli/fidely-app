@@ -243,32 +243,40 @@ class _SettingsPageState extends State<SettingsPage> {
     required String label,
     required Function onTap,
     bool active = false,
-  }) => InkWell(
-    borderRadius: BorderRadius.circular(RRadius.medium),
-    onTap: () => onTap(),
-    child: Container(
-      padding: EdgeInsets.all(Spaces.medium),
-      decoration: BoxDecoration(
-        color: active
-            ? Theme.of(context).colorScheme.primary
-            : Theme.of(context).inputDecorationTheme.fillColor,
-        border: Border.all(color: Theme.of(context).colorScheme.outline),
-        borderRadius: BorderRadius.circular(RRadius.medium),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        spacing: Spaces.small,
-        children: [
-          Hicon(icon, color: active ? Colors.white : null),
-          Text(
-            label,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: active ? Colors.white : null,
+  }) {
+    final Color? textColor = active
+        ? Theme.brightnessOf(context) == Brightness.light
+              ? Colors.white
+              : Theme.of(context).colorScheme.surface
+        : null;
+
+    return InkWell(
+      borderRadius: BorderRadius.circular(RRadius.medium),
+      onTap: () => onTap(),
+      child: Container(
+        padding: EdgeInsets.all(Spaces.medium),
+        decoration: BoxDecoration(
+          color: active
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).inputDecorationTheme.fillColor,
+          border: Border.all(color: Theme.of(context).colorScheme.outline),
+          borderRadius: BorderRadius.circular(RRadius.medium),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: Spaces.small,
+          children: [
+            Hicon(icon, color: textColor),
+            Text(
+              label,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyMedium?.copyWith(color: textColor),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
-          ),
-        ],
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }

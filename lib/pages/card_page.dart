@@ -101,15 +101,9 @@ class _CardPageState extends State<CardPage> {
                       context.read<PermissionCubit>().requestCameraPermission();
                       Navigator.of(context).pop();
                     },
-                    icon: Hicon(
-                      HugeIcons.strokeRoundedCamera01,
-                      color: Colors.white,
-                    ),
+                    icon: Hicon(HugeIcons.strokeRoundedCamera01),
                     label: Text(
                       L10n.of(context)!.card_page_code_pick_buttons_camera,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodyMedium?.copyWith(color: Colors.white),
                     ),
                   ),
                 ),
@@ -121,15 +115,9 @@ class _CardPageState extends State<CardPage> {
                           .requestGalleryPermission();
                       Navigator.of(context).pop();
                     },
-                    icon: Hicon(
-                      HugeIcons.strokeRoundedAlbum02,
-                      color: Colors.white,
-                    ),
+                    icon: Hicon(HugeIcons.strokeRoundedAlbum02),
                     label: Text(
                       L10n.of(context)!.card_page_code_pick_buttons_gallery,
-                      style: Theme.of(
-                        context,
-                      ).textTheme.bodyMedium?.copyWith(color: Colors.white),
                     ),
                   ),
                 ),
@@ -182,28 +170,20 @@ class _CardPageState extends State<CardPage> {
             pickerAreaBorderRadius: BorderRadius.circular(RRadius.medium),
           ),
         ),
+        actionsAlignment: MainAxisAlignment.spaceBetween,
         actionsOverflowButtonSpacing: Spaces.small,
         actions: [
-          FilledButton(
+          TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            style: ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(Colors.grey),
-            ),
-            child: Text(
-              L10n.of(context)!.card_page_color_pick_buttons_cancel,
-              style: TextStyle(color: Colors.white),
-            ),
+            child: Text(L10n.of(context)!.card_page_color_pick_buttons_cancel),
           ),
           FilledButton.icon(
             onPressed: () {
               setState(() => _colorValue = _tempColor);
               Navigator.of(context).pop();
             },
-            icon: Hicon(HugeIcons.strokeRoundedTick01, color: Colors.white),
-            label: Text(
-              L10n.of(context)!.card_page_color_pick_buttons_confirm,
-              style: TextStyle(color: Colors.white),
-            ),
+            icon: Hicon(HugeIcons.strokeRoundedCheckmarkSquare03),
+            label: Text(L10n.of(context)!.card_page_color_pick_buttons_confirm),
           ),
         ],
       ),
@@ -424,10 +404,7 @@ class _CardPageState extends State<CardPage> {
         bottomRight: Radius.circular(RRadius.large),
       ),
       boxShadow: [
-        BoxShadow(
-          color: Theme.of(context).colorScheme.onSurface,
-          blurRadius: 5,
-        ),
+        BoxShadow(color: Theme.of(context).colorScheme.shadow, blurRadius: 5),
       ],
     ),
     child: showScanner
@@ -919,7 +896,9 @@ class _CardPageState extends State<CardPage> {
             ),
             child: Text(
               L10n.of(context)!.card_page_save_button_title,
-              style: Theme.of(context).textTheme.bodyLarge,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(color: Colors.white),
             ),
           ),
         ),

@@ -112,16 +112,8 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
                     Expanded(
                       child: FilledButton.icon(
                         onPressed: () => onEdit(context),
-                        icon: Hicon(
-                          HugeIcons.strokeRoundedEdit04,
-                          color: Colors.white,
-                        ),
-                        label: Text(
-                          L10n.of(context)!.card_edit_title,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.bodyMedium?.copyWith(color: Colors.white),
-                        ),
+                        icon: Hicon(HugeIcons.strokeRoundedEdit04),
+                        label: Text(L10n.of(context)!.card_edit_title),
                       ),
                     ),
                     Expanded(
@@ -166,9 +158,14 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
       return AlertDialog(
         title: Text(L10n.of(context)!.card_delete_title),
         content: Text(L10n.of(context)!.card_delete_description),
+        actionsAlignment: MainAxisAlignment.spaceBetween,
         actionsOverflowAlignment: OverflowBarAlignment.end,
         actionsOverflowButtonSpacing: Spaces.medium,
         actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(L10n.of(context)!.card_delete_cancel),
+          ),
           FilledButton.icon(
             onPressed: () {
               Navigator.of(context).pop();
@@ -180,15 +177,6 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
             icon: Hicon(HugeIcons.strokeRoundedDelete02, color: Colors.white),
             label: Text(
               L10n.of(context)!.card_delete_confirm,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: Colors.white),
-            ),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(
-              L10n.of(context)!.card_delete_cancel,
               style: Theme.of(
                 context,
               ).textTheme.bodyMedium?.copyWith(color: Colors.white),

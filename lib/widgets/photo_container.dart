@@ -200,25 +200,15 @@ class _PermissionState extends State<PhotoContainer> {
           Expanded(
             child: FilledButton.icon(
               onPressed: () => pickPhoto(context, ImageSource.camera),
-              icon: Hicon(HugeIcons.strokeRoundedCamera01, color: Colors.white),
-              label: Text(
-                L10n.of(context)!.photo_pick_buttons_camera,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyMedium?.copyWith(color: Colors.white),
-              ),
+              icon: Hicon(HugeIcons.strokeRoundedCamera01),
+              label: Text(L10n.of(context)!.photo_pick_buttons_camera),
             ),
           ),
           Expanded(
             child: FilledButton.icon(
               onPressed: () => pickPhoto(context, ImageSource.gallery),
-              icon: Hicon(HugeIcons.strokeRoundedAlbum02, color: Colors.white),
-              label: Text(
-                L10n.of(context)!.photo_pick_buttons_gallery,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyMedium?.copyWith(color: Colors.white),
-              ),
+              icon: Hicon(HugeIcons.strokeRoundedAlbum02),
+              label: Text(L10n.of(context)!.photo_pick_buttons_gallery),
             ),
           ),
         ],
@@ -244,13 +234,8 @@ class _PermissionState extends State<PhotoContainer> {
                 Navigator.of(context).pop();
                 onTap(context, force: true);
               },
-              icon: Hicon(HugeIcons.strokeRoundedEdit01, color: Colors.white),
-              label: Text(
-                L10n.of(context)!.photo_change_buttons_repick,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyMedium?.copyWith(color: Colors.white),
-              ),
+              icon: Hicon(HugeIcons.strokeRoundedEdit01),
+              label: Text(L10n.of(context)!.photo_change_buttons_repick),
             ),
           ),
           Expanded(
