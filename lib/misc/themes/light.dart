@@ -31,7 +31,7 @@ class LightTheme {
       surface: surfaceColor,
       onSurface: onSurfaceColor,
       outline: onBackgroundColor,
-      shadow: Colors.black.withAlpha(100),
+      shadow: Colors.black.withAlpha(150),
     ),
     textTheme: TextTheme(
       bodyLarge: TextStyle(
@@ -97,8 +97,9 @@ class LightTheme {
         ),
         textStyle: WidgetStatePropertyAll(
           TextStyle(
+            color: surfaceColor,
             fontFamily: Fonts.epilogue,
-            fontSize: textInitialSize * 1.2,
+            fontSize: textInitialSize,
           ),
         ),
       ),
