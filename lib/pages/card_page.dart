@@ -379,11 +379,9 @@ class _CardPageState extends State<CardPage> {
 
   Widget body(BuildContext context, bool showScanner) => Stack(
     children: [
-      Expanded(
-        child: SingleChildScrollView(
-          controller: scrollController,
-          child: form(context, showScanner),
-        ),
+      SingleChildScrollView(
+        controller: scrollController,
+        child: form(context, showScanner),
       ),
       cardPreview(context, showScanner),
       save(context),
