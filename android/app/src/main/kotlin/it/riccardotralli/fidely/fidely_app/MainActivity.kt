@@ -1,4 +1,4 @@
-package it.riccardotralli.fidely.fidely_app
+package it.riccardotralli.fidely
 
 import io.flutter.embedding.android.FlutterActivity
 
