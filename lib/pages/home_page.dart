@@ -84,7 +84,7 @@ class HomePage extends StatelessWidget {
         SizedBox(height: Spaces.medium),
         Text(
           L10n.of(context)!.home_page_no_cards_title,
-          style: Theme.of(context).textTheme.titleSmall,
+          style: Theme.of(context).textTheme.headlineLarge,
           textAlign: TextAlign.center,
         ),
         Text(
