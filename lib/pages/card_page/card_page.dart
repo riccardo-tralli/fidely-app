@@ -27,6 +27,10 @@ import "package:image_picker/image_picker.dart";
 import "package:mobile_scanner/mobile_scanner.dart" hide BarcodeType;
 import "package:permission_handler/permission_handler.dart";
 
+part "parts/category.dart";
+
+// TODO: fix category selection bug (null value) when editing a card just created (having valid category)
+
 class CardPage extends StatefulWidget {
   static const route = "/card";
 
@@ -51,7 +55,7 @@ class _CardPageState extends State<CardPage> {
 
   BarcodeType _typeValue = BarcodeType.Code39;
   Color _colorValue = Colors.white;
-  Category? _categoryValue;
+  String? _categoryValue;
   Color _tempColor = Colors.white;
   bool _showScanner = false;
   bool _flashOn = false;
@@ -535,7 +539,13 @@ class _CardPageState extends State<CardPage> {
               children: [
                 owner(context),
                 note(context),
-                category(context),
+                category(
+                  context: context,
+                  initialValue: _categoryValue,
+                  onChanged: (value) => setState(() {
+                    _categoryValue = value;
+                  }),
+                ),
                 color(context),
                 Padding(
                   padding: EdgeInsets.only(bottom: Spaces.large),
@@ -653,158 +663,6 @@ class _CardPageState extends State<CardPage> {
         controller: _noteController,
         onChanged: (value) => setState(() {}),
         maxLines: 3,
-      ),
-    ],
-  );
-
-  Widget category(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Padding(
-        padding: EdgeInsets.only(left: Spaces.small),
-        child: Text(L10n.of(context)!.card_page_input_category_title),
-      ),
-      // TODO: add pet category
-      DropdownButtonFormField(
-        initialValue: _categoryValue,
-        items: [
-          DropdownMenuItem(
-            value: null,
-            child: Text(L10n.of(context)!.card_page_input_category_option_none),
-          ),
-          DropdownMenuItem(
-            value: Category.market,
-            child: Row(
-              spacing: Spaces.small,
-              children: [
-                Hicon(HugeIcons.strokeRoundedShoppingCart02),
-                Text(
-                  L10n.of(context)!.card_page_input_category_option_grocery,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
-          ),
-          DropdownMenuItem(
-            value: Category.food,
-            child: Row(
-              spacing: Spaces.small,
-              children: [
-                Hicon(HugeIcons.strokeRoundedPizza02),
-                Text(
-                  L10n.of(context)!.card_page_input_category_option_food,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
-          ),
-          DropdownMenuItem(
-            value: Category.fuel,
-            child: Row(
-              spacing: Spaces.small,
-              children: [
-                Hicon(HugeIcons.strokeRoundedFuel),
-                Text(
-                  L10n.of(context)!.card_page_input_category_option_fuel,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
-          ),
-          DropdownMenuItem(
-            value: Category.entertainment,
-            child: Row(
-              spacing: Spaces.small,
-              children: [
-                Hicon(HugeIcons.strokeRoundedFlimSlate),
-                Text(
-                  L10n.of(
-                    context,
-                  )!.card_page_input_category_option_entertainment,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
-          ),
-          DropdownMenuItem(
-            value: Category.fashion,
-            child: Row(
-              spacing: Spaces.small,
-              children: [
-                Hicon(HugeIcons.strokeRoundedDress03),
-                Text(
-                  L10n.of(context)!.card_page_input_category_option_fashion,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
-          ),
-          DropdownMenuItem(
-            value: Category.electronics,
-            child: Row(
-              spacing: Spaces.small,
-              children: [
-                Hicon(HugeIcons.strokeRoundedElectricPlugs),
-                Text(
-                  L10n.of(context)!.card_page_input_category_option_electronics,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
-          ),
-          DropdownMenuItem(
-            value: Category.health,
-            child: Row(
-              spacing: Spaces.small,
-              children: [
-                Hicon(HugeIcons.strokeRoundedMedicineSyrup),
-                Text(
-                  L10n.of(context)!.card_page_input_category_option_health,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
-          ),
-          DropdownMenuItem(
-            value: Category.travel,
-            child: Row(
-              spacing: Spaces.small,
-              children: [
-                Hicon(HugeIcons.strokeRoundedAirplane02),
-                Text(
-                  L10n.of(context)!.card_page_input_category_option_travel,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
-          ),
-          DropdownMenuItem(
-            value: Category.sport,
-            child: Row(
-              spacing: Spaces.small,
-              children: [
-                Hicon(HugeIcons.strokeRoundedFootball),
-                Text(
-                  L10n.of(context)!.card_page_input_category_option_sport,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
-          ),
-          DropdownMenuItem(
-            value: Category.other,
-            child: Text(
-              L10n.of(context)!.card_page_input_category_option_other,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        ],
-        onChanged: (value) {
-          setState(() {
-            _categoryValue = value;
-          });
-        },
-        style: Theme.of(context).textTheme.bodyLarge,
       ),
     ],
   );

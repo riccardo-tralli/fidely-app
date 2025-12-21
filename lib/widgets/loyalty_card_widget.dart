@@ -7,7 +7,7 @@ import 'package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart';
 import 'package:fidely_app/l10n/l10n.dart';
 import 'package:fidely_app/misc/themes/spaces.dart';
 import 'package:fidely_app/models/loyalty_card.dart';
-import 'package:fidely_app/pages/card_page.dart';
+import 'package:fidely_app/pages/card_page/card_page.dart';
 import 'package:fidely_app/services/photo_service.dart';
 import 'package:fidely_app/widgets/hicon.dart';
 import 'package:fidely_app/widgets/photo_container.dart';

@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:barcode_widget/barcode_widget.dart';
-import 'package:fidely_app/models/category.dart';
 
 class LoyaltyCardInsertRequest {
   final String title;
@@ -10,7 +9,7 @@ class LoyaltyCardInsertRequest {
   final String? owner;
   final Color color;
   final String? note;
-  final Category? category;
+  final String? category;
 
   const LoyaltyCardInsertRequest({
     required this.title,
@@ -29,6 +28,6 @@ class LoyaltyCardInsertRequest {
     "owner": owner,
     "color": "${color.a},${color.r},${color.g},${color.b}",
     "note": note,
-    "category": category?.name,
+    "category": category,
   };
 }

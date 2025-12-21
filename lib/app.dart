@@ -5,7 +5,7 @@ import 'package:fidely_app/l10n/l10n.dart';
 import 'package:fidely_app/misc/themes/dark.dart';
 import 'package:fidely_app/misc/themes/light.dart';
 import 'package:fidely_app/models/loyalty_card.dart';
-import 'package:fidely_app/pages/card_page.dart';
+import 'package:fidely_app/pages/card_page/card_page.dart';
 import 'package:fidely_app/pages/home_page.dart';
 import 'package:fidely_app/pages/settings_page.dart';
 import 'package:flutter/material.dart';
