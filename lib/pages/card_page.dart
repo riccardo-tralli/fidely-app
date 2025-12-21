@@ -8,6 +8,8 @@ import "package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart";
 import "package:fidely_app/cubits/permission/permission_cubit.dart";
 import "package:fidely_app/l10n/l10n.dart";
 import "package:fidely_app/misc/barcode_parser.dart";
+import "package:fidely_app/misc/themes/rradius.dart";
+import "package:fidely_app/misc/themes/spaces.dart";
 import "package:fidely_app/models/category.dart";
 import "package:fidely_app/models/loyalty_card.dart";
 import "package:fidely_app/models/requests/loyalty_card_request.dart";
@@ -15,6 +17,7 @@ import "package:fidely_app/services/photo_service.dart";
 import "package:fidely_app/widgets/hicon.dart";
 import "package:fidely_app/widgets/loyalty_card_widget.dart";
 import "package:fidely_app/widgets/photo_container.dart";
+import "package:fidely_app/widgets/text_divider.dart";
 import "package:fidely_app/widgets/top_bar.dart";
 import "package:flutter/material.dart";
 import "package:flutter_bloc/flutter_bloc.dart";
@@ -37,6 +40,8 @@ class CardPage extends StatefulWidget {
 
 class _CardPageState extends State<CardPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey _cardPreviewKey = GlobalKey();
+  final GlobalKey _customDividerKey = GlobalKey();
 
   final MobileScannerController _scannerController = MobileScannerController();
   final TextEditingController _titleController = TextEditingController();
@@ -54,43 +59,74 @@ class _CardPageState extends State<CardPage> {
   File? _frontPhoto;
   File? _rearPhoto;
 
-  void onPickUpCode(BuildContext context) => showDialog(
+  ScrollController scrollController = ScrollController();
+  double _cardPreviewSpace = 0;
+  double _minScroll = 0;
+  final double _minBarcodeHeight = 50;
+  final double _maxBarcodeHeight = 150;
+  double _barcodeHeight = 150;
+
+  void onScroll() {
+    final double height =
+        _maxBarcodeHeight - (scrollController.offset - _minScroll);
+    if ((scrollController.offset > _minScroll && height > _minBarcodeHeight) ||
+        (scrollController.offset <= _minScroll &&
+            height <= _maxBarcodeHeight)) {
+      setState(() {
+        _barcodeHeight = height;
+      });
+    }
+  }
+
+  void onPickUpCode(BuildContext context) => showModalBottomSheet(
     context: context,
-    builder: (context) {
-      return AlertDialog(
-        title: Text(L10n.of(context)!.card_page_code_pick_title),
-        content: Text(L10n.of(context)!.card_page_code_pick_description),
-        actionsOverflowButtonSpacing: 8,
-        actions: [
-          FilledButton.icon(
-            onPressed: () {
-              context.read<PermissionCubit>().requestCameraPermission();
-              Navigator.of(context).pop();
-            },
-            icon: Hicon(HugeIcons.strokeRoundedCamera01, color: Colors.white),
-            label: Text(
-              L10n.of(context)!.card_page_code_pick_buttons_camera,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+    builder: (context) => SafeArea(
+      child: Padding(
+        padding: EdgeInsets.all(Spaces.medium),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: Spaces.medium,
+          children: [
+            Text(
+              L10n.of(context)!.card_page_code_pick_title,
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
-          ),
-          FilledButton.icon(
-            onPressed: () {
-              context.read<PermissionCubit>().requestGalleryPermission();
-              Navigator.of(context).pop();
-            },
-            icon: Hicon(HugeIcons.strokeRoundedAlbum02, color: Colors.white),
-            label: Text(
-              L10n.of(context)!.card_page_code_pick_buttons_gallery,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+            Row(
+              spacing: Spaces.medium,
+              children: [
+                Expanded(
+                  child: FilledButton.icon(
+                    onPressed: () {
+                      context.read<PermissionCubit>().requestCameraPermission();
+                      Navigator.of(context).pop();
+                    },
+                    icon: Hicon(HugeIcons.strokeRoundedCamera01),
+                    label: Text(
+                      L10n.of(context)!.card_page_code_pick_buttons_camera,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: FilledButton.icon(
+                    onPressed: () {
+                      context
+                          .read<PermissionCubit>()
+                          .requestGalleryPermission();
+                      Navigator.of(context).pop();
+                    },
+                    icon: Hicon(HugeIcons.strokeRoundedAlbum02),
+                    label: Text(
+                      L10n.of(context)!.card_page_code_pick_buttons_gallery,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      );
-    },
+          ],
+        ),
+      ),
+    ),
   );
 
   void onGalleryScan() async {
@@ -131,31 +167,23 @@ class _CardPageState extends State<CardPage> {
             pickerAreaHeightPercent: 0.8,
             enableAlpha: false,
             labelTypes: [],
-            pickerAreaBorderRadius: BorderRadius.circular(16),
+            pickerAreaBorderRadius: BorderRadius.circular(RRadius.medium),
           ),
         ),
-        actionsOverflowButtonSpacing: 8,
+        actionsAlignment: MainAxisAlignment.spaceBetween,
+        actionsOverflowButtonSpacing: Spaces.small,
         actions: [
-          FilledButton(
+          TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            style: ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(Colors.grey),
-            ),
-            child: Text(
-              L10n.of(context)!.card_page_color_pick_buttons_cancel,
-              style: TextStyle(color: Colors.white),
-            ),
+            child: Text(L10n.of(context)!.card_page_color_pick_buttons_cancel),
           ),
           FilledButton.icon(
             onPressed: () {
               setState(() => _colorValue = _tempColor);
               Navigator.of(context).pop();
             },
-            icon: Hicon(HugeIcons.strokeRoundedTick01, color: Colors.white),
-            label: Text(
-              L10n.of(context)!.card_page_color_pick_buttons_confirm,
-              style: TextStyle(color: Colors.white),
-            ),
+            icon: Hicon(HugeIcons.strokeRoundedCheckmarkSquare03),
+            label: Text(L10n.of(context)!.card_page_color_pick_buttons_confirm),
           ),
         ],
       ),
@@ -248,12 +276,38 @@ class _CardPageState extends State<CardPage> {
 
       loadPhotos();
     }
+
+    scrollController.addListener(onScroll);
+
+    // Calculate card preview space and min scroll after first frame rendered
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final RenderBox dividerBox =
+          _customDividerKey.currentContext?.findRenderObject() as RenderBox;
+      final RenderBox cardBox =
+          _cardPreviewKey.currentContext?.findRenderObject() as RenderBox;
+
+      // Set state with calculated values
+      setState(() {
+        _cardPreviewSpace = cardBox.size.height + Spaces.medium;
+        _minScroll =
+            dividerBox.localToGlobal(Offset.zero).dy -
+            kToolbarHeight -
+            Spaces.medium;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
+    resizeToAvoidBottomInset: false,
     appBar: TopBar(
-      backgroundColor: Theme.of(context).colorScheme.secondary,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       showTitle: false,
     ),
     body: SafeArea(child: cardCubitListener(context)),
@@ -301,7 +355,7 @@ class _CardPageState extends State<CardPage> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Row(
-                  spacing: 16,
+                  spacing: Spaces.medium,
                   children: [
                     Hicon(HugeIcons.strokeRoundedAlert02),
                     Expanded(
@@ -323,21 +377,33 @@ class _CardPageState extends State<CardPage> {
         ),
       );
 
-  Widget body(BuildContext context, bool showScanner) => Column(
+  Widget body(BuildContext context, bool showScanner) => Stack(
     children: [
+      SingleChildScrollView(
+        controller: scrollController,
+        child: form(context, showScanner),
+      ),
       cardPreview(context, showScanner),
-      Expanded(child: SingleChildScrollView(child: form(context, showScanner))),
+      save(context),
     ],
   );
 
   Widget cardPreview(BuildContext context, bool showScanner) => Container(
-    padding: const EdgeInsets.only(right: 16, bottom: 24, left: 16),
+    key: _cardPreviewKey,
+    padding: EdgeInsets.only(
+      right: Spaces.medium,
+      bottom: Spaces.large,
+      left: Spaces.medium,
+    ),
     decoration: BoxDecoration(
-      color: Theme.of(context).colorScheme.secondary,
+      color: Theme.of(context).colorScheme.primary,
       borderRadius: BorderRadius.only(
-        bottomLeft: Radius.circular(32),
-        bottomRight: Radius.circular(32),
+        bottomLeft: Radius.circular(RRadius.large),
+        bottomRight: Radius.circular(RRadius.large),
       ),
+      boxShadow: [
+        BoxShadow(color: Theme.of(context).colorScheme.shadow, blurRadius: 5),
+      ],
     ),
     child: showScanner
         ? scanner(context)
@@ -359,34 +425,35 @@ class _CardPageState extends State<CardPage> {
             ),
             isSelected: true,
             isSelectable: false,
+            height: _barcodeHeight,
           ),
   );
 
   Widget scanner(BuildContext context) => Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 8),
+    padding: EdgeInsets.symmetric(horizontal: Spaces.small),
     child: SizedBox(
       width: double.infinity,
       height: 260,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(RRadius.medium),
         child: MobileScanner(
           controller: _scannerController,
           onDetect: onScannerDetect,
           overlayBuilder: (context, constraints) => Container(
             margin: EdgeInsets.only(
-              top: 16,
-              right: 16,
-              bottom: 16,
+              top: Spaces.medium,
+              right: Spaces.medium,
+              bottom: Spaces.medium,
               left: constraints.maxWidth - 76,
             ),
-            padding: const EdgeInsets.all(8),
+            padding: EdgeInsets.all(Spaces.small),
             decoration: BoxDecoration(
               color: Colors.black.withAlpha(100),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(RRadius.medium),
             ),
             child: SingleChildScrollView(
               child: Column(
-                spacing: 8,
+                spacing: Spaces.small,
                 children: [
                   IconButton.filled(
                     onPressed: () {
@@ -437,24 +504,47 @@ class _CardPageState extends State<CardPage> {
   );
 
   Widget form(BuildContext context, bool showScanner) => Padding(
-    padding: const EdgeInsets.all(24),
+    padding: EdgeInsets.only(
+      top: _cardPreviewSpace, // * Space under card preview
+      bottom: Spaces.large,
+    ),
     child: Form(
       key: _formKey,
       child: Column(
-        spacing: 8,
         children: [
-          title(context),
-          code(context, showScanner),
-          type(context),
-          owner(context),
-          color(context),
-          note(context),
-          category(context),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: photos(context),
+            padding: EdgeInsets.symmetric(horizontal: Spaces.medium),
+            child: Column(
+              spacing: Spaces.medium,
+              children: [
+                title(context),
+                code(context, showScanner),
+                type(context),
+              ],
+            ),
           ),
-          SizedBox(width: double.infinity, child: save(context)),
+          Padding(
+            key: _customDividerKey,
+            padding: EdgeInsets.only(top: Spaces.large, bottom: Spaces.medium),
+            child: TextDivider(title: "Personalizza la carta", size: .5),
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: Spaces.medium),
+            child: Column(
+              spacing: Spaces.medium,
+              children: [
+                owner(context),
+                note(context),
+                category(context),
+                color(context),
+                Padding(
+                  padding: EdgeInsets.only(bottom: Spaces.large),
+                  child: photos(context),
+                ),
+                SizedBox(height: 40), // * Space under save button
+              ],
+            ),
+          ),
         ],
       ),
     ),
@@ -464,8 +554,11 @@ class _CardPageState extends State<CardPage> {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Padding(
-        padding: const EdgeInsets.only(left: 8),
-        child: Text(L10n.of(context)!.card_page_input_store_name_title),
+        padding: EdgeInsets.only(left: Spaces.small),
+        child: Text(
+          L10n.of(context)!.card_page_input_store_name_title,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
       ),
       TextFormField(
         controller: _titleController,
@@ -481,8 +574,11 @@ class _CardPageState extends State<CardPage> {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Padding(
-        padding: const EdgeInsets.only(left: 8),
-        child: Text(L10n.of(context)!.card_page_input_code_title),
+        padding: EdgeInsets.only(left: Spaces.small),
+        child: Text(
+          L10n.of(context)!.card_page_input_code_title,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
       ),
       TextFormField(
         controller: _codeController,
@@ -506,8 +602,11 @@ class _CardPageState extends State<CardPage> {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Padding(
-        padding: const EdgeInsets.only(left: 8),
-        child: Text(L10n.of(context)!.card_page_input_type_title),
+        padding: EdgeInsets.only(left: Spaces.small),
+        child: Text(
+          L10n.of(context)!.card_page_input_type_title,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
       ),
       DropdownButtonFormField(
         initialValue: _typeValue,
@@ -524,6 +623,7 @@ class _CardPageState extends State<CardPage> {
           DropdownMenuItem(value: BarcodeType.QrCode, child: Text("QR Code")),
         ],
         onChanged: (value) => setState(() => _typeValue = value!),
+        style: Theme.of(context).textTheme.bodyLarge,
       ),
     ],
   );
@@ -532,7 +632,7 @@ class _CardPageState extends State<CardPage> {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Padding(
-        padding: const EdgeInsets.only(left: 8),
+        padding: EdgeInsets.only(left: Spaces.small),
         child: Text(L10n.of(context)!.card_page_input_owner_title),
       ),
       TextFormField(
@@ -546,7 +646,7 @@ class _CardPageState extends State<CardPage> {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Padding(
-        padding: const EdgeInsets.only(left: 8),
+        padding: EdgeInsets.only(left: Spaces.small),
         child: Text(L10n.of(context)!.card_page_input_notes_title),
       ),
       TextFormField(
@@ -561,9 +661,10 @@ class _CardPageState extends State<CardPage> {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Padding(
-        padding: const EdgeInsets.only(left: 8),
+        padding: EdgeInsets.only(left: Spaces.small),
         child: Text(L10n.of(context)!.card_page_input_category_title),
       ),
+      // TODO: add pet category
       DropdownButtonFormField(
         initialValue: _categoryValue,
         items: [
@@ -573,58 +674,128 @@ class _CardPageState extends State<CardPage> {
           ),
           DropdownMenuItem(
             value: Category.market,
-            child: Text(
-              L10n.of(context)!.card_page_input_category_option_grocery,
+            child: Row(
+              spacing: Spaces.small,
+              children: [
+                Hicon(HugeIcons.strokeRoundedShoppingCart02),
+                Text(
+                  L10n.of(context)!.card_page_input_category_option_grocery,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
           DropdownMenuItem(
             value: Category.food,
-            child: Text(L10n.of(context)!.card_page_input_category_option_food),
+            child: Row(
+              spacing: Spaces.small,
+              children: [
+                Hicon(HugeIcons.strokeRoundedPizza02),
+                Text(
+                  L10n.of(context)!.card_page_input_category_option_food,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
           ),
           DropdownMenuItem(
             value: Category.fuel,
-            child: Text(L10n.of(context)!.card_page_input_category_option_fuel),
+            child: Row(
+              spacing: Spaces.small,
+              children: [
+                Hicon(HugeIcons.strokeRoundedFuel),
+                Text(
+                  L10n.of(context)!.card_page_input_category_option_fuel,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
           ),
           DropdownMenuItem(
             value: Category.entertainment,
-            child: Text(
-              L10n.of(context)!.card_page_input_category_option_entertainment,
+            child: Row(
+              spacing: Spaces.small,
+              children: [
+                Hicon(HugeIcons.strokeRoundedFlimSlate),
+                Text(
+                  L10n.of(
+                    context,
+                  )!.card_page_input_category_option_entertainment,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
           DropdownMenuItem(
             value: Category.fashion,
-            child: Text(
-              L10n.of(context)!.card_page_input_category_option_fashion,
+            child: Row(
+              spacing: Spaces.small,
+              children: [
+                Hicon(HugeIcons.strokeRoundedDress03),
+                Text(
+                  L10n.of(context)!.card_page_input_category_option_fashion,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
           DropdownMenuItem(
             value: Category.electronics,
-            child: Text(
-              L10n.of(context)!.card_page_input_category_option_electronics,
+            child: Row(
+              spacing: Spaces.small,
+              children: [
+                Hicon(HugeIcons.strokeRoundedElectricPlugs),
+                Text(
+                  L10n.of(context)!.card_page_input_category_option_electronics,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
           DropdownMenuItem(
             value: Category.health,
-            child: Text(
-              L10n.of(context)!.card_page_input_category_option_health,
+            child: Row(
+              spacing: Spaces.small,
+              children: [
+                Hicon(HugeIcons.strokeRoundedMedicineSyrup),
+                Text(
+                  L10n.of(context)!.card_page_input_category_option_health,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
           DropdownMenuItem(
             value: Category.travel,
-            child: Text(
-              L10n.of(context)!.card_page_input_category_option_travel,
+            child: Row(
+              spacing: Spaces.small,
+              children: [
+                Hicon(HugeIcons.strokeRoundedAirplane02),
+                Text(
+                  L10n.of(context)!.card_page_input_category_option_travel,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
           DropdownMenuItem(
             value: Category.sport,
-            child: Text(
-              L10n.of(context)!.card_page_input_category_option_sport,
+            child: Row(
+              spacing: Spaces.small,
+              children: [
+                Hicon(HugeIcons.strokeRoundedFootball),
+                Text(
+                  L10n.of(context)!.card_page_input_category_option_sport,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
             ),
           ),
           DropdownMenuItem(
             value: Category.other,
             child: Text(
               L10n.of(context)!.card_page_input_category_option_other,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],
@@ -633,6 +804,7 @@ class _CardPageState extends State<CardPage> {
             _categoryValue = value;
           });
         },
+        style: Theme.of(context).textTheme.bodyLarge,
       ),
     ],
   );
@@ -640,15 +812,22 @@ class _CardPageState extends State<CardPage> {
   Widget color(BuildContext context) => InkWell(
     onTap: () => onColorChange(context),
     child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: EdgeInsets.symmetric(
+        horizontal: Spaces.medium,
+        vertical: Spaces.medium,
+      ),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.secondary,
-        border: Border.all(color: Theme.of(context).colorScheme.outline),
-        borderRadius: BorderRadius.circular(16),
+        color: Theme.of(context).inputDecorationTheme.fillColor,
+        border: Border.all(
+          color: Theme.of(
+            context,
+          ).inputDecorationTheme.border!.borderSide.color,
+        ),
+        borderRadius: BorderRadius.circular(RRadius.medium),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
-        spacing: 12,
+        spacing: 12, // Looks better than 8 or 16
         children: [
           Hicon(HugeIcons.strokeRoundedPaintBoard, color: _colorValue),
           Flexible(
@@ -657,9 +836,12 @@ class _CardPageState extends State<CardPage> {
               children: [
                 Text(
                   L10n.of(context)!.card_page_color_title,
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
-                Text(L10n.of(context)!.card_page_color_description),
+                Text(
+                  L10n.of(context)!.card_page_color_description,
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
               ],
             ),
           ),
@@ -669,31 +851,56 @@ class _CardPageState extends State<CardPage> {
   );
 
   Widget photos(BuildContext context) => Row(
-    spacing: 16,
+    spacing: Spaces.medium,
     children: [
       PhotoContainer(
         label: L10n.of(context)!.card_page_photo_front_title,
         photo: _frontPhoto,
-        borderColor: _colorValue,
         onTap: (photo) => _frontPhoto = photo,
       ),
       PhotoContainer(
         label: L10n.of(context)!.card_page_photo_rear_title,
         photo: _rearPhoto,
-        borderColor: _colorValue,
         onTap: (photo) => _rearPhoto = photo,
       ),
     ],
   );
 
-  Widget save(BuildContext context) => FilledButton.icon(
-    onPressed: () => onSave(context),
-    icon: const Hicon(HugeIcons.strokeRoundedFloppyDisk, color: Colors.white),
-    label: Text(
-      L10n.of(context)!.card_page_save_button_title,
-      style: Theme.of(
-        context,
-      ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+  Widget save(BuildContext context) => Align(
+    alignment: Alignment.bottomCenter,
+    child: Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surface,
+        border: Border(
+          top: BorderSide(color: Theme.of(context).colorScheme.outline),
+        ),
+      ),
+      child: Padding(
+        padding: EdgeInsets.only(
+          top: Spaces.large,
+          left: Spaces.large,
+          right: Spaces.large,
+          bottom: Spaces.small,
+        ),
+        child: SizedBox(
+          width: double.infinity,
+          child: FilledButton(
+            // TODO: disable button when loading/saving
+            onPressed: () => onSave(context),
+            style: Theme.of(context).filledButtonTheme.style?.copyWith(
+              backgroundColor: WidgetStatePropertyAll(
+                Theme.of(context).colorScheme.secondary,
+              ),
+            ),
+            child: Text(
+              L10n.of(context)!.card_page_save_button_title,
+              style: Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+            ),
+          ),
+        ),
+      ),
     ),
   );
 }

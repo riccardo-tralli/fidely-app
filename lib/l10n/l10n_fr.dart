@@ -35,10 +35,6 @@ class L10nFr extends L10n {
   String get card_page_code_pick_title => 'Choisir un code';
 
   @override
-  String get card_page_code_pick_description =>
-      'Comment souhaitez-vous obtenir le code ?';
-
-  @override
   String get card_page_code_pick_buttons_camera => 'Caméra';
 
   @override
@@ -92,33 +88,31 @@ class L10nFr extends L10n {
 
   @override
   String get card_page_input_category_option_grocery =>
-      '🛒 Supermarché et Épicerie';
+      'Supermarché et Épicerie';
 
   @override
-  String get card_page_input_category_option_food => '🍕 Nourriture';
+  String get card_page_input_category_option_food => 'Nourriture';
 
   @override
-  String get card_page_input_category_option_fuel => '⛽ Carburant et Énergie';
+  String get card_page_input_category_option_fuel => 'Carburant et Énergie';
 
   @override
-  String get card_page_input_category_option_entertainment =>
-      '🎉 Divertissement';
+  String get card_page_input_category_option_entertainment => 'Divertissement';
 
   @override
-  String get card_page_input_category_option_fashion => '👗 Mode et Beauté';
+  String get card_page_input_category_option_fashion => 'Mode et Beauté';
 
   @override
-  String get card_page_input_category_option_electronics => '📺 Électronique';
+  String get card_page_input_category_option_electronics => 'Électronique';
 
   @override
-  String get card_page_input_category_option_health =>
-      '❤️‍🩹 Santé et Bien-être';
+  String get card_page_input_category_option_health => 'Santé et Bien-être';
 
   @override
-  String get card_page_input_category_option_travel => '✈️ Voyage et Transport';
+  String get card_page_input_category_option_travel => 'Voyage et Transport';
 
   @override
-  String get card_page_input_category_option_sport => '⚽️ Sport';
+  String get card_page_input_category_option_sport => 'Sport';
 
   @override
   String get card_page_input_category_option_other => 'Autre';
@@ -140,20 +134,20 @@ class L10nFr extends L10n {
   String get card_page_save_button_title => 'Enregistrer';
 
   @override
-  String get home_page_no_cards_title => 'Aucune carte de fidélité trouvée';
+  String get home_page_no_cards_title => 'Woah, tellement vide !';
 
   @override
-  String get home_page_no_cards_add_button => 'Ajouter la première';
+  String get home_page_no_cards_description =>
+      'Vous n\'avez pas encore de cartes de fidélité.\nAjoutez la première pour commencer !';
+
+  @override
+  String get home_page_no_cards_add_button => 'Ajouter la première carte';
 
   @override
   String get home_page_generic_error_title => 'Une erreur est survenue';
 
   @override
   String get photo_pick_title => 'Choisir une photo';
-
-  @override
-  String get photo_pick_description =>
-      'Comment souhaitez-vous choisir la photo ?';
 
   @override
   String get photo_pick_buttons_camera => 'Caméra';
@@ -168,14 +162,10 @@ class L10nFr extends L10n {
   String get photo_change_title => 'Changer la photo';
 
   @override
-  String get photo_change_description =>
-      'Comment souhaitez-vous changer la photo ?';
+  String get photo_change_buttons_repick => 'Choisir';
 
   @override
-  String get photo_change_buttons_repick => 'Choisir une nouvelle photo';
-
-  @override
-  String get photo_change_buttons_remove => 'Supprimer la photo';
+  String get photo_change_buttons_remove => 'Supprimer';
 
   @override
   String get photo_crop_title => 'Rogner la photo';

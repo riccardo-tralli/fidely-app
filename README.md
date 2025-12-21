@@ -1,4 +1,5 @@
-# Fidely
+<img src="docs/images/logo.png" width="64">
+
 **Fidely is an open source, free and offline loyalty card wallet.**
 
 ![version-badge](https://img.shields.io/badge/Fidely-v0.0.1-orange)
@@ -56,6 +57,12 @@ All translations were made using AI. Feel free to suggest better _"human-made"_ 
 Fidely is compatible with both Android and iOS devices.
 - Minimum Android version: 7 (API 24)
 - Minimum iOS version: 13
+
+## Logo and icon 🎭
+<img src="docs/images/logo.png" width="64">
+
+The logo was created with Affinity. The source file (.af) is available [here](docs/files/logo.af).  
+Contributions and suggestions are welcome.
 
 ## Roadmap 🚧
 Here are some planned features:

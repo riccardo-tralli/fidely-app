@@ -14,7 +14,6 @@
     "card_barcode_invalid": "Impossible de générer le code-barres. Vérifiez le code et le type.",
 
     "card_page_code_pick_title": "Choisir un code",
-    "card_page_code_pick_description": "Comment souhaitez-vous obtenir le code ?",
     "card_page_code_pick_buttons_camera": "Caméra",
     "card_page_code_pick_buttons_gallery": "Galerie",
 
@@ -36,15 +35,15 @@
     "card_page_input_notes_title": "Notes",
     "card_page_input_category_title": "Catégorie",
     "card_page_input_category_option_none": "Aucune",
-    "card_page_input_category_option_grocery": "🛒 Supermarché et Épicerie",
-    "card_page_input_category_option_food": "🍕 Nourriture",
-    "card_page_input_category_option_fuel": "⛽ Carburant et Énergie",
-    "card_page_input_category_option_entertainment": "🎉 Divertissement",
-    "card_page_input_category_option_fashion": "👗 Mode et Beauté",
-    "card_page_input_category_option_electronics": "📺 Électronique",
-    "card_page_input_category_option_health": "❤️‍🩹 Santé et Bien-être",
-    "card_page_input_category_option_travel": "✈️ Voyage et Transport",
-    "card_page_input_category_option_sport": "⚽️ Sport",
+    "card_page_input_category_option_grocery": "Supermarché et Épicerie",
+    "card_page_input_category_option_food": "Nourriture",
+    "card_page_input_category_option_fuel": "Carburant et Énergie",
+    "card_page_input_category_option_entertainment": "Divertissement",
+    "card_page_input_category_option_fashion": "Mode et Beauté",
+    "card_page_input_category_option_electronics": "Électronique",
+    "card_page_input_category_option_health": "Santé et Bien-être",
+    "card_page_input_category_option_travel": "Voyage et Transport",
+    "card_page_input_category_option_sport": "Sport",
     "card_page_input_category_option_other": "Autre",
 
     "card_page_color_title": "Couleur de la carte",
@@ -55,20 +54,19 @@
 
     "card_page_save_button_title": "Enregistrer",
 
-    "home_page_no_cards_title": "Aucune carte de fidélité trouvée",
-    "home_page_no_cards_add_button": "Ajouter la première",
+    "home_page_no_cards_title": "Woah, tellement vide !",
+    "home_page_no_cards_description": "Vous n'avez pas encore de cartes de fidélité.\nAjoutez la première pour commencer !",
+    "home_page_no_cards_add_button": "Ajouter la première carte",
     "home_page_generic_error_title": "Une erreur est survenue",
 
     "photo_pick_title": "Choisir une photo",
-    "photo_pick_description": "Comment souhaitez-vous choisir la photo ?",
     "photo_pick_buttons_camera": "Caméra",
     "photo_pick_buttons_gallery": "Galerie",
 
     "photo_change_tap": "Appuyez pour changer",
     "photo_change_title": "Changer la photo",
-    "photo_change_description": "Comment souhaitez-vous changer la photo ?",
-    "photo_change_buttons_repick": "Choisir une nouvelle photo",
-    "photo_change_buttons_remove": "Supprimer la photo",
+    "photo_change_buttons_repick": "Choisir",
+    "photo_change_buttons_remove": "Supprimer",
 
     "photo_crop_title": "Rogner la photo",
 

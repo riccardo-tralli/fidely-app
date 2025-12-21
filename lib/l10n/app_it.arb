@@ -14,7 +14,6 @@
     "card_barcode_invalid": "Impossibile generare il codice a barre. Controlla il codice e il tipo.",
 
     "card_page_code_pick_title": "Seleziona un codice",
-    "card_page_code_pick_description": "Come preferisci ottenere il codice?",
     "card_page_code_pick_buttons_camera": "Fotocamera",
     "card_page_code_pick_buttons_gallery": "Galleria",
 
@@ -36,15 +35,15 @@
     "card_page_input_notes_title": "Note",
     "card_page_input_category_title": "Categoria",
     "card_page_input_category_option_none": "Nessuna",
-    "card_page_input_category_option_grocery": "🛒 Supermercato e Alimentari",
-    "card_page_input_category_option_food": "🍕 Cibo",
-    "card_page_input_category_option_fuel": "⛽ Carburante ed Energia",
-    "card_page_input_category_option_entertainment": "🎉 Intrattenimento",
-    "card_page_input_category_option_fashion": "👗 Moda e Bellezza",
-    "card_page_input_category_option_electronics": "📺 Elettronica",
-    "card_page_input_category_option_health": "❤️‍🩹 Salute e Benessere",
-    "card_page_input_category_option_travel": "✈️ Viaggi e Trasporti",
-    "card_page_input_category_option_sport": "⚽️ Sport",
+    "card_page_input_category_option_grocery": "Supermercato e Alimentari",
+    "card_page_input_category_option_food": "Cibo",
+    "card_page_input_category_option_fuel": "Carburante ed Energia",
+    "card_page_input_category_option_entertainment": "Intrattenimento",
+    "card_page_input_category_option_fashion": "Moda e Bellezza",
+    "card_page_input_category_option_electronics": "Elettronica",
+    "card_page_input_category_option_health": "Salute e Benessere",
+    "card_page_input_category_option_travel": "Viaggi e Trasporti",
+    "card_page_input_category_option_sport": "Sport",
     "card_page_input_category_option_other": "Altro",
 
     "card_page_color_title": "Colore carta",
@@ -55,20 +54,19 @@
 
     "card_page_save_button_title": "Salva",
 
-    "home_page_no_cards_title": "Nessuna carta fedeltà trovata",
-    "home_page_no_cards_add_button": "Aggiungi la prima",
+    "home_page_no_cards_title": "Woah, così vuoto!",
+    "home_page_no_cards_description": "Non hai ancora carte fedeltà.\nAggiungi la tua prima per iniziare!",
+    "home_page_no_cards_add_button": "Aggiungi la prima carta",
     "home_page_generic_error_title": "Qualcosa è andato storto",
 
     "photo_pick_title": "Scegli una foto",
-    "photo_pick_description": "Come preferisci scegliere la foto?",
     "photo_pick_buttons_camera": "Fotocamera",
     "photo_pick_buttons_gallery": "Galleria",
 
     "photo_change_tap": "Tocca per cambiare",
     "photo_change_title": "Cambia foto",
-    "photo_change_description": "Come preferisci cambiare la foto?",
-    "photo_change_buttons_repick": "Scegli una nuova foto",
-    "photo_change_buttons_remove": "Rimuovi foto",
+    "photo_change_buttons_repick": "Scegli",
+    "photo_change_buttons_remove": "Rimuovi",
 
     "photo_crop_title": "Ritaglia foto",
 

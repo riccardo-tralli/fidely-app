@@ -1,8 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart';
 import 'package:fidely_app/l10n/l10n.dart';
+import 'package:fidely_app/misc/themes/spaces.dart';
 import 'package:fidely_app/models/loyalty_card.dart';
 import 'package:fidely_app/pages/card_page.dart';
 import 'package:fidely_app/services/photo_service.dart';
@@ -16,12 +19,14 @@ class LoyaltyCardWidget extends StatefulWidget {
   final LoyaltyCard card;
   final bool isSelected;
   final bool isSelectable;
+  final double? height;
 
   const LoyaltyCardWidget({
     super.key,
     required this.card,
     this.isSelected = false,
     this.isSelectable = true,
+    this.height,
   });
 
   @override
@@ -75,15 +80,15 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
-              spacing: 16,
+              spacing: Spaces.medium,
               children: [
                 Text(
                   widget.card.title,
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 if (frontPhoto != null || rearPhoto != null)
                   Row(
-                    spacing: 16,
+                    spacing: Spaces.medium,
                     children: [
                       if (frontPhoto != null)
                         PhotoContainer(
@@ -102,21 +107,13 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
                     ],
                   ),
                 Row(
-                  spacing: 16,
+                  spacing: Spaces.medium,
                   children: [
                     Expanded(
                       child: FilledButton.icon(
                         onPressed: () => onEdit(context),
-                        icon: Hicon(
-                          HugeIcons.strokeRoundedEdit04,
-                          color: Colors.white,
-                        ),
-                        label: Text(
-                          L10n.of(context)!.card_edit_title,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.bodyLarge?.copyWith(color: Colors.white),
-                        ),
+                        icon: Hicon(HugeIcons.strokeRoundedEdit04),
+                        label: Text(L10n.of(context)!.card_edit_title),
                       ),
                     ),
                     Expanded(
@@ -136,7 +133,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
                           L10n.of(context)!.card_delete_title,
                           style: Theme.of(
                             context,
-                          ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+                          ).textTheme.bodyMedium?.copyWith(color: Colors.white),
                         ),
                       ),
                     ),
@@ -161,15 +158,13 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
       return AlertDialog(
         title: Text(L10n.of(context)!.card_delete_title),
         content: Text(L10n.of(context)!.card_delete_description),
+        actionsAlignment: MainAxisAlignment.spaceBetween,
+        actionsOverflowAlignment: OverflowBarAlignment.end,
+        actionsOverflowButtonSpacing: Spaces.medium,
         actions: [
-          FilledButton(
+          TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Text(
-              L10n.of(context)!.card_delete_cancel,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyLarge?.copyWith(color: Colors.white),
-            ),
+            child: Text(L10n.of(context)!.card_delete_cancel),
           ),
           FilledButton.icon(
             onPressed: () {
@@ -184,7 +179,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
               L10n.of(context)!.card_delete_confirm,
               style: Theme.of(
                 context,
-              ).textTheme.bodyLarge?.copyWith(color: Colors.white),
+              ).textTheme.bodyMedium?.copyWith(color: Colors.white),
             ),
           ),
         ],
@@ -208,22 +203,24 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
       onTap: onTap,
       onLongPress: () => onLongPress(context),
       borderRadius: BorderRadius.circular(16),
-      child: Container(
-        width: double.infinity,
-        margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-        decoration: BoxDecoration(
-          color: widget.card.color,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [
-            BoxShadow(
-              color: Theme.of(context).colorScheme.shadow,
-              blurRadius: 2,
-              offset: const Offset(0, 1),
-            ),
-          ],
+      child: IntrinsicHeight(
+        child: Container(
+          width: double.infinity,
+          margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+          decoration: BoxDecoration(
+            color: widget.card.color,
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: [
+              BoxShadow(
+                color: Theme.of(context).colorScheme.shadow,
+                blurRadius: 2,
+                offset: const Offset(0, 1),
+              ),
+            ],
+          ),
+          child: content(context),
         ),
-        child: content(context),
       ),
     );
   }
@@ -250,12 +247,13 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
     ],
   );
 
-  Widget title(BuildContext context) => Text(
-    widget.card.title,
-    style: Theme.of(
-      context,
-    ).textTheme.headlineLarge?.copyWith(color: textColor),
-  );
+  Widget title(BuildContext context) {
+    TextStyle? style = widget.height != null && widget.height! <= 70
+        ? Theme.of(context).textTheme.headlineSmall
+        : Theme.of(context).textTheme.headlineLarge;
+
+    return Text(widget.card.title, style: style?.copyWith(color: textColor));
+  }
 
   Widget barcode(BuildContext context) => Padding(
     padding: const EdgeInsets.only(top: 16, bottom: 8),
@@ -265,6 +263,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
       color: textColor,
       style: Theme.of(context).textTheme.bodySmall?.copyWith(color: textColor),
       errorBuilder: (context, _) => barcodeError(context),
+      height: widget.height ?? 150,
     ),
   );
 

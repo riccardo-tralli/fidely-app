@@ -149,12 +149,6 @@ abstract class L10n {
   /// **'Pick a code'**
   String get card_page_code_pick_title;
 
-  /// Subtitle explaining options for picking a code
-  ///
-  /// In en, this message translates to:
-  /// **'How would you like to pick a code?'**
-  String get card_page_code_pick_description;
-
   /// Option to pick code using camera
   ///
   /// In en, this message translates to:
@@ -260,55 +254,55 @@ abstract class L10n {
   /// Category option: market and grocery
   ///
   /// In en, this message translates to:
-  /// **'🛒 Market and Grocery'**
+  /// **'Market and Grocery'**
   String get card_page_input_category_option_grocery;
 
   /// Category option: food
   ///
   /// In en, this message translates to:
-  /// **'🍕 Food'**
+  /// **'Food'**
   String get card_page_input_category_option_food;
 
   /// Category option: fuel and energy
   ///
   /// In en, this message translates to:
-  /// **'⛽ Fuel and Energy'**
+  /// **'Fuel and Energy'**
   String get card_page_input_category_option_fuel;
 
   /// Category option: entertainment
   ///
   /// In en, this message translates to:
-  /// **'🎉 Entertainment'**
+  /// **'Entertainment'**
   String get card_page_input_category_option_entertainment;
 
   /// Category option: fashion and beauty
   ///
   /// In en, this message translates to:
-  /// **'👗 Fashion and Beauty'**
+  /// **'Fashion and Beauty'**
   String get card_page_input_category_option_fashion;
 
   /// Category option: electronics
   ///
   /// In en, this message translates to:
-  /// **'📺 Electronics'**
+  /// **'Electronics'**
   String get card_page_input_category_option_electronics;
 
   /// Category option: health and wellness
   ///
   /// In en, this message translates to:
-  /// **'❤️‍🩹 Health and Wellness'**
+  /// **'Health and Wellness'**
   String get card_page_input_category_option_health;
 
   /// Category option: travel and transportation
   ///
   /// In en, this message translates to:
-  /// **'✈️ Travel and Transportation'**
+  /// **'Travel and Transportation'**
   String get card_page_input_category_option_travel;
 
   /// Category option: sport
   ///
   /// In en, this message translates to:
-  /// **'⚽️ Sport'**
+  /// **'Sport'**
   String get card_page_input_category_option_sport;
 
   /// Category option: other
@@ -350,13 +344,19 @@ abstract class L10n {
   /// Message shown on home when no cards are present
   ///
   /// In en, this message translates to:
-  /// **'No loyalty cards found'**
+  /// **'Whoa, such empty!'**
   String get home_page_no_cards_title;
+
+  /// Description shown on home when no cards are present
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'t have any loyalty cards yet.\nStart by adding your first one!'**
+  String get home_page_no_cards_description;
 
   /// CTA to add the first card
   ///
   /// In en, this message translates to:
-  /// **'Add the first one'**
+  /// **'Add your first card'**
   String get home_page_no_cards_add_button;
 
   /// Generic error shown on home page
@@ -370,12 +370,6 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'Pick a photo'**
   String get photo_pick_title;
-
-  /// Subtitle for photo pick dialog
-  ///
-  /// In en, this message translates to:
-  /// **'How would you like to pick a photo?'**
-  String get photo_pick_description;
 
   /// Option to pick photo using camera
   ///
@@ -401,22 +395,16 @@ abstract class L10n {
   /// **'Change Photo'**
   String get photo_change_title;
 
-  /// Subtitle for change photo dialog
-  ///
-  /// In en, this message translates to:
-  /// **'How would you like to change the photo?'**
-  String get photo_change_description;
-
   /// Option to pick a new photo
   ///
   /// In en, this message translates to:
-  /// **'Pick a new photo'**
+  /// **'Pick'**
   String get photo_change_buttons_repick;
 
   /// Option to remove the current photo
   ///
   /// In en, this message translates to:
-  /// **'Remove photo'**
+  /// **'Remove'**
   String get photo_change_buttons_remove;
 
   /// Title for photo cropping screen
