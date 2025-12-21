@@ -11,8 +11,7 @@ Widget category({
       padding: EdgeInsets.only(left: Spaces.small),
       child: Text(L10n.of(context)!.card_page_input_category_title),
     ),
-    // TODO: add pet category
-    DropdownButtonFormField(
+    DropdownButtonFormField<String?>(
       initialValue: initialValue,
       items: _categories(context),
       onChanged: (value) => onChanged(value),

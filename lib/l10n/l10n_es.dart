@@ -93,6 +93,9 @@ class L10nEs extends L10n {
   String get card_page_input_category_option_food => 'Comida';
 
   @override
+  String get card_page_input_category_option_pets => 'Mascotas';
+
+  @override
   String get card_page_input_category_option_fuel => 'Combustible y Energía';
 
   @override

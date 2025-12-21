@@ -1,6 +1,6 @@
 {
     "@@locale": "en",
-    "@@last_modified": "2025-12-19",
+    "@@last_modified": "2025-12-21",
 
     "app_title": "Fidely",
     "@app_title": {
@@ -143,6 +143,11 @@
     "card_page_input_category_option_food": "Food",
     "@card_page_input_category_option_food": {
         "description": "Category option: food",
+        "type": "text"
+    },
+    "card_page_input_category_option_pets": "Pets",
+    "@card_page_input_category_option_pets": {
+        "description": "Category option: pets",
         "type": "text"
     },
     "card_page_input_category_option_fuel": "Fuel and Energy",

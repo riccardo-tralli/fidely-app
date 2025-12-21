@@ -94,6 +94,9 @@ class L10nFr extends L10n {
   String get card_page_input_category_option_food => 'Nourriture';
 
   @override
+  String get card_page_input_category_option_pets => 'Animaux de compagnie';
+
+  @override
   String get card_page_input_category_option_fuel => 'Carburant et Énergie';
 
   @override

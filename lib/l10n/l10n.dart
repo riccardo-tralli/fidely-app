@@ -263,6 +263,12 @@ abstract class L10n {
   /// **'Food'**
   String get card_page_input_category_option_food;
 
+  /// Category option: pets
+  ///
+  /// In en, this message translates to:
+  /// **'Pets'**
+  String get card_page_input_category_option_pets;
+
   /// Category option: fuel and energy
   ///
   /// In en, this message translates to:

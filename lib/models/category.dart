@@ -33,6 +33,11 @@ class Categories {
       icon: HugeIcons.strokeRoundedPizza02,
     ),
     Category(
+      name: "pet",
+      label: L10n.of(context)!.card_page_input_category_option_pets,
+      icon: HugeIcons.strokeRoundedFishFood,
+    ),
+    Category(
       name: "fuel",
       label: L10n.of(context)!.card_page_input_category_option_fuel,
       icon: HugeIcons.strokeRoundedFuel,
