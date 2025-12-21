@@ -62,7 +62,6 @@ Fidely is compatible with both Android and iOS devices.
 <img src="docs/images/logo.png" width="64">
 
 The logo was created with Affinity. The source file (.af) is available [here](docs/files/logo.af).  
-The concept is that the logo should serve as the app icon itself, not a logo placed inside an icon.  
 Contributions and suggestions are welcome.
 
 ## Roadmap 🚧
