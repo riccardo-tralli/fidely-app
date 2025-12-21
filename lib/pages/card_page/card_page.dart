@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import "dart:io";
+import "dart:math";
 
 import "package:barcode_widget/barcode_widget.dart";
 import "package:change_case/change_case.dart";
@@ -63,7 +64,12 @@ class _CardPageState extends State<CardPage> {
   final TextEditingController _noteController = TextEditingController();
 
   BarcodeType _typeValue = BarcodeType.Code39;
-  Color _colorValue = Colors.white;
+  Color _colorValue = Color.fromARGB(
+    255,
+    Random().nextInt(256),
+    Random().nextInt(256),
+    Random().nextInt(256),
+  );
   String? _categoryValue;
   bool _showScanner = false;
   bool _flashOn = false;
@@ -147,9 +153,9 @@ class _CardPageState extends State<CardPage> {
             title: _titleController.text,
             code: _codeController.text,
             type: _typeValue,
-            owner: _ownerController.text.isEmpty ? "" : _ownerController.text,
+            owner: _ownerController.text.isEmpty ? null : _ownerController.text,
             color: _colorValue,
-            note: _noteController.text.isEmpty ? "" : _noteController.text,
+            note: _noteController.text.isEmpty ? null : _noteController.text,
             category: _categoryValue,
           ),
         );
