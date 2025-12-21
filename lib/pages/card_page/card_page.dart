@@ -27,7 +27,16 @@ import "package:image_picker/image_picker.dart";
 import "package:mobile_scanner/mobile_scanner.dart" hide BarcodeType;
 import "package:permission_handler/permission_handler.dart";
 
+part "parts/card_preview.dart";
+part "parts/title.dart";
+part "parts/code.dart";
+part "parts/type.dart";
+part "parts/owner.dart";
 part "parts/category.dart";
+part "parts/color.dart";
+part "parts/note.dart";
+part "parts/photos.dart";
+part "parts/save.dart";
 
 // TODO: fix category selection bug (null value) when editing a card just created (having valid category)
 
@@ -56,7 +65,6 @@ class _CardPageState extends State<CardPage> {
   BarcodeType _typeValue = BarcodeType.Code39;
   Color _colorValue = Colors.white;
   String? _categoryValue;
-  Color _tempColor = Colors.white;
   bool _showScanner = false;
   bool _flashOn = false;
   bool _frontCamera = false;
@@ -82,57 +90,6 @@ class _CardPageState extends State<CardPage> {
     }
   }
 
-  void onPickUpCode(BuildContext context) => showModalBottomSheet(
-    context: context,
-    builder: (context) => SafeArea(
-      child: Padding(
-        padding: EdgeInsets.all(Spaces.medium),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: Spaces.medium,
-          children: [
-            Text(
-              L10n.of(context)!.card_page_code_pick_title,
-              style: Theme.of(context).textTheme.headlineSmall,
-            ),
-            Row(
-              spacing: Spaces.medium,
-              children: [
-                Expanded(
-                  child: FilledButton.icon(
-                    onPressed: () {
-                      context.read<PermissionCubit>().requestCameraPermission();
-                      Navigator.of(context).pop();
-                    },
-                    icon: Hicon(HugeIcons.strokeRoundedCamera01),
-                    label: Text(
-                      L10n.of(context)!.card_page_code_pick_buttons_camera,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: FilledButton.icon(
-                    onPressed: () {
-                      context
-                          .read<PermissionCubit>()
-                          .requestGalleryPermission();
-                      Navigator.of(context).pop();
-                    },
-                    icon: Hicon(HugeIcons.strokeRoundedAlbum02),
-                    label: Text(
-                      L10n.of(context)!.card_page_code_pick_buttons_gallery,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ),
-  );
-
   void onGalleryScan() async {
     final XFile? image = await ImagePicker().pickImage(
       source: ImageSource.gallery,
@@ -157,41 +114,6 @@ class _CardPageState extends State<CardPage> {
         _showScanner = false;
       });
     }
-  }
-
-  void onColorChange(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(L10n.of(context)!.card_page_color_pick_title),
-        content: SingleChildScrollView(
-          child: ColorPicker(
-            pickerColor: _colorValue,
-            onColorChanged: (color) => _tempColor = color,
-            pickerAreaHeightPercent: 0.8,
-            enableAlpha: false,
-            labelTypes: [],
-            pickerAreaBorderRadius: BorderRadius.circular(RRadius.medium),
-          ),
-        ),
-        actionsAlignment: MainAxisAlignment.spaceBetween,
-        actionsOverflowButtonSpacing: Spaces.small,
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: Text(L10n.of(context)!.card_page_color_pick_buttons_cancel),
-          ),
-          FilledButton.icon(
-            onPressed: () {
-              setState(() => _colorValue = _tempColor);
-              Navigator.of(context).pop();
-            },
-            icon: Hicon(HugeIcons.strokeRoundedCheckmarkSquare03),
-            label: Text(L10n.of(context)!.card_page_color_pick_buttons_confirm),
-          ),
-        ],
-      ),
-    );
   }
 
   void onSave(BuildContext context) {
@@ -387,124 +309,46 @@ class _CardPageState extends State<CardPage> {
         controller: scrollController,
         child: form(context, showScanner),
       ),
-      cardPreview(context, showScanner),
-      save(context),
-    ],
-  );
-
-  Widget cardPreview(BuildContext context, bool showScanner) => Container(
-    key: _cardPreviewKey,
-    padding: EdgeInsets.only(
-      right: Spaces.medium,
-      bottom: Spaces.large,
-      left: Spaces.medium,
-    ),
-    decoration: BoxDecoration(
-      color: Theme.of(context).colorScheme.primary,
-      borderRadius: BorderRadius.only(
-        bottomLeft: Radius.circular(RRadius.large),
-        bottomRight: Radius.circular(RRadius.large),
-      ),
-      boxShadow: [
-        BoxShadow(color: Theme.of(context).colorScheme.shadow, blurRadius: 5),
-      ],
-    ),
-    child: showScanner
-        ? scanner(context)
-        : LoyaltyCardWidget(
-            card: LoyaltyCard(
-              id: 0,
-              title: _titleController.text.isEmpty
-                  ? L10n.of(context)!.card_page_card_preview_title
-                  : _titleController.text,
-              code: _codeController.text.isEmpty
-                  ? L10n.of(context)!.card_page_card_preview_code
-                  : _codeController.text,
-              type: _typeValue,
-              owner: _ownerController.text.isEmpty
-                  ? null
-                  : _ownerController.text,
-              color: _colorValue,
-              note: _noteController.text.isEmpty ? null : _noteController.text,
-            ),
-            isSelected: true,
-            isSelectable: false,
-            height: _barcodeHeight,
-          ),
-  );
-
-  Widget scanner(BuildContext context) => Padding(
-    padding: EdgeInsets.symmetric(horizontal: Spaces.small),
-    child: SizedBox(
-      width: double.infinity,
-      height: 260,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(RRadius.medium),
-        child: MobileScanner(
-          controller: _scannerController,
-          onDetect: onScannerDetect,
-          overlayBuilder: (context, constraints) => Container(
-            margin: EdgeInsets.only(
-              top: Spaces.medium,
-              right: Spaces.medium,
-              bottom: Spaces.medium,
-              left: constraints.maxWidth - 76,
-            ),
-            padding: EdgeInsets.all(Spaces.small),
-            decoration: BoxDecoration(
-              color: Colors.black.withAlpha(100),
-              borderRadius: BorderRadius.circular(RRadius.medium),
-            ),
-            child: SingleChildScrollView(
-              child: Column(
-                spacing: Spaces.small,
-                children: [
-                  IconButton.filled(
-                    onPressed: () {
-                      setState(() {
-                        _showScanner = false;
-                      });
-                    },
-                    icon: Hicon(
-                      HugeIcons.strokeRoundedCancel01,
-                      color: Colors.white,
-                    ),
-                  ),
-                  IconButton.filled(
-                    onPressed: () {
-                      _scannerController.toggleTorch();
-                      setState(() {
-                        _flashOn = !_flashOn;
-                      });
-                    },
-                    icon: Hicon(
-                      _flashOn
-                          ? HugeIcons.strokeRoundedFlash
-                          : HugeIcons.strokeRoundedFlashOff,
-                      color: Colors.white,
-                    ),
-                  ),
-                  IconButton.filled(
-                    onPressed: () {
-                      _scannerController.switchCamera();
-                      setState(() {
-                        _frontCamera = !_frontCamera;
-                      });
-                    },
-                    icon: Hicon(
-                      _frontCamera
-                          ? HugeIcons.strokeRoundedCamera01
-                          : HugeIcons.strokeRoundedFaceId,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+      cardPreview(
+        key: _cardPreviewKey,
+        context: context,
+        controller: _scannerController,
+        card: LoyaltyCard(
+          id: 0,
+          title: _titleController.text.isEmpty
+              ? L10n.of(context)!.card_page_card_preview_title
+              : _titleController.text,
+          code: _codeController.text.isEmpty
+              ? L10n.of(context)!.card_page_card_preview_code
+              : _codeController.text,
+          type: _typeValue,
+          owner: _ownerController.text.isEmpty ? null : _ownerController.text,
+          color: _colorValue,
+          note: _noteController.text.isEmpty ? null : _noteController.text,
         ),
+        height: _barcodeHeight,
+        showScanner: showScanner,
+        flashOn: _flashOn,
+        frontCamera: _frontCamera,
+        onDetect: (value) => onScannerDetect(value),
+        onClose: () => setState(() {
+          _showScanner = false;
+        }),
+        onToggleFlash: () {
+          _scannerController.toggleTorch();
+          setState(() {
+            _flashOn = !_flashOn;
+          });
+        },
+        onSwitchCamera: () {
+          _scannerController.switchCamera();
+          setState(() {
+            _frontCamera = !_frontCamera;
+          });
+        },
       ),
-    ),
+      save(context: context, onTap: (value) => onSave(value)),
+    ],
   );
 
   Widget form(BuildContext context, bool showScanner) => Padding(
@@ -521,9 +365,24 @@ class _CardPageState extends State<CardPage> {
             child: Column(
               spacing: Spaces.medium,
               children: [
-                title(context),
-                code(context, showScanner),
-                type(context),
+                title(
+                  context: context,
+                  controller: _titleController,
+                  onChanged: () => setState(() {}),
+                ),
+                code(
+                  context: context,
+                  controller: _codeController,
+                  onChanged: () => setState(() {}),
+                  showScanner: showScanner,
+                ),
+                type(
+                  context: context,
+                  initialValue: _typeValue,
+                  onChanged: (value) => setState(() {
+                    _typeValue = value;
+                  }),
+                ),
               ],
             ),
           ),
@@ -537,8 +396,11 @@ class _CardPageState extends State<CardPage> {
             child: Column(
               spacing: Spaces.medium,
               children: [
-                owner(context),
-                note(context),
+                owner(
+                  context: context,
+                  controller: _ownerController,
+                  onChanged: () => setState(() {}),
+                ),
                 category(
                   context: context,
                   initialValue: _categoryValue,
@@ -546,218 +408,31 @@ class _CardPageState extends State<CardPage> {
                     _categoryValue = value;
                   }),
                 ),
-                color(context),
+                color(
+                  context: context,
+                  colorValue: _colorValue,
+                  onColorChange: (value) => setState(() => _colorValue = value),
+                ),
+                note(
+                  context: context,
+                  controller: _noteController,
+                  onChanged: () => setState(() {}),
+                ),
                 Padding(
                   padding: EdgeInsets.only(bottom: Spaces.large),
-                  child: photos(context),
+                  child: photos(
+                    context: context,
+                    frontPhoto: _frontPhoto,
+                    rearPhoto: _rearPhoto,
+                    onFrontPhotoTap: (value) => _frontPhoto = value,
+                    onRearPhotoTap: (value) => _rearPhoto = value,
+                  ),
                 ),
                 SizedBox(height: 40), // * Space under save button
               ],
             ),
           ),
         ],
-      ),
-    ),
-  );
-
-  Widget title(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Padding(
-        padding: EdgeInsets.only(left: Spaces.small),
-        child: Text(
-          L10n.of(context)!.card_page_input_store_name_title,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-      ),
-      TextFormField(
-        controller: _titleController,
-        onChanged: (value) => setState(() {}),
-        validator: (value) => value == null || value.isEmpty
-            ? L10n.of(context)!.card_page_input_error_required
-            : null,
-      ),
-    ],
-  );
-
-  Widget code(BuildContext context, bool showScanner) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Padding(
-        padding: EdgeInsets.only(left: Spaces.small),
-        child: Text(
-          L10n.of(context)!.card_page_input_code_title,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-      ),
-      TextFormField(
-        controller: _codeController,
-        onChanged: (value) => setState(() {}),
-        validator: (value) => value == null || value.isEmpty
-            ? L10n.of(context)!.card_page_input_error_required
-            : null,
-        decoration: showScanner
-            ? null
-            : InputDecoration(
-                suffixIcon: IconButton(
-                  onPressed: () => onPickUpCode(context),
-                  icon: Hicon(HugeIcons.strokeRoundedSelect01),
-                ),
-              ),
-      ),
-    ],
-  );
-
-  Widget type(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Padding(
-        padding: EdgeInsets.only(left: Spaces.small),
-        child: Text(
-          L10n.of(context)!.card_page_input_type_title,
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-      ),
-      DropdownButtonFormField(
-        initialValue: _typeValue,
-        items: [
-          DropdownMenuItem(value: BarcodeType.Code39, child: Text("Code 39")),
-          DropdownMenuItem(value: BarcodeType.Code93, child: Text("Code 93")),
-          DropdownMenuItem(value: BarcodeType.Code128, child: Text("Code 128")),
-          DropdownMenuItem(value: BarcodeType.CodeEAN8, child: Text("EAN-8")),
-          DropdownMenuItem(value: BarcodeType.CodeEAN13, child: Text("EAN-13")),
-          DropdownMenuItem(value: BarcodeType.CodeUPCA, child: Text("UPC-A")),
-          DropdownMenuItem(value: BarcodeType.CodeUPCE, child: Text("UPC-E")),
-          DropdownMenuItem(value: BarcodeType.Aztec, child: Text("Aztec")),
-          DropdownMenuItem(value: BarcodeType.PDF417, child: Text("PDF417")),
-          DropdownMenuItem(value: BarcodeType.QrCode, child: Text("QR Code")),
-        ],
-        onChanged: (value) => setState(() => _typeValue = value!),
-        style: Theme.of(context).textTheme.bodyLarge,
-      ),
-    ],
-  );
-
-  Widget owner(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Padding(
-        padding: EdgeInsets.only(left: Spaces.small),
-        child: Text(L10n.of(context)!.card_page_input_owner_title),
-      ),
-      TextFormField(
-        controller: _ownerController,
-        onChanged: (value) => setState(() {}),
-      ),
-    ],
-  );
-
-  Widget note(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Padding(
-        padding: EdgeInsets.only(left: Spaces.small),
-        child: Text(L10n.of(context)!.card_page_input_notes_title),
-      ),
-      TextFormField(
-        controller: _noteController,
-        onChanged: (value) => setState(() {}),
-        maxLines: 3,
-      ),
-    ],
-  );
-
-  Widget color(BuildContext context) => InkWell(
-    onTap: () => onColorChange(context),
-    child: Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: Spaces.medium,
-        vertical: Spaces.medium,
-      ),
-      decoration: BoxDecoration(
-        color: Theme.of(context).inputDecorationTheme.fillColor,
-        border: Border.all(
-          color: Theme.of(
-            context,
-          ).inputDecorationTheme.border!.borderSide.color,
-        ),
-        borderRadius: BorderRadius.circular(RRadius.medium),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        spacing: 12, // Looks better than 8 or 16
-        children: [
-          Hicon(HugeIcons.strokeRoundedPaintBoard, color: _colorValue),
-          Flexible(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  L10n.of(context)!.card_page_color_title,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                Text(
-                  L10n.of(context)!.card_page_color_description,
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-
-  Widget photos(BuildContext context) => Row(
-    spacing: Spaces.medium,
-    children: [
-      PhotoContainer(
-        label: L10n.of(context)!.card_page_photo_front_title,
-        photo: _frontPhoto,
-        onTap: (photo) => _frontPhoto = photo,
-      ),
-      PhotoContainer(
-        label: L10n.of(context)!.card_page_photo_rear_title,
-        photo: _rearPhoto,
-        onTap: (photo) => _rearPhoto = photo,
-      ),
-    ],
-  );
-
-  Widget save(BuildContext context) => Align(
-    alignment: Alignment.bottomCenter,
-    child: Container(
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
-        border: Border(
-          top: BorderSide(color: Theme.of(context).colorScheme.outline),
-        ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.only(
-          top: Spaces.large,
-          left: Spaces.large,
-          right: Spaces.large,
-          bottom: Spaces.small,
-        ),
-        child: SizedBox(
-          width: double.infinity,
-          child: FilledButton(
-            // TODO: disable button when loading/saving
-            onPressed: () => onSave(context),
-            style: Theme.of(context).filledButtonTheme.style?.copyWith(
-              backgroundColor: WidgetStatePropertyAll(
-                Theme.of(context).colorScheme.secondary,
-              ),
-            ),
-            child: Text(
-              L10n.of(context)!.card_page_save_button_title,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyLarge?.copyWith(color: Colors.white),
-            ),
-          ),
-        ),
       ),
     ),
   );
