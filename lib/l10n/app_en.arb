@@ -1,19 +1,16 @@
 {
     "@@locale": "en",
-    "@@last_modified": "2025-12-21",
-
+    "@@last_modified": "2025-12-23",
     "app_title": "Fidely",
     "@app_title": {
         "description": "The title of the application shown in the app bar and launcher",
         "type": "text"
     },
-    
     "card_edit_title": "Edit",
     "@card_edit_title": {
         "description": "Label for edit action on a loyalty card",
         "type": "text"
     },
-
     "card_delete_title": "Delete",
     "@card_delete_title": {
         "description": "Title for the delete confirmation dialog",
@@ -34,13 +31,11 @@
         "description": "Cancel button label in delete dialog",
         "type": "text"
     },
-    
-    "card_barcode_invalid":"Unable to generate barcode. Please check the code and type.",
+    "card_barcode_invalid": "Unable to generate barcode. Please check the code and type.",
     "@card_barcode_invalid": {
         "description": "Error message shown when barcode generation fails",
         "type": "text"
     },
-
     "card_page_code_pick_title": "Pick a code",
     "@card_page_code_pick_title": {
         "description": "Title for code source selection dialog",
@@ -56,7 +51,6 @@
         "description": "Option to pick code from gallery",
         "type": "text"
     },
-
     "card_page_color_pick_title": "Pick a color",
     "@card_page_color_pick_title": {
         "description": "Title for color picker dialog",
@@ -72,7 +66,6 @@
         "description": "Cancel button label in color picker",
         "type": "text"
     },
-
     "card_page_generic_error_title": "Error",
     "@card_page_generic_error_title": {
         "description": "Generic error dialog title",
@@ -83,7 +76,6 @@
         "description": "Message shown when required permission is denied",
         "type": "text"
     },
-
     "card_page_card_preview_title": "Store Name",
     "@card_page_card_preview_title": {
         "description": "Placeholder store name shown in card preview",
@@ -94,7 +86,6 @@
         "description": "Placeholder code shown in card preview",
         "type": "text"
     },
-
     "card_page_input_error_required": "This field is required",
     "@card_page_input_error_required": {
         "description": "Validation error message for required fields",
@@ -190,7 +181,6 @@
         "description": "Category option: other",
         "type": "text"
     },
-
     "card_page_color_title": "Card Color",
     "@card_page_color_title": {
         "description": "Title for card color selection",
@@ -201,7 +191,6 @@
         "description": "Helper text describing card color selection",
         "type": "text"
     },
-
     "card_page_photo_front_title": "Front Photo",
     "@card_page_photo_front_title": {
         "description": "Label for front photo of the card",
@@ -212,13 +201,11 @@
         "description": "Label for rear photo of the card",
         "type": "text"
     },
-
     "card_page_save_button_title": "Save",
     "@card_page_save_button_title": {
         "description": "Save button label on card page",
         "type": "text"
     },
-
     "home_page_no_cards_title": "Whoa, such empty!",
     "@home_page_no_cards_title": {
         "description": "Message shown on home when no cards are present",
@@ -239,7 +226,6 @@
         "description": "Generic error shown on home page",
         "type": "text"
     },
-    
     "photo_pick_title": "Pick a photo",
     "@photo_pick_title": {
         "description": "Title for photo source selection dialog",
@@ -255,7 +241,6 @@
         "description": "Option to pick photo from gallery",
         "type": "text"
     },
-    
     "photo_change_tap": "Tap to change",
     "@photo_change_tap": {
         "description": "Hint shown on photo widget to change it",
@@ -276,13 +261,11 @@
         "description": "Option to remove the current photo",
         "type": "text"
     },
-
     "photo_crop_title": "Crop Photo",
     "@photo_crop_title": {
         "description": "Title for photo cropping screen",
         "type": "text"
     },
-
     "settings_page_theme_title": "Theme Mode",
     "@settings_page_theme_title": {
         "description": "Title for theme selection in settings",
@@ -308,7 +291,36 @@
         "description": "Theme option: system default",
         "type": "text"
     },
-
+    "settings_page_view_mode_title": "View Mode",
+    "@settings_page_view_mode_title": {
+        "description": "Title for view mode selection",
+        "type": "text"
+    },
+    "settings_page_view_mode_description": "Select your preferred view mode",
+    "@settings_page_view_mode_description": {
+        "description": "Description for view mode selection",
+        "type": "text"
+    },
+    "settings_page_view_mode_list": "List",
+    "@settings_page_view_mode_list": {
+        "description": "View mode option: list",
+        "type": "text"
+    },
+    "settings_page_view_mode_grid": "Grid",
+    "@settings_page_view_mode_grid": {
+        "description": "View mode option: grid",
+        "type": "text"
+    },
+    "settings_page_view_mode_use_photo_title": "Use Card Photo",
+    "@settings_page_view_mode_use_photo_title": {
+        "description": "Title for using front photo in cards",
+        "type": "text"
+    },
+    "settings_page_view_mode_use_photo_description": "Use the front photo of the card as its thumbnail",
+    "@settings_page_view_mode_use_photo_description": {
+        "description": "Description for using front photo in cards",
+        "type": "text"
+    },
     "settings_page_sort_title": "Sort Mode",
     "@settings_page_sort_title": {
         "description": "Title for sort mode selection",
@@ -360,7 +372,6 @@
         "description": "Label to indicate descending sort direction",
         "type": "text"
     },
-
     "settings_page_language_title": "Language",
     "@settings_page_language_title": {
         "description": "Title for language selection in settings",

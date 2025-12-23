@@ -189,6 +189,27 @@ class L10nEs extends L10n {
   String get settings_page_theme_mode_system => 'Sistema';
 
   @override
+  String get settings_page_view_mode_title => 'Modo de visualización';
+
+  @override
+  String get settings_page_view_mode_description =>
+      'Selecciona tu modo de visualización preferido';
+
+  @override
+  String get settings_page_view_mode_list => 'Lista';
+
+  @override
+  String get settings_page_view_mode_grid => 'Cuadrícula';
+
+  @override
+  String get settings_page_view_mode_use_photo_title =>
+      'Usar foto de la tarjeta';
+
+  @override
+  String get settings_page_view_mode_use_photo_description =>
+      'Usa la foto frontal de la tarjeta como su miniatura';
+
+  @override
   String get settings_page_sort_title => 'Modo de ordenamiento';
 
   @override

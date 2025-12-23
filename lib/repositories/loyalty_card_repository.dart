@@ -1,6 +1,6 @@
 import 'package:fidely_app/models/loyalty_card.dart';
 import 'package:fidely_app/models/requests/loyalty_card_request.dart';
-import 'package:fidely_app/models/sort_mode.dart';
+import 'package:fidely_app/models/settings/sort_mode.dart';
 import 'package:fidely_app/services/loyalty_card_service.dart';
 
 class LoyaltyCardRepository {

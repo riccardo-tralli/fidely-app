@@ -190,6 +190,27 @@ class L10nIt extends L10n {
   String get settings_page_theme_mode_system => 'Sistema';
 
   @override
+  String get settings_page_view_mode_title => 'Modalità di visualizzazione';
+
+  @override
+  String get settings_page_view_mode_description =>
+      'Seleziona la modalità di visualizzazione preferita';
+
+  @override
+  String get settings_page_view_mode_list => 'Elenco';
+
+  @override
+  String get settings_page_view_mode_grid => 'Griglia';
+
+  @override
+  String get settings_page_view_mode_use_photo_title =>
+      'Usa la foto della carta';
+
+  @override
+  String get settings_page_view_mode_use_photo_description =>
+      'Usa la foto frontale della carta come miniatura';
+
+  @override
   String get settings_page_sort_title => 'Modalità di ordinamento';
 
   @override

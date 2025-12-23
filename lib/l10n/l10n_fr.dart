@@ -190,6 +190,27 @@ class L10nFr extends L10n {
   String get settings_page_theme_mode_system => 'Système';
 
   @override
+  String get settings_page_view_mode_title => 'Mode d\'affichage';
+
+  @override
+  String get settings_page_view_mode_description =>
+      'Sélectionnez votre mode d\'affichage préféré';
+
+  @override
+  String get settings_page_view_mode_list => 'Liste';
+
+  @override
+  String get settings_page_view_mode_grid => 'Grille';
+
+  @override
+  String get settings_page_view_mode_use_photo_title =>
+      'Utiliser la photo de la carte';
+
+  @override
+  String get settings_page_view_mode_use_photo_description =>
+      'Utilisez la photo avant de la carte comme vignette';
+
+  @override
   String get settings_page_sort_title => 'Mode de tri';
 
   @override

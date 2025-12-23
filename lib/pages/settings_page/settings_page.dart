@@ -2,14 +2,18 @@ import 'package:fidely_app/blocs/loyalty_card/loyalty_card_bloc.dart';
 import 'package:fidely_app/cubits/settings/dark_mode_cubit.dart';
 import 'package:fidely_app/cubits/settings/language_cubit.dart';
 import 'package:fidely_app/cubits/settings/sort_cubit.dart';
+import 'package:fidely_app/cubits/settings/view_mode_cubit.dart';
 import 'package:fidely_app/l10n/l10n.dart';
 import 'package:fidely_app/misc/themes/spaces.dart';
 import 'package:fidely_app/models/settings/sort_mode.dart';
+import 'package:fidely_app/models/settings/view_mode.dart';
 import 'package:fidely_app/widgets/option.dart';
 import 'package:fidely_app/widgets/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hugeicons/hugeicons.dart';
+
+part "parts/view_mode.dart";
 
 class SettingsPage extends StatefulWidget {
   static const route = "/settings";
@@ -58,6 +62,7 @@ class _SettingsPageState extends State<SettingsPage> {
           spacing: Spaces.medium,
           children: [
             themeModeOption(context),
+            viewMode(context: context),
             sortModeOption(context),
             languageOption(context),
           ],

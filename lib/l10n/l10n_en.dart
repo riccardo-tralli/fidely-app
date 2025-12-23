@@ -190,6 +190,26 @@ class L10nEn extends L10n {
   String get settings_page_theme_mode_system => 'System';
 
   @override
+  String get settings_page_view_mode_title => 'View Mode';
+
+  @override
+  String get settings_page_view_mode_description =>
+      'Select your preferred view mode';
+
+  @override
+  String get settings_page_view_mode_list => 'List';
+
+  @override
+  String get settings_page_view_mode_grid => 'Grid';
+
+  @override
+  String get settings_page_view_mode_use_photo_title => 'Use Card Photo';
+
+  @override
+  String get settings_page_view_mode_use_photo_description =>
+      'Use the front photo of the card as its thumbnail';
+
+  @override
   String get settings_page_sort_title => 'Sort Mode';
 
   @override

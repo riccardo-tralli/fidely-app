@@ -1,32 +1,23 @@
 {
     "@@locale": "it",
-    "@@last_modified": "2025-12-21",
-    
+    "@@last_modified": "2025-12-23",
     "app_title": "Fidely",
-
     "card_edit_title": "Modifica",
-
     "card_delete_title": "Elimina",
     "card_delete_description": "Sei sicuro di voler eliminare questa carta fedeltà?",
     "card_delete_confirm": "Conferma",
     "card_delete_cancel": "Annulla",
-
     "card_barcode_invalid": "Impossibile generare il codice a barre. Controlla il codice e il tipo.",
-
     "card_page_code_pick_title": "Seleziona un codice",
     "card_page_code_pick_buttons_camera": "Fotocamera",
     "card_page_code_pick_buttons_gallery": "Galleria",
-
     "card_page_color_pick_title": "Seleziona un colore",
     "card_page_color_pick_buttons_confirm": "Seleziona",
     "card_page_color_pick_buttons_cancel": "Annulla",
-
     "card_page_generic_error_title": "Errore",
     "card_page_permission_error_title": "Permesso negato. Vai alle impostazioni del dispositivo per abilitarlo.",
-
     "card_page_card_preview_title": "Nome negozio",
     "card_page_card_preview_code": "123456",
-
     "card_page_input_error_required": "Questo campo è obbligatorio",
     "card_page_input_store_name_title": "Nome negozio",
     "card_page_input_code_title": "Codice carta",
@@ -46,37 +37,34 @@
     "card_page_input_category_option_travel": "Viaggi e Trasporti",
     "card_page_input_category_option_sport": "Sport",
     "card_page_input_category_option_other": "Altro",
-
     "card_page_color_title": "Colore carta",
     "card_page_color_description": "Seleziona il colore di superficie per la tua carta",
-
     "card_page_photo_front_title": "Foto fronte",
     "card_page_photo_rear_title": "Foto retro",
-
     "card_page_save_button_title": "Salva",
-
     "home_page_no_cards_title": "Woah, così vuoto!",
     "home_page_no_cards_description": "Non hai ancora carte fedeltà.\nAggiungi la tua prima per iniziare!",
     "home_page_no_cards_add_button": "Aggiungi la prima carta",
     "home_page_generic_error_title": "Qualcosa è andato storto",
-
     "photo_pick_title": "Scegli una foto",
     "photo_pick_buttons_camera": "Fotocamera",
     "photo_pick_buttons_gallery": "Galleria",
-
     "photo_change_tap": "Tocca per cambiare",
     "photo_change_title": "Cambia foto",
     "photo_change_buttons_repick": "Scegli",
     "photo_change_buttons_remove": "Rimuovi",
-
     "photo_crop_title": "Ritaglia foto",
-
     "settings_page_theme_title": "Modalità tema",
     "settings_page_theme_description": "Seleziona la modalità tema preferita",
     "settings_page_theme_mode_light": "Chiaro",
     "settings_page_theme_mode_dark": "Scuro",
     "settings_page_theme_mode_system": "Sistema",
-
+    "settings_page_view_mode_title": "Modalità di visualizzazione",
+    "settings_page_view_mode_description": "Seleziona la modalità di visualizzazione preferita",
+    "settings_page_view_mode_list": "Elenco",
+    "settings_page_view_mode_grid": "Griglia",
+    "settings_page_view_mode_use_photo_title": "Usa la foto della carta",
+    "settings_page_view_mode_use_photo_description": "Usa la foto frontale della carta come miniatura",
     "settings_page_sort_title": "Modalità di ordinamento",
     "settings_page_sort_description": "Seleziona la modalità di ordinamento preferita",
     "settings_page_sort_mode_date": "Aggiunte di recente",
@@ -86,7 +74,6 @@
     "settings_page_sort_reverse_description": "Le carte sono ordinate in ordine {direction}",
     "settings_page_sort_reverse_direction_asc": "crescente",
     "settings_page_sort_reverse_direction_desc": "decrescente",
-
     "settings_page_language_title": "Lingua",
     "settings_page_language_description": "Seleziona la lingua preferita",
     "settings_page_language_option_system": "Sistema",

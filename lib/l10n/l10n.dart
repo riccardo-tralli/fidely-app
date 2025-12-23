@@ -449,6 +449,42 @@ abstract class L10n {
   /// **'System'**
   String get settings_page_theme_mode_system;
 
+  /// Title for view mode selection
+  ///
+  /// In en, this message translates to:
+  /// **'View Mode'**
+  String get settings_page_view_mode_title;
+
+  /// Description for view mode selection
+  ///
+  /// In en, this message translates to:
+  /// **'Select your preferred view mode'**
+  String get settings_page_view_mode_description;
+
+  /// View mode option: list
+  ///
+  /// In en, this message translates to:
+  /// **'List'**
+  String get settings_page_view_mode_list;
+
+  /// View mode option: grid
+  ///
+  /// In en, this message translates to:
+  /// **'Grid'**
+  String get settings_page_view_mode_grid;
+
+  /// Title for using front photo in cards
+  ///
+  /// In en, this message translates to:
+  /// **'Use Card Photo'**
+  String get settings_page_view_mode_use_photo_title;
+
+  /// Description for using front photo in cards
+  ///
+  /// In en, this message translates to:
+  /// **'Use the front photo of the card as its thumbnail'**
+  String get settings_page_view_mode_use_photo_description;
+
   /// Title for sort mode selection
   ///
   /// In en, this message translates to:

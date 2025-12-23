@@ -1,32 +1,23 @@
 {
     "@@locale": "fr",
-    "@@last_modified": "2025-12-21",
-
+    "@@last_modified": "2025-12-23",
     "app_title": "Fidely",
-
     "card_edit_title": "Modifier",
-
     "card_delete_title": "Supprimer",
     "card_delete_description": "Voulez-vous vraiment supprimer cette carte de fidélité ?",
     "card_delete_confirm": "Confirmer",
     "card_delete_cancel": "Annuler",
-
     "card_barcode_invalid": "Impossible de générer le code-barres. Vérifiez le code et le type.",
-
     "card_page_code_pick_title": "Choisir un code",
     "card_page_code_pick_buttons_camera": "Caméra",
     "card_page_code_pick_buttons_gallery": "Galerie",
-
     "card_page_color_pick_title": "Choisir une couleur",
     "card_page_color_pick_buttons_confirm": "Sélectionner",
     "card_page_color_pick_buttons_cancel": "Annuler",
-
     "card_page_generic_error_title": "Erreur",
     "card_page_permission_error_title": "Permission refusée. Veuillez aller dans les paramètres de l'appareil pour l'activer.",
-
     "card_page_card_preview_title": "Nom du magasin",
     "card_page_card_preview_code": "123456",
-
     "card_page_input_error_required": "Ce champ est obligatoire",
     "card_page_input_store_name_title": "Nom du magasin",
     "card_page_input_code_title": "Code de la carte",
@@ -46,37 +37,34 @@
     "card_page_input_category_option_travel": "Voyage et Transport",
     "card_page_input_category_option_sport": "Sport",
     "card_page_input_category_option_other": "Autre",
-
     "card_page_color_title": "Couleur de la carte",
     "card_page_color_description": "Sélectionnez une couleur de surface pour votre carte",
-
     "card_page_photo_front_title": "Photo avant",
     "card_page_photo_rear_title": "Photo arrière",
-
     "card_page_save_button_title": "Enregistrer",
-
     "home_page_no_cards_title": "Woah, tellement vide !",
     "home_page_no_cards_description": "Vous n'avez pas encore de cartes de fidélité.\nAjoutez la première pour commencer !",
     "home_page_no_cards_add_button": "Ajouter la première carte",
     "home_page_generic_error_title": "Une erreur est survenue",
-
     "photo_pick_title": "Choisir une photo",
     "photo_pick_buttons_camera": "Caméra",
     "photo_pick_buttons_gallery": "Galerie",
-
     "photo_change_tap": "Appuyez pour changer",
     "photo_change_title": "Changer la photo",
     "photo_change_buttons_repick": "Choisir",
     "photo_change_buttons_remove": "Supprimer",
-
     "photo_crop_title": "Rogner la photo",
-
     "settings_page_theme_title": "Mode thème",
     "settings_page_theme_description": "Sélectionnez votre mode de thème préféré",
     "settings_page_theme_mode_light": "Clair",
     "settings_page_theme_mode_dark": "Sombre",
     "settings_page_theme_mode_system": "Système",
-
+    "settings_page_view_mode_title": "Mode d'affichage",
+    "settings_page_view_mode_description": "Sélectionnez votre mode d'affichage préféré",
+    "settings_page_view_mode_list": "Liste",
+    "settings_page_view_mode_grid": "Grille",
+    "settings_page_view_mode_use_photo_title": "Utiliser la photo de la carte",
+    "settings_page_view_mode_use_photo_description": "Utilisez la photo avant de la carte comme vignette",
     "settings_page_sort_title": "Mode de tri",
     "settings_page_sort_description": "Sélectionnez votre mode de tri préféré",
     "settings_page_sort_mode_date": "Ajoutés récemment",
@@ -86,7 +74,6 @@
     "settings_page_sort_reverse_description": "Les cartes sont triées en ordre {direction}",
     "settings_page_sort_reverse_direction_asc": "ascendant",
     "settings_page_sort_reverse_direction_desc": "descendant",
-
     "settings_page_language_title": "Langue",
     "settings_page_language_description": "Sélectionnez votre langue préférée",
     "settings_page_language_option_system": "Système",

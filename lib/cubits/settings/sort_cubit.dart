@@ -1,4 +1,4 @@
-import 'package:fidely_app/models/sort_mode.dart';
+import 'package:fidely_app/models/settings/sort_mode.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 class SortCubit extends HydratedCubit<SortMode> {

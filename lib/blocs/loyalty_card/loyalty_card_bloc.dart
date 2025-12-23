@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:fidely_app/models/loyalty_card.dart';
-import 'package:fidely_app/models/sort_mode.dart';
+import 'package:fidely_app/models/settings/sort_mode.dart';
 import 'package:fidely_app/repositories/loyalty_card_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
