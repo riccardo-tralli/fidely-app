@@ -10,6 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hugeicons/hugeicons.dart';
 
+part "parts/list.dart";
+part "parts/empty_list.dart";
+part "parts/error.dart";
+
 class HomePage extends StatelessWidget {
   static const route = "/home";
 
@@ -59,62 +63,16 @@ class HomePage extends StatelessWidget {
 
           if (state is LoyaltyCardLoadedState) {
             if (state.cards.isEmpty) {
-              return emptyList(context);
+              return emptyList(context: context);
             }
 
-            return ListView.builder(
-              itemCount: state.cards.length + 1,
-              itemBuilder: (context, index) => index == 0
-                  ? SizedBox(height: Spaces.small)
-                  : LoyaltyCardWidget(card: state.cards[index - 1]),
-            );
+            return list(context: context, state: state);
           }
 
-          return error(context, (state as LoyaltyCardErrorState).message);
+          return error(
+            context: context,
+            message: (state as LoyaltyCardErrorState).message,
+          );
         },
       );
-
-  Widget emptyList(BuildContext context) => SizedBox(
-    width: double.infinity,
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      spacing: Spaces.extraSmall,
-      children: [
-        Image.asset("assets/images/empty.png", width: 300),
-        SizedBox(height: Spaces.medium),
-        Text(
-          L10n.of(context)!.home_page_no_cards_title,
-          style: Theme.of(context).textTheme.headlineLarge,
-          textAlign: TextAlign.center,
-        ),
-        Text(
-          L10n.of(context)!.home_page_no_cards_description,
-          style: Theme.of(context).textTheme.bodyMedium,
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: Spaces.medium),
-        FilledButton.icon(
-          onPressed: () => Navigator.of(context).pushNamed(CardPage.route),
-          icon: Hicon(HugeIcons.strokeRoundedAddSquare),
-          label: Text(L10n.of(context)!.home_page_no_cards_add_button),
-        ),
-      ],
-    ),
-  );
-
-  Widget error(BuildContext context, String message) => SizedBox(
-    width: double.infinity,
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      spacing: Spaces.medium,
-      children: [
-        Image.asset("assets/images/error.png", width: 300),
-        Text(
-          L10n.of(context)!.home_page_generic_error_title,
-          style: Theme.of(context).textTheme.titleSmall,
-        ),
-        Text(message),
-      ],
-    ),
-  );
 }
