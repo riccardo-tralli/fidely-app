@@ -3,10 +3,9 @@ import 'package:fidely_app/cubits/settings/dark_mode_cubit.dart';
 import 'package:fidely_app/cubits/settings/language_cubit.dart';
 import 'package:fidely_app/cubits/settings/sort_cubit.dart';
 import 'package:fidely_app/l10n/l10n.dart';
-import 'package:fidely_app/misc/themes/rradius.dart';
 import 'package:fidely_app/misc/themes/spaces.dart';
-import 'package:fidely_app/models/sort_mode.dart';
-import 'package:fidely_app/widgets/hicon.dart';
+import 'package:fidely_app/models/settings/sort_mode.dart';
+import 'package:fidely_app/widgets/option.dart';
 import 'package:fidely_app/widgets/top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,7 +80,7 @@ class _SettingsPageState extends State<SettingsPage> {
           spacing: Spaces.medium,
           children: [
             Expanded(
-              child: option(
+              child: Option(
                 context: context,
                 icon: HugeIcons.strokeRoundedSun02,
                 label: L10n.of(context)!.settings_page_theme_mode_light,
@@ -95,7 +94,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             Expanded(
-              child: option(
+              child: Option(
                 context: context,
                 icon: HugeIcons.strokeRoundedMoon01,
                 label: L10n.of(context)!.settings_page_theme_mode_dark,
@@ -109,7 +108,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             Expanded(
-              child: option(
+              child: Option(
                 context: context,
                 icon: HugeIcons.strokeRoundedSmartPhone02,
                 label: L10n.of(context)!.settings_page_theme_mode_system,
@@ -142,7 +141,7 @@ class _SettingsPageState extends State<SettingsPage> {
           spacing: Spaces.medium,
           children: [
             Expanded(
-              child: option(
+              child: Option(
                 context: context,
                 icon: HugeIcons.strokeRoundedClock01,
                 label: L10n.of(context)!.settings_page_sort_mode_date,
@@ -152,7 +151,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             Expanded(
-              child: option(
+              child: Option(
                 context: context,
                 icon: _sortMode.reverse
                     ? HugeIcons.strokeRoundedArrangeByLettersZA
@@ -164,7 +163,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             Expanded(
-              child: option(
+              child: Option(
                 context: context,
                 icon: HugeIcons.strokeRoundedTag01,
                 label: L10n.of(context)!.settings_page_sort_mode_category,
@@ -236,47 +235,4 @@ class _SettingsPageState extends State<SettingsPage> {
       ),
     ],
   );
-
-  Widget option({
-    required BuildContext context,
-    required List<List<dynamic>> icon,
-    required String label,
-    required Function onTap,
-    bool active = false,
-  }) {
-    final Color? textColor = active
-        ? Theme.brightnessOf(context) == Brightness.light
-              ? Colors.white
-              : Theme.of(context).colorScheme.surface
-        : null;
-
-    return InkWell(
-      borderRadius: BorderRadius.circular(RRadius.medium),
-      onTap: () => onTap(),
-      child: Container(
-        padding: EdgeInsets.all(Spaces.medium),
-        decoration: BoxDecoration(
-          color: active
-              ? Theme.of(context).colorScheme.primary
-              : Theme.of(context).inputDecorationTheme.fillColor,
-          border: Border.all(color: Theme.of(context).colorScheme.outline),
-          borderRadius: BorderRadius.circular(RRadius.medium),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: Spaces.small,
-          children: [
-            Hicon(icon, color: textColor),
-            Text(
-              label,
-              style: Theme.of(
-                context,
-              ).textTheme.bodyMedium?.copyWith(color: textColor),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
