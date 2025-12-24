@@ -4,7 +4,9 @@ import 'dart:io';
 
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart';
+import 'package:fidely_app/cubits/settings/view_mode_cubit.dart';
 import 'package:fidely_app/l10n/l10n.dart';
+import 'package:fidely_app/misc/themes/rradius.dart';
 import 'package:fidely_app/misc/themes/spaces.dart';
 import 'package:fidely_app/models/loyalty_card.dart';
 import 'package:fidely_app/pages/card_page/card_page.dart';
@@ -17,14 +19,12 @@ import 'package:hugeicons/hugeicons.dart';
 
 class LoyaltyCardWidget extends StatefulWidget {
   final LoyaltyCard card;
-  final bool isSelected;
   final bool isSelectable;
   final double? height;
 
   const LoyaltyCardWidget({
     super.key,
     required this.card,
-    this.isSelected = false,
     this.isSelectable = true,
     this.height,
   });
@@ -35,17 +35,18 @@ class LoyaltyCardWidget extends StatefulWidget {
 
 class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
   Color textColor = Colors.white;
-  bool isSelected = false;
+  File? frontPhoto;
+  File? rearPhoto;
 
   void showPhoto(File photo) => showDialog(
     barrierColor: Theme.of(context).scaffoldBackgroundColor.withAlpha(220),
     context: context,
     builder: (context) => Dialog(
       child: InkWell(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(RRadius.medium),
         onTap: () => Navigator.of(context).pop(),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(RRadius.medium),
           child: Image.file(photo),
         ),
       ),
@@ -53,29 +54,16 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
   );
 
   void onTap() {
-    if (widget.isSelectable) {
-      setState(() {
-        isSelected = !isSelected;
-      });
-    }
+    if (widget.isSelectable) {}
   }
 
   void onLongPress(BuildContext context) async {
     if (widget.isSelectable) {
-      final File? frontPhoto = await PhotoService.instance.get(
-        widget.card.id,
-        PhotoType.front,
-      );
-      final File? rearPhoto = await PhotoService.instance.get(
-        widget.card.id,
-        PhotoType.rear,
-      );
-
       showModalBottomSheet(
         context: context,
         builder: (context) => SafeArea(
           child: Container(
-            padding: const EdgeInsets.all(24),
+            padding: EdgeInsets.all(Spaces.large),
             decoration: BoxDecoration(),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -187,10 +175,21 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
     },
   );
 
+  Future<void> loadPhotos() async {
+    frontPhoto = await PhotoService.instance.get(
+      widget.card.id,
+      PhotoType.front,
+    );
+    rearPhoto = await PhotoService.instance.get(widget.card.id, PhotoType.rear);
+    if (frontPhoto != null || rearPhoto != null) {
+      setState(() {});
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-    isSelected = widget.isSelected;
+    loadPhotos();
   }
 
   @override
@@ -199,52 +198,72 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
         ? Colors.black
         : Colors.white;
 
+    final double width = MediaQuery.of(context).size.width - Spaces.large * 2;
+    final double height = widget.height ?? width / 3 * 2;
+
     return InkWell(
       onTap: onTap,
       onLongPress: () => onLongPress(context),
-      borderRadius: BorderRadius.circular(16),
-      child: IntrinsicHeight(
-        child: Container(
-          width: double.infinity,
-          margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-          decoration: BoxDecoration(
-            color: widget.card.color,
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [
-              BoxShadow(
-                color: Theme.of(context).colorScheme.shadow,
-                blurRadius: 2,
-                offset: const Offset(0, 1),
-              ),
-            ],
-          ),
-          child: content(context),
+      borderRadius: BorderRadius.circular(RRadius.medium),
+      child: Container(
+        width: width,
+        height: height,
+        margin: EdgeInsets.all(Spaces.small),
+        decoration: BoxDecoration(
+          color: widget.card.color,
+          borderRadius: BorderRadius.circular(RRadius.medium),
+          boxShadow: [
+            BoxShadow(
+              color: Theme.of(context).colorScheme.shadow,
+              blurRadius: 2,
+              offset: const Offset(0, 1),
+            ),
+          ],
         ),
+        clipBehavior: Clip.hardEdge,
+        child:
+            context.read<ViewModeCubit>().state.usePhoto == true &&
+                frontPhoto != null
+            ? photoContent(context)
+            : textContent(context, height),
       ),
     );
   }
 
-  Widget content(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      SizedBox(
-        width: double.infinity,
-        child: Wrap(
-          alignment: WrapAlignment.spaceBetween,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          spacing: 8,
-          runSpacing: 8,
-          children: [
-            title(context),
-            if (widget.card.owner != null && widget.card.owner!.isNotEmpty)
-              owner(context),
-          ],
-        ),
+  Widget photoContent(BuildContext context) => ClipRRect(
+    borderRadius: BorderRadius.circular(RRadius.medium),
+    child: Image.file(frontPhoto!, fit: BoxFit.cover),
+  );
+
+  Widget textContent(BuildContext context, double height) => Padding(
+    padding: EdgeInsets.symmetric(
+      horizontal: Spaces.large,
+      vertical: Spaces.medium,
+    ),
+    child: OverflowBox(
+      alignment: AlignmentGeometry.topCenter,
+      maxHeight: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              spacing: Spaces.small,
+              runSpacing: Spaces.small,
+              children: [
+                title(context),
+                if (widget.card.owner != null && widget.card.owner!.isNotEmpty)
+                  owner(context),
+              ],
+            ),
+          ),
+          barcode(context, height),
+        ],
       ),
-      if (isSelected) barcode(context),
-      if (isSelected && widget.card.note != null) note(context),
-    ],
+    ),
   );
 
   Widget title(BuildContext context) {
@@ -255,26 +274,26 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
     return Text(widget.card.title, style: style?.copyWith(color: textColor));
   }
 
-  Widget barcode(BuildContext context) => Padding(
-    padding: const EdgeInsets.only(top: 16, bottom: 8),
+  Widget barcode(BuildContext context, double height) => Padding(
+    padding: EdgeInsets.only(top: Spaces.medium, bottom: Spaces.small),
     child: BarcodeWidget(
       barcode: Barcode.fromType(widget.card.type),
       data: widget.card.code,
       color: textColor,
       style: Theme.of(context).textTheme.bodySmall?.copyWith(color: textColor),
       errorBuilder: (context, _) => barcodeError(context),
-      height: widget.height ?? 150,
+      height: height / 5 * 3,
     ),
   );
 
   Widget barcodeError(BuildContext context) => Container(
-    padding: const EdgeInsets.all(16),
+    padding: EdgeInsets.all(Spaces.medium),
     decoration: BoxDecoration(
       color: Theme.of(context).colorScheme.error.withAlpha(15),
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(RRadius.small),
     ),
     child: Row(
-      spacing: 16,
+      spacing: Spaces.medium,
       children: [
         Hicon(
           HugeIcons.strokeRoundedAlertDiamond,
@@ -293,10 +312,10 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
   );
 
   Widget owner(BuildContext context) => Container(
-    padding: const EdgeInsets.all(8),
+    padding: EdgeInsets.all(Spaces.small),
     decoration: BoxDecoration(
       color: textColor.withAlpha(50),
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(RRadius.small),
     ),
     child: Text(
       widget.card.owner!,
