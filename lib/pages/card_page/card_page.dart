@@ -80,9 +80,9 @@ class _CardPageState extends State<CardPage> {
   ScrollController scrollController = ScrollController();
   double _cardPreviewSpace = 0;
   double _minScroll = 0;
-  final double _minBarcodeHeight = 50;
-  final double _maxBarcodeHeight = 150;
-  double _barcodeHeight = 150;
+  final double _minBarcodeHeight = 100;
+  final double _maxBarcodeHeight = 225;
+  double _barcodeHeight = 225;
 
   void onScroll() {
     final double height =
