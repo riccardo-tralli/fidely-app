@@ -19,12 +19,16 @@ import 'package:hugeicons/hugeicons.dart';
 
 class LoyaltyCardWidget extends StatefulWidget {
   final LoyaltyCard card;
+  final bool showBarcode;
+  final bool showOwner;
   final bool isSelectable;
   final double? height;
 
   const LoyaltyCardWidget({
     super.key,
     required this.card,
+    this.showBarcode = true,
+    this.showOwner = true,
     this.isSelectable = true,
     this.height,
   });
@@ -244,34 +248,52 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
       alignment: AlignmentGeometry.topCenter,
       maxHeight: double.infinity,
       child: Column(
+        mainAxisAlignment: !widget.showBarcode && !widget.showOwner
+            ? MainAxisAlignment.center
+            : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             width: double.infinity,
             child: Wrap(
-              alignment: WrapAlignment.spaceBetween,
+              alignment: !widget.showBarcode && !widget.showOwner
+                  ? WrapAlignment.center
+                  : WrapAlignment.spaceBetween,
               crossAxisAlignment: WrapCrossAlignment.center,
               spacing: Spaces.small,
               runSpacing: Spaces.small,
               children: [
                 title(context),
-                if (widget.card.owner != null && widget.card.owner!.isNotEmpty)
+                if (widget.showOwner &&
+                    widget.card.owner != null &&
+                    widget.card.owner!.isNotEmpty)
                   owner(context),
               ],
             ),
           ),
-          barcode(context, height),
+          if (widget.showBarcode) barcode(context, height),
         ],
       ),
     ),
   );
 
   Widget title(BuildContext context) {
-    TextStyle? style = widget.height != null && widget.height! <= 70
-        ? Theme.of(context).textTheme.headlineSmall
-        : Theme.of(context).textTheme.headlineLarge;
+    TextStyle? style;
+    if (!widget.showBarcode && !widget.showOwner) {
+      style = Theme.of(context).textTheme.headlineSmall;
+    } else {
+      style = widget.height != null && widget.height! <= 70
+          ? Theme.of(context).textTheme.headlineSmall
+          : Theme.of(context).textTheme.headlineLarge;
+    }
 
-    return Text(widget.card.title, style: style?.copyWith(color: textColor));
+    return Text(
+      widget.card.title,
+      style: style?.copyWith(color: textColor),
+      textAlign: !widget.showBarcode && !widget.showOwner
+          ? TextAlign.center
+          : TextAlign.start,
+    );
   }
 
   Widget barcode(BuildContext context, double height) => Padding(

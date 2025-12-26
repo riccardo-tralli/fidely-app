@@ -60,5 +60,9 @@ Widget gridBuilder(List<LoyaltyCard> cards) => SliverGrid.builder(
     childAspectRatio: 3 / 2,
   ),
   itemCount: cards.length,
-  itemBuilder: (context, index) => LoyaltyCardWidget(card: cards[index]),
+  itemBuilder: (context, index) => LoyaltyCardWidget(
+    card: cards[index],
+    showBarcode: false,
+    showOwner: false,
+  ),
 );
