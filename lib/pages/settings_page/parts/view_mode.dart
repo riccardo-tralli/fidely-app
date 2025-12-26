@@ -24,7 +24,7 @@ Widget listView(BuildContext context) => Expanded(
   child: Option(
     context: context,
     icon: HugeIcons.strokeRoundedListView,
-    label: L10n.of(context)!.settings_page_view_mode_grid,
+    label: L10n.of(context)!.settings_page_view_mode_list,
     onTap: () => context.read<ViewModeCubit>().setColumns(1),
     active: context.read<ViewModeCubit>().state.columns == 1,
   ),
@@ -34,7 +34,7 @@ Widget gridView(BuildContext context) => Expanded(
   child: Option(
     context: context,
     icon: HugeIcons.strokeRoundedGridView,
-    label: L10n.of(context)!.settings_page_view_mode_list,
+    label: L10n.of(context)!.settings_page_view_mode_grid,
     onTap: () => context.read<ViewModeCubit>().setColumns(2),
     active: context.read<ViewModeCubit>().state.columns == 2,
   ),
