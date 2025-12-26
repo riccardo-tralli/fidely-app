@@ -198,7 +198,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
         ? Colors.black
         : Colors.white;
 
-    final double width = MediaQuery.of(context).size.width - Spaces.large * 2;
+    final double width = MediaQuery.of(context).size.width;
     final double height = widget.height ?? width / 3 * 2;
 
     return InkWell(

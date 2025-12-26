@@ -15,7 +15,7 @@ class Categories {
 
   const Categories(this.context);
 
-  Category fromName(String name) => list.firstWhere((e) => e.name == name);
+  Category fromName(String? name) => list.firstWhere((e) => e.name == name);
 
   List<Category> get list => [
     Category(
