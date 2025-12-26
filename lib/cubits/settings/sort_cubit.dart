@@ -10,5 +10,6 @@ class SortCubit extends HydratedCubit<SortMode> {
   @override
   Map<String, dynamic> toJson(SortMode state) => state.toMap();
 
-  void set(SortMode mode) => emit(mode);
+  void setOption(SortOption option) => emit(state.copyWith(option: option));
+  void toggleReverse() => emit(state.copyWith(reverse: !state.reverse));
 }

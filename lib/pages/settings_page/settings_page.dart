@@ -1,4 +1,3 @@
-import 'package:fidely_app/blocs/loyalty_card/loyalty_card_bloc.dart';
 import 'package:fidely_app/cubits/settings/dark_mode_cubit.dart';
 import 'package:fidely_app/cubits/settings/language_cubit.dart';
 import 'package:fidely_app/cubits/settings/sort_cubit.dart';
@@ -14,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 part "parts/view_mode.dart";
+part "parts/sort_mode.dart";
 
 class SettingsPage extends StatefulWidget {
   static const route = "/settings";
@@ -26,16 +26,7 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   late ThemeMode _themeMode;
-  late SortMode _sortMode;
   late String? _languageCode;
-
-  void onSort(SortMode mode) {
-    setState(() {
-      _sortMode = mode;
-    });
-    context.read<SortCubit>().set(_sortMode);
-    context.read<LoyaltyCardBloc>().loadLoyaltyCards(_sortMode);
-  }
 
   void onLanguageChange(String? languageCode) {
     setState(() {
@@ -48,7 +39,6 @@ class _SettingsPageState extends State<SettingsPage> {
   void initState() {
     super.initState();
     _themeMode = context.read<DarkModeCubit>().state;
-    _sortMode = context.read<SortCubit>().state;
     _languageCode = context.read<LanguageCubit>().state;
   }
 
@@ -63,7 +53,7 @@ class _SettingsPageState extends State<SettingsPage> {
           children: [
             themeModeOption(context),
             viewMode(context: context),
-            sortModeOption(context),
+            sortMode(context: context),
             languageOption(context),
           ],
         ),
@@ -128,70 +118,6 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ],
         ),
-      ),
-    ],
-  );
-
-  Widget sortModeOption(BuildContext context) => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        L10n.of(context)!.settings_page_sort_title,
-        style: Theme.of(context).textTheme.headlineSmall,
-      ),
-      Text(L10n.of(context)!.settings_page_sort_description),
-      SizedBox(height: Spaces.small),
-      IntrinsicHeight(
-        child: Row(
-          spacing: Spaces.medium,
-          children: [
-            Expanded(
-              child: Option(
-                context: context,
-                icon: HugeIcons.strokeRoundedClock01,
-                label: L10n.of(context)!.settings_page_sort_mode_date,
-                onTap: () =>
-                    onSort(_sortMode.copyWith(option: SortOption.creationDate)),
-                active: _sortMode.option == SortOption.creationDate,
-              ),
-            ),
-            Expanded(
-              child: Option(
-                context: context,
-                icon: _sortMode.reverse
-                    ? HugeIcons.strokeRoundedArrangeByLettersZA
-                    : HugeIcons.strokeRoundedArrangeByLettersAZ,
-                label: L10n.of(context)!.settings_page_sort_mode_name,
-                onTap: () =>
-                    onSort(_sortMode.copyWith(option: SortOption.alphabetical)),
-                active: _sortMode.option == SortOption.alphabetical,
-              ),
-            ),
-            Expanded(
-              child: Option(
-                context: context,
-                icon: HugeIcons.strokeRoundedTag01,
-                label: L10n.of(context)!.settings_page_sort_mode_category,
-                onTap: () =>
-                    onSort(_sortMode.copyWith(option: SortOption.category)),
-                active: _sortMode.option == SortOption.category,
-              ),
-            ),
-          ],
-        ),
-      ),
-      SizedBox(height: Spaces.small),
-      SwitchListTile(
-        title: Text(L10n.of(context)!.settings_page_sort_reverse_title),
-        subtitle: Text(
-          L10n.of(context)!.settings_page_sort_reverse_description(
-            _sortMode.reverse
-                ? L10n.of(context)!.settings_page_sort_reverse_direction_desc
-                : L10n.of(context)!.settings_page_sort_reverse_direction_asc,
-          ),
-        ),
-        value: _sortMode.reverse,
-        onChanged: (value) => onSort(_sortMode.copyWith(reverse: value)),
       ),
     ],
   );
