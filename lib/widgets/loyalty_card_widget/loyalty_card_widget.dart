@@ -8,14 +8,18 @@ import 'package:fidely_app/cubits/settings/view_mode_cubit.dart';
 import 'package:fidely_app/l10n/l10n.dart';
 import 'package:fidely_app/misc/themes/rradius.dart';
 import 'package:fidely_app/misc/themes/spaces.dart';
+import 'package:fidely_app/models/category.dart';
 import 'package:fidely_app/models/loyalty_card.dart';
 import 'package:fidely_app/pages/card_page/card_page.dart';
 import 'package:fidely_app/services/photo_service.dart';
 import 'package:fidely_app/widgets/hicon.dart';
 import 'package:fidely_app/widgets/photo_container.dart';
+import 'package:fidely_app/widgets/round_chip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hugeicons/hugeicons.dart';
+
+part "parts/tap.dart";
 
 class LoyaltyCardWidget extends StatefulWidget {
   final LoyaltyCard card;
@@ -42,25 +46,6 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
   File? frontPhoto;
   File? rearPhoto;
 
-  void showPhoto(File photo) => showDialog(
-    barrierColor: Theme.of(context).scaffoldBackgroundColor.withAlpha(220),
-    context: context,
-    builder: (context) => Dialog(
-      child: InkWell(
-        borderRadius: BorderRadius.circular(RRadius.medium),
-        onTap: () => Navigator.of(context).pop(),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(RRadius.medium),
-          child: Image.file(photo),
-        ),
-      ),
-    ),
-  );
-
-  void onTap() {
-    if (widget.isSelectable) {}
-  }
-
   void onLongPress(BuildContext context) async {
     if (widget.isSelectable) {
       showModalBottomSheet(
@@ -78,26 +63,6 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
                   widget.card.title,
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
-                if (frontPhoto != null || rearPhoto != null)
-                  Row(
-                    spacing: Spaces.medium,
-                    children: [
-                      if (frontPhoto != null)
-                        PhotoContainer(
-                          photo: frontPhoto,
-                          borderColor: widget.card.color,
-                          pickable: false,
-                          onTap: (photo) => showPhoto(photo!),
-                        ),
-                      if (rearPhoto != null)
-                        PhotoContainer(
-                          photo: rearPhoto,
-                          borderColor: widget.card.color,
-                          pickable: false,
-                          onTap: (photo) => showPhoto(photo!),
-                        ),
-                    ],
-                  ),
                 Row(
                   spacing: Spaces.medium,
                   children: [
@@ -206,7 +171,12 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
     final double height = widget.height ?? width / 3 * 2;
 
     return InkWell(
-      onTap: onTap,
+      onTap: () => onTap(
+        context: context,
+        widget: widget,
+        frontPhoto: frontPhoto,
+        rearPhoto: rearPhoto,
+      ),
       onLongPress: () => onLongPress(context),
       borderRadius: BorderRadius.circular(RRadius.medium),
       child: Container(

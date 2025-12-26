@@ -16,7 +16,7 @@ import "package:fidely_app/models/loyalty_card.dart";
 import "package:fidely_app/models/requests/loyalty_card_request.dart";
 import "package:fidely_app/services/photo_service.dart";
 import "package:fidely_app/widgets/hicon.dart";
-import "package:fidely_app/widgets/loyalty_card_widget.dart";
+import "package:fidely_app/widgets/loyalty_card_widget/loyalty_card_widget.dart";
 import "package:fidely_app/widgets/photo_container.dart";
 import "package:fidely_app/widgets/text_divider.dart";
 import "package:fidely_app/widgets/top_bar.dart";

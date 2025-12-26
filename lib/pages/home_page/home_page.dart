@@ -10,7 +10,7 @@ import 'package:fidely_app/models/settings/view_mode.dart';
 import 'package:fidely_app/pages/card_page/card_page.dart';
 import 'package:fidely_app/pages/settings_page/settings_page.dart';
 import 'package:fidely_app/widgets/hicon.dart';
-import 'package:fidely_app/widgets/loyalty_card_widget.dart';
+import 'package:fidely_app/widgets/loyalty_card_widget/loyalty_card_widget.dart';
 import 'package:fidely_app/widgets/round_chip.dart';
 import 'package:fidely_app/widgets/top_bar.dart';
 import 'package:flutter/material.dart';
