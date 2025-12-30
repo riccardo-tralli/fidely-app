@@ -7,11 +7,17 @@
 ![flutter-badge](https://img.shields.io/badge/Flutter-v3.35.3-blue)
 ![dart-badge](https://img.shields.io/badge/Dart-v3.9.2-blue)
 
-<a href="docs/images/screen-1.png" target="_blank"><img src="docs/images/screen-1.png" width="150"></a>
-<a href="docs/images/screen-2.png" target="_blank"><img src="docs/images/screen-2.png" width="150"></a>
-<a href="docs/images/screen-3.png" target="_blank"><img src="docs/images/screen-3.png" width="150"></a>
-<a href="docs/images/screen-4.png" target="_blank"><img src="docs/images/screen-4.png" width="150"></a>
-<a href="docs/images/screen-5.png" target="_blank"><img src="docs/images/screen-5.png" width="150"></a>
+<a href="docs/images/empty.png" target="_blank"><img src="docs/images/empty.png" width="150"></a>
+<a href="docs/images/list-view.png" target="_blank"><img src="docs/images/list-view.png" width="150"></a>
+<a href="docs/images/grid-view-categories.png" target="_blank"><img src="docs/images/grid-view-categories.png" width="150"></a>
+<a href="docs/images/card-detail-pics.png" target="_blank"><img src="docs/images/card-detail-pics.png" width="150"></a>
+
+<a href="docs/images/color-picker.png" target="_blank"><img src="docs/images/color-picker.png" width="75"></a>
+<a href="docs/images/code-picker.png" target="_blank"><img src="docs/images/code-picker.png" width="75"></a>
+<a href="docs/images/grid-view.png" target="_blank"><img src="docs/images/grid-view.png" width="75"></a>
+<a href="docs/images/card-detail.png" target="_blank"><img src="docs/images/card-detail.png" width="75"></a>
+<a href="docs/images/empty-dark.png" target="_blank"><img src="docs/images/empty-dark.png" width="75"></a>
+<a href="docs/images/card-detail-dark.png" target="_blank"><img src="docs/images/card-detail-dark.png" width="75"></a>
 
 ## Features
 - Manage your virtual wallet without any internet connection
@@ -70,10 +76,10 @@ Here are some planned features:
 - [x] Barcode scanning support
 - [x] Photo attachments
 - [x] Multi-language translations
+- [x] Additional card display modes
 - [ ] Data backup and restore
 - [ ] Card sharing via custom URL scheme
 - [ ] More card customization options
-- [ ] Additional card display modes
 - [ ] Automated tests and updated status badges
 
 If you have suggestions or requests, feel free to open an issue or contribute directly! 🙏
