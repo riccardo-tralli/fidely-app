@@ -12,7 +12,7 @@ class LoyaltyCard {
   final String? note;
   final String? category;
 
-  LoyaltyCard({
+  const LoyaltyCard({
     required this.id,
     required this.title,
     required this.code,

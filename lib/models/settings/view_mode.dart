@@ -2,7 +2,7 @@ class ViewMode {
   final int? columns;
   final bool? usePhoto;
 
-  ViewMode({this.columns, this.usePhoto});
+  const ViewMode({this.columns, this.usePhoto});
 
   Map<String, dynamic> toMap() => {"columns": columns, "usePhoto": usePhoto};
 

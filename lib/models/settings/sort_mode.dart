@@ -2,7 +2,7 @@ class SortMode {
   final SortOption option;
   final bool reverse;
 
-  SortMode({required this.option, this.reverse = false});
+  const SortMode({required this.option, this.reverse = false});
 
   Map<String, dynamic> toMap() => {"option": option.name, "reverse": reverse};
 
