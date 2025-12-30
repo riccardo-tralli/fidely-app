@@ -42,9 +42,9 @@ class LoyaltyCardCubit extends Cubit<LoyaltyCardCubitState> {
   void deleteLoyaltyCard(LoyaltyCard card) async {
     try {
       await repository.delete(card);
+      await photoService.delete(card.id, PhotoType.front);
+      await photoService.delete(card.id, PhotoType.rear);
       bloc.deleteLoyaltyCard(card);
-      photoService.delete(card.id, PhotoType.front);
-      photoService.delete(card.id, PhotoType.rear);
       emit(LoyaltyCardCubitDeleteSuccessState(card));
     } catch (e) {
       emit(LoyaltyCardCubitErrorState(e.toString()));

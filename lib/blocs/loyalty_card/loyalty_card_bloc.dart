@@ -52,9 +52,8 @@ class LoyaltyCardBloc extends Bloc<LoyaltyCardEvent, LoyaltyCardState> {
     final LoyaltyCardLoadedState currentState = state as LoyaltyCardLoadedState;
     emit(LoyaltyCardLoadingState());
     try {
-      final LoyaltyCard updatedCard = await repository.update(event.card);
       final List<LoyaltyCard> data = currentState.cards
-          .map((e) => e.id == updatedCard.id ? updatedCard : e)
+          .map((e) => e.id == event.card.id ? event.card : e)
           .toList();
       emit(LoyaltyCardLoadedState(data));
     } catch (e) {
@@ -69,7 +68,6 @@ class LoyaltyCardBloc extends Bloc<LoyaltyCardEvent, LoyaltyCardState> {
     final LoyaltyCardLoadedState currentState = state as LoyaltyCardLoadedState;
     emit(LoyaltyCardLoadingState());
     try {
-      await repository.delete(event.card);
       final List<LoyaltyCard> data = currentState.cards
         ..removeWhere((e) => e.id == event.card.id);
       emit(LoyaltyCardLoadedState(data));
