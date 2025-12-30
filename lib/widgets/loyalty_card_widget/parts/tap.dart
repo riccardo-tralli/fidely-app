@@ -24,47 +24,49 @@ void onTap({
   if (widget.isSelectable) {
     showModalBottomSheet(
       context: context,
-      builder: (context) => SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(Spaces.large),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: Spaces.small,
-            children: [
-              title(context, widget.card.title, widget.card.color),
-              BarcodeWidget(
-                data: widget.card.code,
-                barcode: Barcode.fromType(widget.card.type),
-                drawText: true,
-                height: 150,
-                color: Theme.of(context).brightness == Brightness.light
-                    ? Colors.black
-                    : Colors.white,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                spacing: Spaces.small,
-                children: [
-                  if (widget.card.owner != null &&
-                      widget.card.owner!.isNotEmpty)
-                    owner(context, widget.card.owner!),
-                  if (widget.card.category != null)
-                    category(context, widget.card.category!),
-                ],
-              ),
-              if (widget.card.note != null && widget.card.note!.isNotEmpty)
-                notes(context, widget.card.note!),
-              if (frontPhoto != null || rearPhoto != null)
-                Padding(
-                  padding: EdgeInsets.only(top: Spaces.small),
-                  child: photos(
-                    context,
-                    frontPhoto,
-                    rearPhoto,
-                    widget.card.color,
-                  ),
+      builder: (context) => SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(Spaces.large),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: Spaces.small,
+              children: [
+                title(context, widget.card.title, widget.card.color),
+                BarcodeWidget(
+                  data: widget.card.code,
+                  barcode: Barcode.fromType(widget.card.type),
+                  drawText: true,
+                  height: 150,
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
                 ),
-            ],
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  spacing: Spaces.small,
+                  children: [
+                    if (widget.card.owner != null &&
+                        widget.card.owner!.isNotEmpty)
+                      owner(context, widget.card.owner!),
+                    if (widget.card.category != null)
+                      category(context, widget.card.category!),
+                  ],
+                ),
+                if (widget.card.note != null && widget.card.note!.isNotEmpty)
+                  notes(context, widget.card.note!),
+                if (frontPhoto != null || rearPhoto != null)
+                  Padding(
+                    padding: EdgeInsets.only(top: Spaces.small),
+                    child: photos(
+                      context,
+                      frontPhoto,
+                      rearPhoto,
+                      widget.card.color,
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),

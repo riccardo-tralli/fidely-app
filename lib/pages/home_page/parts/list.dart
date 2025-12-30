@@ -26,7 +26,7 @@ Widget list({
             children.addAll([
               SliverPadding(
                 padding: EdgeInsets.only(
-                  left: Spaces.extraSmall,
+                  left: Spaces.small,
                   top: Spaces.medium,
                   right: Spaces.extraSmall,
                 ),
