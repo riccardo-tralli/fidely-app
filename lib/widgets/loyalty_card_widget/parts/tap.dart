@@ -82,7 +82,9 @@ Widget title(BuildContext context, String content, Color color) => Row(
       height: 10,
       child: CircleAvatar(backgroundColor: color),
     ),
-    Text(content, style: Theme.of(context).textTheme.headlineLarge),
+    Expanded(
+      child: Text(content, style: Theme.of(context).textTheme.headlineLarge),
+    ),
   ],
 );
 

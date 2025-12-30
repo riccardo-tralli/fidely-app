@@ -215,7 +215,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
       vertical: Spaces.medium,
     ),
     child: OverflowBox(
-      alignment: AlignmentGeometry.topCenter,
+      alignment: AlignmentGeometry.center,
       maxHeight: double.infinity,
       child: Column(
         mainAxisAlignment: !widget.showBarcode && !widget.showOwner
@@ -257,12 +257,15 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
           : Theme.of(context).textTheme.headlineLarge;
     }
 
-    return Text(
-      widget.card.title,
-      style: style?.copyWith(color: textColor),
-      textAlign: !widget.showBarcode && !widget.showOwner
-          ? TextAlign.center
-          : TextAlign.start,
+    return Expanded(
+      child: Text(
+        widget.card.title,
+        style: style?.copyWith(color: textColor),
+        textAlign: !widget.showBarcode && !widget.showOwner
+            ? TextAlign.center
+            : TextAlign.start,
+        overflow: TextOverflow.ellipsis,
+      ),
     );
   }
 
