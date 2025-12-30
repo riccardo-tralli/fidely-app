@@ -39,8 +39,6 @@ part "parts/note.dart";
 part "parts/photos.dart";
 part "parts/save.dart";
 
-// TODO: fix category selection bug (null value) when editing a card just created (having valid category)
-
 class CardPage extends StatefulWidget {
   static const route = "/card";
 

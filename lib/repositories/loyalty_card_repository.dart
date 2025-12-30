@@ -28,6 +28,7 @@ class LoyaltyCardRepository {
         owner: request.owner,
         color: request.color,
         note: request.note,
+        category: request.category,
       );
     } catch (e) {
       rethrow;
