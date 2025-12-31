@@ -150,6 +150,9 @@ class L10nEn extends L10n {
   String get home_page_generic_error_title => 'Something went wrong';
 
   @override
+  String get home_page_favorite_section_title => 'Favorites';
+
+  @override
   String get photo_pick_title => 'Pick a photo';
 
   @override

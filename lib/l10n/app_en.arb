@@ -226,6 +226,11 @@
         "description": "Generic error shown on home page",
         "type": "text"
     },
+    "home_page_favorite_section_title": "Favorites",
+    "@home_page_favorite_section_title": {
+        "description": "Title for the favorites section on home page",
+        "type": "text"
+    },
     "photo_pick_title": "Pick a photo",
     "@photo_pick_title": {
         "description": "Title for photo source selection dialog",

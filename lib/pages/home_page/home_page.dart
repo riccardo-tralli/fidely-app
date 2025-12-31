@@ -35,10 +35,7 @@ class HomePage extends StatelessWidget {
         addButton(context),
       ],
     ),
-    body: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: cardList(context),
-    ),
+    body: cardList(context),
   );
 
   Widget settingsButton(BuildContext context) => IconButton(

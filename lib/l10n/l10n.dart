@@ -371,6 +371,12 @@ abstract class L10n {
   /// **'Something went wrong'**
   String get home_page_generic_error_title;
 
+  /// Title for the favorites section on home page
+  ///
+  /// In en, this message translates to:
+  /// **'Favorites'**
+  String get home_page_favorite_section_title;
+
   /// Title for photo source selection dialog
   ///
   /// In en, this message translates to:

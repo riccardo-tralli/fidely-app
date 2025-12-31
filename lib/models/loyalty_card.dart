@@ -11,6 +11,8 @@ class LoyaltyCard {
   final Color color;
   final String? note;
   final String? category;
+  final bool favorite;
+  final int usageCount;
 
   const LoyaltyCard({
     required this.id,
@@ -21,6 +23,8 @@ class LoyaltyCard {
     required this.color,
     this.note,
     this.category,
+    this.favorite = false,
+    this.usageCount = 0,
   });
 
   Map<String, dynamic> toMap() => {
@@ -32,6 +36,8 @@ class LoyaltyCard {
     "color": "${color.a},${color.r},${color.g},${color.b}",
     "note": note,
     "category": category,
+    "favorite": favorite ? 1 : 0,
+    "usage_count": usageCount,
   };
 
   factory LoyaltyCard.fromMap(Map<String, dynamic> map) => LoyaltyCard(
@@ -48,6 +54,8 @@ class LoyaltyCard {
     ),
     note: map["note"],
     category: map["category"],
+    favorite: map["favorite"] == 1,
+    usageCount: map["usage_count"] ?? 0,
   );
 
   LoyaltyCard copyWith({
@@ -58,6 +66,8 @@ class LoyaltyCard {
     Color? color,
     String? note,
     String? category,
+    bool? favorite,
+    int? usageCount,
   }) => LoyaltyCard(
     id: id,
     title: title ?? this.title,
@@ -67,5 +77,7 @@ class LoyaltyCard {
     color: color ?? this.color,
     note: note ?? this.note,
     category: category ?? this.category,
+    favorite: favorite ?? this.favorite,
+    usageCount: usageCount ?? this.usageCount,
   );
 }

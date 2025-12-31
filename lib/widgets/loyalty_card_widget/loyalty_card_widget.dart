@@ -26,6 +26,7 @@ class LoyaltyCardWidget extends StatefulWidget {
   final bool showBarcode;
   final bool showOwner;
   final bool isSelectable;
+  final double? width;
   final double? height;
 
   const LoyaltyCardWidget({
@@ -34,6 +35,7 @@ class LoyaltyCardWidget extends StatefulWidget {
     this.showBarcode = true,
     this.showOwner = true,
     this.isSelectable = true,
+    this.width,
     this.height,
   });
 
@@ -177,7 +179,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
         ? Colors.black
         : Colors.white;
 
-    final double width = MediaQuery.of(context).size.width;
+    final double width = widget.width ?? MediaQuery.of(context).size.width;
     final double height = widget.height ?? width / 3 * 2;
 
     return InkWell(

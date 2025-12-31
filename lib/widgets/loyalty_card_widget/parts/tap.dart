@@ -22,6 +22,10 @@ void onTap({
   File? rearPhoto,
 }) {
   if (widget.isSelectable) {
+    context.read<LoyaltyCardCubit>().updateLoyaltyCard(
+      widget.card.copyWith(usageCount: widget.card.usageCount + 1),
+    );
+
     showModalBottomSheet(
       context: context,
       builder: (context) => SafeArea(
@@ -32,7 +36,7 @@ void onTap({
               crossAxisAlignment: CrossAxisAlignment.start,
               spacing: Spaces.small,
               children: [
-                title(context, widget.card.title, widget.card.color),
+                titleRow(context, widget),
                 BarcodeWidget(
                   data: widget.card.code,
                   barcode: Barcode.fromType(widget.card.type),
@@ -74,19 +78,44 @@ void onTap({
   }
 }
 
-Widget title(BuildContext context, String content, Color color) => Row(
+Widget titleRow(BuildContext context, LoyaltyCardWidget widget) => Row(
   spacing: Spaces.small,
   children: [
     SizedBox(
       width: 10,
       height: 10,
-      child: CircleAvatar(backgroundColor: color),
+      child: CircleAvatar(backgroundColor: widget.card.color),
     ),
-    Expanded(
-      child: Text(content, style: Theme.of(context).textTheme.headlineLarge),
-    ),
+    Expanded(child: title(context, widget.card.title)),
+    favoriteButton(widget),
   ],
 );
+
+Widget title(BuildContext context, String content) =>
+    Text(content, style: Theme.of(context).textTheme.headlineLarge);
+
+Widget favoriteButton(LoyaltyCardWidget widget) =>
+    BlocBuilder<LoyaltyCardCubit, LoyaltyCardCubitState>(
+      builder: (context, state) => IconButton(
+        onPressed: () {
+          bool isFavorite = widget.card.favorite;
+          if (state is LoyaltyCardCubitUpdateSuccessState &&
+              widget.card.favorite != state.card.favorite) {
+            isFavorite = state.card.favorite;
+          }
+          context.read<LoyaltyCardCubit>().updateLoyaltyCard(
+            widget.card.copyWith(favorite: !isFavorite),
+          );
+        },
+        icon: Hicon(
+          HugeIcons.strokeRoundedFavourite,
+          color:
+              state is LoyaltyCardCubitUpdateSuccessState && state.card.favorite
+              ? Colors.red
+              : null,
+        ),
+      ),
+    );
 
 Widget owner(BuildContext context, String content) => Expanded(
   child: Row(
