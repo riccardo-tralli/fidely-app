@@ -267,15 +267,13 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
           : Theme.of(context).textTheme.headlineLarge;
     }
 
-    return Expanded(
-      child: Text(
-        widget.card.title,
-        style: style?.copyWith(color: textColor),
-        textAlign: !widget.showBarcode && !widget.showOwner
-            ? TextAlign.center
-            : TextAlign.start,
-        overflow: TextOverflow.ellipsis,
-      ),
+    return Text(
+      widget.card.title,
+      style: style?.copyWith(color: textColor),
+      textAlign: !widget.showBarcode && !widget.showOwner
+          ? TextAlign.center
+          : TextAlign.start,
+      overflow: TextOverflow.ellipsis,
     );
   }
 
