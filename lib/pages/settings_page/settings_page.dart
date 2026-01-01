@@ -31,21 +31,20 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) => Scaffold(
     appBar: TopBar(),
     body: Padding(
-      padding: EdgeInsets.only(
-        left: Spaces.medium,
-        top: Spaces.medium,
-        right: Spaces.medium,
-      ),
+      padding: EdgeInsets.symmetric(horizontal: Spaces.medium),
       child: SingleChildScrollView(
         child: SafeArea(
-          child: Column(
-            spacing: Spaces.medium,
-            children: [
-              themeMode(context: context),
-              viewMode(context: context),
-              sortMode(context: context),
-              language(context: context),
-            ],
+          child: Padding(
+            padding: EdgeInsets.only(top: Spaces.medium),
+            child: Column(
+              spacing: Spaces.medium,
+              children: [
+                themeMode(context: context),
+                viewMode(context: context),
+                sortMode(context: context),
+                language(context: context),
+              ],
+            ),
           ),
         ),
       ),
