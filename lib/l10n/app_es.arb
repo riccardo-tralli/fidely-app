@@ -8,6 +8,11 @@
     "card_delete_confirm": "Confirmar",
     "card_delete_cancel": "Cancelar",
     "card_barcode_invalid": "No se puede generar el código de barras. Comprueba el código y el tipo.",
+    "card_barcode_tap": "Código copiado al portapapeles",
+    "@card_barcode_tap": {
+        "description": "Message shown when the barcode is tapped and code is copied",
+        "type": "text"
+    },
     "card_page_code_pick_title": "Elegir un código",
     "card_page_code_pick_buttons_camera": "Cámara",
     "card_page_code_pick_buttons_gallery": "Galería",

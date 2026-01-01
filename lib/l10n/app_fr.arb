@@ -8,6 +8,11 @@
     "card_delete_confirm": "Confirmer",
     "card_delete_cancel": "Annuler",
     "card_barcode_invalid": "Impossible de générer le code-barres. Vérifiez le code et le type.",
+    "card_barcode_tap": "Code copié dans le presse-papiers",
+    "@card_barcode_tap": {
+        "description": "Message shown when the barcode is tapped and code is copied",
+        "type": "text"
+    },
     "card_page_code_pick_title": "Choisir un code",
     "card_page_code_pick_buttons_camera": "Caméra",
     "card_page_code_pick_buttons_gallery": "Galerie",

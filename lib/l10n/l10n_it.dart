@@ -32,6 +32,9 @@ class L10nIt extends L10n {
       'Impossibile generare il codice a barre. Controlla il codice e il tipo.';
 
   @override
+  String get card_barcode_tap => 'Codice copiato negli appunti';
+
+  @override
   String get card_page_code_pick_title => 'Seleziona un codice';
 
   @override

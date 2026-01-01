@@ -55,6 +55,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_launcher_icons: ^0.14.4
+  alert_info: ^0.0.8
 
 dev_dependencies:
   flutter_test:

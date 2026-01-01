@@ -32,6 +32,9 @@ class L10nFr extends L10n {
       'Impossible de générer le code-barres. Vérifiez le code et le type.';
 
   @override
+  String get card_barcode_tap => 'Code copié dans le presse-papiers';
+
+  @override
   String get card_page_code_pick_title => 'Choisir un code';
 
   @override

@@ -32,6 +32,9 @@ class L10nEs extends L10n {
       'No se puede generar el código de barras. Comprueba el código y el tipo.';
 
   @override
+  String get card_barcode_tap => 'Código copiado al portapapeles';
+
+  @override
   String get card_page_code_pick_title => 'Elegir un código';
 
   @override

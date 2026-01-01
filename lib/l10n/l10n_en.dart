@@ -32,6 +32,9 @@ class L10nEn extends L10n {
       'Unable to generate barcode. Please check the code and type.';
 
   @override
+  String get card_barcode_tap => 'Code copied to clipboard';
+
+  @override
   String get card_page_code_pick_title => 'Pick a code';
 
   @override

@@ -36,6 +36,11 @@
         "description": "Error message shown when barcode generation fails",
         "type": "text"
     },
+    "card_barcode_tap": "Code copied to clipboard",
+    "@card_barcode_tap": {
+        "description": "Message shown when the barcode is tapped and code is copied",
+        "type": "text"
+    },
     "card_page_code_pick_title": "Pick a code",
     "@card_page_code_pick_title": {
         "description": "Title for code source selection dialog",

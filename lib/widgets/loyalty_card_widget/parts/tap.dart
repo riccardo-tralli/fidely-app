@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 part of "../loyalty_card_widget.dart";
 
 void showPhoto(BuildContext context, File photo) => showDialog(
@@ -37,15 +39,7 @@ void onTap({
               spacing: Spaces.small,
               children: [
                 titleRow(context, widget),
-                BarcodeWidget(
-                  data: widget.card.code,
-                  barcode: Barcode.fromType(widget.card.type),
-                  drawText: true,
-                  height: 150,
-                  color: Theme.of(context).brightness == Brightness.light
-                      ? Colors.black
-                      : Colors.white,
-                ),
+                barcode(context, widget),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   spacing: Spaces.small,
@@ -116,6 +110,26 @@ Widget favoriteButton(LoyaltyCardWidget widget) =>
         ),
       ),
     );
+
+Widget barcode(BuildContext context, LoyaltyCardWidget widget) => InkWell(
+  onTap: () async {
+    await Clipboard.setData(ClipboardData(text: widget.card.code));
+    AlertInfo.show(
+      context: context,
+      text: L10n.of(context)!.card_barcode_tap,
+      position: MessagePosition.bottom,
+    );
+  },
+  child: BarcodeWidget(
+    data: widget.card.code,
+    barcode: Barcode.fromType(widget.card.type),
+    drawText: true,
+    height: 150,
+    color: Theme.of(context).brightness == Brightness.light
+        ? Colors.black
+        : Colors.white,
+  ),
+);
 
 Widget owner(BuildContext context, String content) => Expanded(
   child: Row(

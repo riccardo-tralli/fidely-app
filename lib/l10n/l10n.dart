@@ -143,6 +143,12 @@ abstract class L10n {
   /// **'Unable to generate barcode. Please check the code and type.'**
   String get card_barcode_invalid;
 
+  /// Message shown when the barcode is tapped and code is copied
+  ///
+  /// In en, this message translates to:
+  /// **'Code copied to clipboard'**
+  String get card_barcode_tap;
+
   /// Title for code source selection dialog
   ///
   /// In en, this message translates to:

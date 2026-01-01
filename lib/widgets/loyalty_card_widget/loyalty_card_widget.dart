@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:alert_info/alert_info.dart';
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:fidely_app/cubits/loyalty_card/loyalty_card_cubit.dart';
 import 'package:fidely_app/cubits/settings/view_mode_cubit.dart';
@@ -16,6 +17,7 @@ import 'package:fidely_app/widgets/hicon.dart';
 import 'package:fidely_app/widgets/photo_container.dart';
 import 'package:fidely_app/widgets/round_chip.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hugeicons/hugeicons.dart';
 
