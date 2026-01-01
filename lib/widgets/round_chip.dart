@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 class RoundChip extends StatelessWidget {
   final List<List<dynamic>>? icon;
-  final String label;
+  final String? label;
 
-  const RoundChip({super.key, this.icon, required this.label});
+  const RoundChip({super.key, this.icon, this.label});
 
   @override
   Widget build(BuildContext context) => UnconstrainedBox(
@@ -28,12 +28,13 @@ class RoundChip extends StatelessWidget {
               color: Theme.of(context).colorScheme.primary,
               size: Spaces.medium,
             ),
-          Text(
-            label,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: Theme.of(context).colorScheme.primary,
+          if (label != null)
+            Text(
+              label!,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                color: Theme.of(context).colorScheme.primary,
+              ),
             ),
-          ),
         ],
       ),
     ),

@@ -153,6 +153,12 @@ class L10nFr extends L10n {
   String get home_page_generic_error_title => 'Une erreur est survenue';
 
   @override
+  String get home_page_search_close_button => 'Fermer';
+
+  @override
+  String get home_page_search_empty_results => 'Aucun résultat trouvé';
+
+  @override
   String get home_page_favorite_section_title => 'Favoris';
 
   @override

@@ -377,6 +377,18 @@ abstract class L10n {
   /// **'Something went wrong'**
   String get home_page_generic_error_title;
 
+  /// Button label to close the search bar
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get home_page_search_close_button;
+
+  /// Message shown when search yields no results
+  ///
+  /// In en, this message translates to:
+  /// **'No results found'**
+  String get home_page_search_empty_results;
+
   /// Title for the favorites section on home page
   ///
   /// In en, this message translates to:

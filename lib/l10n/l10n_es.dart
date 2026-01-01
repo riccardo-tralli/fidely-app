@@ -152,6 +152,13 @@ class L10nEs extends L10n {
   String get home_page_generic_error_title => 'Algo salió mal';
 
   @override
+  String get home_page_search_close_button => 'Cerrar';
+
+  @override
+  String get home_page_search_empty_results =>
+      'No se han encontrado resultados';
+
+  @override
   String get home_page_favorite_section_title => 'Favoritos';
 
   @override

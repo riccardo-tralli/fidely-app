@@ -1,6 +1,5 @@
 {
     "@@locale": "it",
-    "@@last_modified": "2025-12-23",
     "app_title": "Fidely",
     "card_edit_title": "Modifica",
     "card_delete_title": "Elimina",
@@ -9,10 +8,6 @@
     "card_delete_cancel": "Annulla",
     "card_barcode_invalid": "Impossibile generare il codice a barre. Controlla il codice e il tipo.",
     "card_barcode_tap": "Codice copiato negli appunti",
-    "@card_barcode_tap": {
-        "description": "Message shown when the barcode is tapped and code is copied",
-        "type": "text"
-    },
     "card_page_code_pick_title": "Seleziona un codice",
     "card_page_code_pick_buttons_camera": "Fotocamera",
     "card_page_code_pick_buttons_gallery": "Galleria",
@@ -51,6 +46,8 @@
     "home_page_no_cards_description": "Non hai ancora carte fedeltà.\nAggiungi la tua prima per iniziare!",
     "home_page_no_cards_add_button": "Aggiungi la prima carta",
     "home_page_generic_error_title": "Qualcosa è andato storto",
+    "home_page_search_close_button": "Chiudi",
+    "home_page_search_empty_results": "Nessun risultato trovato",
     "home_page_favorite_section_title": "Preferiti",
     "photo_pick_title": "Scegli una foto",
     "photo_pick_buttons_camera": "Fotocamera",

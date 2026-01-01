@@ -153,6 +153,12 @@ class L10nEn extends L10n {
   String get home_page_generic_error_title => 'Something went wrong';
 
   @override
+  String get home_page_search_close_button => 'Close';
+
+  @override
+  String get home_page_search_empty_results => 'No results found';
+
+  @override
   String get home_page_favorite_section_title => 'Favorites';
 
   @override

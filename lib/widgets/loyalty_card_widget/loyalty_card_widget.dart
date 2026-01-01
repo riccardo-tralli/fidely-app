@@ -43,6 +43,8 @@ class LoyaltyCardWidget extends StatefulWidget {
 
   @override
   State<LoyaltyCardWidget> createState() => _LoyaltyCardWidgetState();
+
+  void show(BuildContext context) => onTap(context: context, widget: this);
 }
 
 class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {

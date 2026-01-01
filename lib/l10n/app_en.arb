@@ -1,6 +1,5 @@
 {
     "@@locale": "en",
-    "@@last_modified": "2025-12-23",
     "app_title": "Fidely",
     "@app_title": {
         "description": "The title of the application shown in the app bar and launcher",
@@ -229,6 +228,16 @@
     "home_page_generic_error_title": "Something went wrong",
     "@home_page_generic_error_title": {
         "description": "Generic error shown on home page",
+        "type": "text"
+    },
+    "home_page_search_close_button": "Close",
+    "@home_page_search_close_button": {
+        "description": "Button label to close the search bar",
+        "type": "text"
+    },
+    "home_page_search_empty_results": "No results found",
+    "@home_page_search_empty_results": {
+        "description": "Message shown when search yields no results",
         "type": "text"
     },
     "home_page_favorite_section_title": "Favorites",
