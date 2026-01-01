@@ -1,4 +1,5 @@
 import 'package:fidely_app/l10n/l10n.dart';
+import 'package:fidely_app/misc/themes/spaces.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -6,8 +7,6 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? backgroundColor;
   final bool showTitle;
   final List<Widget>? actions;
-
-  // TODO: allineare verticalmente il titolo con le icone
 
   const TopBar({
     super.key,
@@ -43,6 +42,7 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
           : null,
       centerTitle: false,
       actions: actions,
+      actionsPadding: EdgeInsets.only(top: Spaces.small, right: Spaces.small),
     );
   }
 }
