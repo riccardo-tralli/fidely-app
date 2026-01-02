@@ -24,7 +24,7 @@ part "parts/empty_list.dart";
 part "parts/error.dart";
 
 class HomePage extends StatelessWidget {
-  static const route = "/home";
+  static const String route = "/home";
 
   const HomePage({super.key});
 

@@ -40,7 +40,7 @@ part "parts/photos.dart";
 part "parts/save.dart";
 
 class CardPage extends StatefulWidget {
-  static const route = "/card";
+  static const String route = "/card";
 
   final LoyaltyCard? card;
 
