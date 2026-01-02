@@ -25,7 +25,6 @@ class InfoPage extends StatelessWidget {
 
   Widget content(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
-    spacing: Spaces.large,
     children: [
       Column(
         spacing: Spaces.extraSmall,
@@ -36,20 +35,24 @@ class InfoPage extends StatelessWidget {
           version(context),
         ],
       ),
-      Divider(thickness: .5, color: Theme.of(context).dividerColor),
-      SingleChildScrollView(
-        child: Column(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: infos(context),
-            ),
-            Divider(thickness: .5, color: Theme.of(context).dividerColor),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: thanks(context),
-            ),
-          ],
+      SizedBox(height: Spaces.large),
+      Divider(height: .5, thickness: .5, color: Theme.of(context).dividerColor),
+      Expanded(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: Spaces.large),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: infos(context),
+              ),
+              Divider(thickness: .5, color: Theme.of(context).dividerColor),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: thanks(context),
+              ),
+            ],
+          ),
         ),
       ),
     ],
