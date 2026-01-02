@@ -21,7 +21,7 @@ void main() async {
 
   // Configure ChangeCase to handle special characters (accents)
   ChangeCaseConfig.setUp(
-    stripPatterns: [RegExp("[^A-Z0-9À-ÿ]+", caseSensitive: false)],
+    stripPatterns: [RegExp("[^A-Z0-9À-ÿ'’.-/&]+", caseSensitive: false)],
   );
 
   await SystemChrome.setPreferredOrientations([
