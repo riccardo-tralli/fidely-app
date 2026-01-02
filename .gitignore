@@ -119,3 +119,7 @@ app.*.symbols
 
 # FVM Version Cache
 .fvm/
+
+# Android Studio
+.idea/
+*.iml
