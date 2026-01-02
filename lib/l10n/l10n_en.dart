@@ -162,6 +162,18 @@ class L10nEn extends L10n {
   String get home_page_favorite_section_title => 'Favorites';
 
   @override
+  String get info_page_repository_title => 'Repository';
+
+  @override
+  String get info_page_terms_title => 'Terms of Use';
+
+  @override
+  String get info_page_privacy_title => 'Privacy Policy';
+
+  @override
+  String get info_page_illustrations_title => 'Illustrations';
+
+  @override
   String get photo_pick_title => 'Pick a photo';
 
   @override

@@ -395,6 +395,30 @@ abstract class L10n {
   /// **'Favorites'**
   String get home_page_favorite_section_title;
 
+  /// Label for the app repository link
+  ///
+  /// In en, this message translates to:
+  /// **'Repository'**
+  String get info_page_repository_title;
+
+  /// Label for the terms of use link
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Use'**
+  String get info_page_terms_title;
+
+  /// Label for the privacy policy link
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get info_page_privacy_title;
+
+  /// Label for the illustrations credits link
+  ///
+  /// In en, this message translates to:
+  /// **'Illustrations'**
+  String get info_page_illustrations_title;
+
   /// Title for photo source selection dialog
   ///
   /// In en, this message translates to:

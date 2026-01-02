@@ -162,6 +162,18 @@ class L10nEs extends L10n {
   String get home_page_favorite_section_title => 'Favoritos';
 
   @override
+  String get info_page_repository_title => 'Repositorio';
+
+  @override
+  String get info_page_terms_title => 'Términos de uso';
+
+  @override
+  String get info_page_privacy_title => 'Política de privacidad';
+
+  @override
+  String get info_page_illustrations_title => 'Ilustraciones';
+
+  @override
   String get photo_pick_title => 'Elegir una foto';
 
   @override

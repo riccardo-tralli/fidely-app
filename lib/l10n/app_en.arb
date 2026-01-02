@@ -245,6 +245,26 @@
         "description": "Title for the favorites section on home page",
         "type": "text"
     },
+    "info_page_repository_title": "Repository",
+    "@info_page_repository_title": {
+        "description": "Label for the app repository link",
+        "type": "text"
+    },
+    "info_page_terms_title": "Terms of Use",
+    "@info_page_terms_title": {
+        "description": "Label for the terms of use link",
+        "type": "text"
+    },
+    "info_page_privacy_title": "Privacy Policy",
+    "@info_page_privacy_title": {
+        "description": "Label for the privacy policy link",
+        "type": "text"
+    },
+    "info_page_illustrations_title": "Illustrations",
+    "@info_page_illustrations_title": {
+        "description": "Label for the illustrations credits link",
+        "type": "text"
+    },
     "photo_pick_title": "Pick a photo",
     "@photo_pick_title": {
         "description": "Title for photo source selection dialog",

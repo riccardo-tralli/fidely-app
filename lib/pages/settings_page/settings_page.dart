@@ -6,6 +6,8 @@ import 'package:fidely_app/l10n/l10n.dart';
 import 'package:fidely_app/misc/themes/spaces.dart';
 import 'package:fidely_app/models/settings/sort_mode.dart';
 import 'package:fidely_app/models/settings/view_mode.dart';
+import 'package:fidely_app/pages/info_page.dart';
+import 'package:fidely_app/widgets/hicon.dart';
 import 'package:fidely_app/widgets/option.dart';
 import 'package:fidely_app/widgets/top_bar.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +20,7 @@ part "parts/sort_mode.dart";
 part "parts/language.dart";
 
 class SettingsPage extends StatefulWidget {
-  static const route = "/settings";
+  static const String route = "/settings";
 
   const SettingsPage({super.key});
 
@@ -29,7 +31,14 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: TopBar(),
+    appBar: TopBar(
+      actions: [
+        IconButton(
+          icon: const Hicon(HugeIcons.strokeRoundedInformationSquare),
+          onPressed: () => Navigator.pushNamed(context, InfoPage.route),
+        ),
+      ],
+    ),
     body: Padding(
       padding: EdgeInsets.symmetric(horizontal: Spaces.medium),
       child: SingleChildScrollView(

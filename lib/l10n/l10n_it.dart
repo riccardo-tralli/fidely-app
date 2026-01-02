@@ -162,6 +162,18 @@ class L10nIt extends L10n {
   String get home_page_favorite_section_title => 'Preferiti';
 
   @override
+  String get info_page_repository_title => 'Repository';
+
+  @override
+  String get info_page_terms_title => 'Termini di utilizzo';
+
+  @override
+  String get info_page_privacy_title => 'Informativa sulla privacy';
+
+  @override
+  String get info_page_illustrations_title => 'Illustrazioni';
+
+  @override
   String get photo_pick_title => 'Scegli una foto';
 
   @override
