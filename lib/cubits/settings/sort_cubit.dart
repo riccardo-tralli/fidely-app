@@ -2,7 +2,7 @@ import 'package:fidely_app/models/settings/sort_mode.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 
 class SortCubit extends HydratedCubit<SortMode> {
-  SortCubit() : super(SortMode(option: SortOption.creationDate));
+  SortCubit() : super(SortMode(option: SortOption.category));
 
   @override
   SortMode fromJson(Map<String, dynamic> json) => SortMode.fromMap(json);
