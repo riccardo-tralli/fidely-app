@@ -89,6 +89,7 @@ Widget favoriteList(BuildContext context, List<LoyaltyCard> favorites) =>
                         width: 100,
                         showBarcode: false,
                         showOwner: false,
+                        compressed: true,
                       ),
                     )
                     .toList(),

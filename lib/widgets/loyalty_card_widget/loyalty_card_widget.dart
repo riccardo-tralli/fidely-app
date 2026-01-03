@@ -30,6 +30,7 @@ class LoyaltyCardWidget extends StatefulWidget {
   final bool isSelectable;
   final double? width;
   final double? height;
+  final bool compressed;
 
   const LoyaltyCardWidget({
     super.key,
@@ -39,6 +40,7 @@ class LoyaltyCardWidget extends StatefulWidget {
     this.isSelectable = true,
     this.width,
     this.height,
+    this.compressed = false,
   });
 
   @override
@@ -227,7 +229,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
 
   Widget textContent(BuildContext context, double height) => Padding(
     padding: EdgeInsets.symmetric(
-      horizontal: Spaces.large,
+      horizontal: widget.compressed ? Spaces.small : Spaces.large,
       vertical: Spaces.medium,
     ),
     child: OverflowBox(
@@ -265,7 +267,9 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
 
   Widget title(BuildContext context) {
     TextStyle? style;
-    if (!widget.showBarcode && !widget.showOwner) {
+    if (widget.compressed) {
+      style = Theme.of(context).textTheme.bodyMedium;
+    } else if (!widget.showBarcode && !widget.showOwner) {
       style = Theme.of(context).textTheme.headlineSmall;
     } else {
       style = widget.height != null && widget.height! <= 70
