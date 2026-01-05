@@ -2,10 +2,11 @@
 
 **Fidely is an open-source, free and offline loyalty card wallet.**
 
-![version-badge](https://img.shields.io/badge/Fidely-v0.0.1-orange)
+![version-badge](https://img.shields.io/badge/Fidely-v1.0.0--rc.1-50D100)
 ![flutter-badge](https://img.shields.io/badge/Flutter-v3.38.5-blue)
 ![dart-badge](https://img.shields.io/badge/Dart-v3.10.4-blue)
 
+## Screenshots
 <a href="docs/images/empty.png" target="_blank"><img src="docs/images/empty.png" width="150"></a>
 <a href="docs/images/list-view.png" target="_blank"><img src="docs/images/list-view.png" width="150"></a>
 <a href="docs/images/grid-view-categories.png" target="_blank"><img src="docs/images/grid-view-categories.png" width="150"></a>
