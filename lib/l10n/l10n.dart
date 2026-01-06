@@ -164,7 +164,7 @@ abstract class L10n {
   /// Title for code source selection dialog
   ///
   /// In en, this message translates to:
-  /// **'Pick a code'**
+  /// **'Scan a code by'**
   String get card_page_code_pick_title;
 
   /// Option to pick code using camera
@@ -239,11 +239,23 @@ abstract class L10n {
   /// **'Card Code'**
   String get card_page_input_code_title;
 
+  /// Label for the scan button in the card code input field
+  ///
+  /// In en, this message translates to:
+  /// **'Scan'**
+  String get card_page_input_code_button;
+
   /// Label for the card type input
   ///
   /// In en, this message translates to:
   /// **'Card Type'**
   String get card_page_input_type_title;
+
+  /// Helper text indicating that the card type was autodetected
+  ///
+  /// In en, this message translates to:
+  /// **'Type was autodetected based on the code format'**
+  String get card_page_input_type_autodetected;
 
   /// Label for owner name input field
   ///

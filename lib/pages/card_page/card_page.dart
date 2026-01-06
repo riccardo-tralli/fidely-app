@@ -62,6 +62,7 @@ class _CardPageState extends State<CardPage> {
   final TextEditingController _noteController = TextEditingController();
 
   BarcodeType _typeValue = BarcodeType.Code39;
+  bool _typeAutoDetected = false;
   Color _colorValue = Color.fromARGB(
     255,
     Random().nextInt(256),
@@ -116,6 +117,7 @@ class _CardPageState extends State<CardPage> {
             BarcodeParser.parse(capture.barcodes.first.format) ??
             BarcodeType.Code39;
         _showScanner = false;
+        _typeAutoDetected = true;
       });
     }
   }
@@ -383,6 +385,7 @@ class _CardPageState extends State<CardPage> {
                 type(
                   context: context,
                   initialValue: _typeValue,
+                  autoDetected: _typeAutoDetected,
                   onChanged: (value) => setState(() {
                     _typeValue = value;
                   }),

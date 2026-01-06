@@ -50,7 +50,7 @@
         "description": "Message shown when the barcode is tapped and code is copied",
         "type": "text"
     },
-    "card_page_code_pick_title": "Pick a code",
+    "card_page_code_pick_title": "Scan a code by",
     "@card_page_code_pick_title": {
         "description": "Title for code source selection dialog",
         "type": "text"
@@ -115,9 +115,19 @@
         "description": "Label for the card code input field",
         "type": "text"
     },
+    "card_page_input_code_button": "Scan",
+    "@card_page_input_code_button": {
+        "description": "Label for the scan button in the card code input field",
+        "type": "text"
+    },
     "card_page_input_type_title": "Card Type",
     "@card_page_input_type_title": {
         "description": "Label for the card type input",
+        "type": "text"
+    },
+    "card_page_input_type_autodetected": "Type was autodetected based on the code format",
+    "@card_page_input_type_autodetected": {
+        "description": "Helper text indicating that the card type was autodetected",
         "type": "text"
     },
     "card_page_input_owner_title": "Owner Name",

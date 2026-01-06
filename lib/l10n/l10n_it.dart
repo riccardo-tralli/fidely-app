@@ -41,7 +41,7 @@ class L10nIt extends L10n {
   String get card_barcode_tap => 'Codice copiato negli appunti';
 
   @override
-  String get card_page_code_pick_title => 'Seleziona un codice';
+  String get card_page_code_pick_title => 'Scansiona un codice con';
 
   @override
   String get card_page_code_pick_buttons_camera => 'Fotocamera';
@@ -81,7 +81,14 @@ class L10nIt extends L10n {
   String get card_page_input_code_title => 'Codice carta';
 
   @override
+  String get card_page_input_code_button => 'Scansiona';
+
+  @override
   String get card_page_input_type_title => 'Tipo carta';
+
+  @override
+  String get card_page_input_type_autodetected =>
+      'Il tipo è stato rilevato automaticamente in base al formato del codice';
 
   @override
   String get card_page_input_owner_title => 'Nome del proprietario';

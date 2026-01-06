@@ -24,9 +24,11 @@ Widget code({
       decoration: showScanner
           ? null
           : InputDecoration(
-              suffixIcon: IconButton(
+              suffixIcon: TextButton.icon(
+                label: Text(L10n.of(context)!.card_page_input_code_button),
+                icon: Hicon(HugeIcons.strokeRoundedBarCode02),
+                iconAlignment: IconAlignment.end,
                 onPressed: () => onPickUpCode(context),
-                icon: Hicon(HugeIcons.strokeRoundedSelect01),
               ),
             ),
     ),

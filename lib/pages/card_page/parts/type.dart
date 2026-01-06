@@ -3,6 +3,7 @@ part of "../card_page.dart";
 Widget type({
   required BuildContext context,
   required BarcodeType initialValue,
+  bool autoDetected = false,
   required Function(BarcodeType) onChanged,
 }) => Column(
   crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,5 +32,21 @@ Widget type({
       onChanged: (value) => onChanged(value!),
       style: Theme.of(context).textTheme.bodyLarge,
     ),
+    if (autoDetected)
+      Padding(
+        padding: EdgeInsets.only(
+          top: Spaces.small,
+          left: Spaces.medium,
+          right: Spaces.medium,
+        ),
+        child: Text(
+          "${L10n.of(context)!.card_page_input_type_autodetected} (${initialValue.name}).",
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            color: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.color?.withAlpha(150),
+          ),
+        ),
+      ),
   ],
 );

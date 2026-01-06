@@ -41,7 +41,7 @@ class L10nEn extends L10n {
   String get card_barcode_tap => 'Code copied to clipboard';
 
   @override
-  String get card_page_code_pick_title => 'Pick a code';
+  String get card_page_code_pick_title => 'Scan a code by';
 
   @override
   String get card_page_code_pick_buttons_camera => 'Camera';
@@ -81,7 +81,14 @@ class L10nEn extends L10n {
   String get card_page_input_code_title => 'Card Code';
 
   @override
+  String get card_page_input_code_button => 'Scan';
+
+  @override
   String get card_page_input_type_title => 'Card Type';
+
+  @override
+  String get card_page_input_type_autodetected =>
+      'Type was autodetected based on the code format';
 
   @override
   String get card_page_input_owner_title => 'Owner Name';
