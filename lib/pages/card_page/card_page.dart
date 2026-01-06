@@ -432,7 +432,7 @@ class _CardPageState extends State<CardPage> {
                     onRearPhotoTap: (value) => _rearPhoto = value,
                   ),
                 ),
-                SizedBox(height: 40), // * Space under save button
+                SizedBox(height: 60), // * Space under save button
               ],
             ),
           ),
