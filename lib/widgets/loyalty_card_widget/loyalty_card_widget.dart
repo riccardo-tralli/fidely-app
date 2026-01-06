@@ -174,11 +174,9 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
   @override
   void didUpdateWidget(covariant LoyaltyCardWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.card.id != widget.card.id) {
-      frontPhoto = null;
-      rearPhoto = null;
-      loadPhotos();
-    }
+    frontPhoto = null;
+    rearPhoto = null;
+    loadPhotos();
   }
 
   @override
