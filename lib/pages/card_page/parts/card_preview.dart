@@ -114,4 +114,9 @@ Widget scanner(
 );
 
 Widget preview(BuildContext context, LoyaltyCard card, double height) =>
-    LoyaltyCardWidget(card: card, isSelectable: false, height: height);
+    LoyaltyCardWidget(
+      card: card,
+      isSelectable: false,
+      height: height,
+      showTitle: height > 120,
+    );

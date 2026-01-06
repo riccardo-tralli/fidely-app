@@ -25,6 +25,7 @@ part "parts/tap.dart";
 
 class LoyaltyCardWidget extends StatefulWidget {
   final LoyaltyCard card;
+  final bool showTitle;
   final bool showBarcode;
   final bool showOwner;
   final bool isSelectable;
@@ -35,6 +36,7 @@ class LoyaltyCardWidget extends StatefulWidget {
   const LoyaltyCardWidget({
     super.key,
     required this.card,
+    this.showTitle = true,
     this.showBarcode = true,
     this.showOwner = true,
     this.isSelectable = true,
@@ -251,7 +253,9 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
               spacing: Spaces.small,
               runSpacing: Spaces.small,
               children: [
-                title(context),
+                if (widget.showTitle ||
+                    !widget.showTitle && !widget.showBarcode)
+                  title(context),
                 if (widget.showOwner &&
                     widget.card.owner != null &&
                     widget.card.owner!.isNotEmpty)
@@ -272,9 +276,7 @@ class _LoyaltyCardWidgetState extends State<LoyaltyCardWidget> {
     } else if (!widget.showBarcode && !widget.showOwner) {
       style = Theme.of(context).textTheme.headlineSmall;
     } else {
-      style = widget.height != null && widget.height! <= 70
-          ? Theme.of(context).textTheme.headlineSmall
-          : Theme.of(context).textTheme.headlineLarge;
+      style = Theme.of(context).textTheme.headlineLarge;
     }
 
     return Text(

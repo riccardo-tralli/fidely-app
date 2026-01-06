@@ -221,10 +221,7 @@ class _CardPageState extends State<CardPage> {
       // Set state with calculated values
       setState(() {
         _cardPreviewSpace = cardBox.size.height + Spaces.medium;
-        _minScroll =
-            dividerBox.localToGlobal(Offset.zero).dy -
-            kToolbarHeight -
-            Spaces.medium;
+        _minScroll = dividerBox.localToGlobal(Offset.zero).dy - kToolbarHeight;
       });
     });
   }
