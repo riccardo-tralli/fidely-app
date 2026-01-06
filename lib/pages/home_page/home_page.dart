@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
           if (!state) addButton(context),
         ],
       ),
-      body: content(context, state),
+      body: SafeArea(child: content(context, state)),
     ),
   );
 
@@ -83,7 +83,10 @@ class HomePage extends StatelessWidget {
               return emptyList(context: context);
             }
 
-            return list(context: context, state: state);
+            return Padding(
+              padding: EdgeInsets.only(bottom: Spaces.small),
+              child: list(context: context, state: state),
+            );
           }
 
           return error(
