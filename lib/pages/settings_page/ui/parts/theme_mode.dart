@@ -1,4 +1,4 @@
-part of "../settings_page.dart";
+part of "../ui_settings_page.dart";
 
 Widget themeMode({required BuildContext context}) =>
     BlocBuilder<DarkModeCubit, ThemeMode>(
@@ -17,6 +17,7 @@ Widget themeMode({required BuildContext context}) =>
               children: [light(context), dark(context), system(context)],
             ),
           ),
+          SizedBox(height: Spaces.medium),
         ],
       ),
     );

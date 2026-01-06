@@ -5,6 +5,16 @@
         "description": "The title of the application shown in the app bar and launcher",
         "type": "text"
     },
+    "backup_settings_page_title": "Backup & Restore",
+    "@backup_settings_page_title": {
+        "description": "Title for the backup and restore settings page",
+        "type": "text"
+    },
+    "data_settings_page_title": "Import & Export",
+    "@data_settings_page_title": {
+        "description": "Title for the data import and export settings page",
+        "type": "text"
+    },
     "card_edit_title": "Edit",
     "@card_edit_title": {
         "description": "Label for edit action on a loyalty card",
@@ -245,6 +255,11 @@
         "description": "Title for the favorites section on home page",
         "type": "text"
     },
+    "info_page_title": "Info",
+    "@info_page_title": {
+        "description": "Title for the info page",
+        "type": "text"
+    },
     "info_page_repository_title": "Repository",
     "@info_page_repository_title": {
         "description": "Label for the app repository link",
@@ -263,6 +278,11 @@
     "info_page_illustrations_title": "Illustrations",
     "@info_page_illustrations_title": {
         "description": "Label for the illustrations credits link",
+        "type": "text"
+    },
+    "language_settings_page_title": "Language",
+    "@language_settings_page_title": {
+        "description": "Title for the language settings page",
         "type": "text"
     },
     "photo_pick_title": "Pick a photo",
@@ -411,16 +431,6 @@
         "description": "Label to indicate descending sort direction",
         "type": "text"
     },
-    "settings_page_language_title": "Language",
-    "@settings_page_language_title": {
-        "description": "Title for language selection in settings",
-        "type": "text"
-    },
-    "settings_page_language_description": "Select your preferred language",
-    "@settings_page_language_description": {
-        "description": "Description explaining language selection",
-        "type": "text"
-    },
     "settings_page_language_option_system": "System Default",
     "@settings_page_language_option_system": {
         "description": "Language option: system default",
@@ -444,6 +454,11 @@
     "settings_page_language_option_italian": "Italian",
     "@settings_page_language_option_italian": {
         "description": "Language option: Italian",
+        "type": "text"
+    },
+    "ui_settings_page_title": "Interface",
+    "@ui_settings_page_title": {
+        "description": "Title for the UI settings page",
         "type": "text"
     }
 }

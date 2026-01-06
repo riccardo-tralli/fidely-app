@@ -107,6 +107,18 @@ abstract class L10n {
   /// **'Fidely'**
   String get app_title;
 
+  /// Title for the backup and restore settings page
+  ///
+  /// In en, this message translates to:
+  /// **'Backup & Restore'**
+  String get backup_settings_page_title;
+
+  /// Title for the data import and export settings page
+  ///
+  /// In en, this message translates to:
+  /// **'Import & Export'**
+  String get data_settings_page_title;
+
   /// Label for edit action on a loyalty card
   ///
   /// In en, this message translates to:
@@ -395,6 +407,12 @@ abstract class L10n {
   /// **'Favorites'**
   String get home_page_favorite_section_title;
 
+  /// Title for the info page
+  ///
+  /// In en, this message translates to:
+  /// **'Info'**
+  String get info_page_title;
+
   /// Label for the app repository link
   ///
   /// In en, this message translates to:
@@ -418,6 +436,12 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'Illustrations'**
   String get info_page_illustrations_title;
+
+  /// Title for the language settings page
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language_settings_page_title;
 
   /// Title for photo source selection dialog
   ///
@@ -587,18 +611,6 @@ abstract class L10n {
   /// **'descending'**
   String get settings_page_sort_reverse_direction_desc;
 
-  /// Title for language selection in settings
-  ///
-  /// In en, this message translates to:
-  /// **'Language'**
-  String get settings_page_language_title;
-
-  /// Description explaining language selection
-  ///
-  /// In en, this message translates to:
-  /// **'Select your preferred language'**
-  String get settings_page_language_description;
-
   /// Language option: system default
   ///
   /// In en, this message translates to:
@@ -628,6 +640,12 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'Italian'**
   String get settings_page_language_option_italian;
+
+  /// Title for the UI settings page
+  ///
+  /// In en, this message translates to:
+  /// **'Interface'**
+  String get ui_settings_page_title;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

@@ -16,6 +16,7 @@ class LightTheme {
 
   static final Color inputSurfaceColor = Colors.grey.shade100;
   static final Color inputBorderColor = Colors.grey.shade200;
+  static final Color switchDisabledColor = Colors.grey.shade300;
 
   static final Color textColor = Colors.grey.shade900;
   static final Color errorColor = Colors.red.shade300;
@@ -120,6 +121,24 @@ class LightTheme {
           RoundedSuperellipseBorder(borderRadius: BorderRadius.circular(12)),
         ),
       ),
+    ),
+    cardTheme: CardThemeData(
+      margin: EdgeInsets.zero,
+      color: inputSurfaceColor,
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(RRadius.medium),
+      ),
+    ),
+    switchTheme: SwitchThemeData(
+      trackOutlineColor: WidgetStateColor.fromMap({
+        WidgetState.selected: primaryColor,
+        WidgetState.any: switchDisabledColor,
+      }),
+      thumbColor: WidgetStateColor.fromMap({
+        WidgetState.selected: backgroundColor,
+        WidgetState.any: switchDisabledColor,
+      }),
     ),
   );
 }

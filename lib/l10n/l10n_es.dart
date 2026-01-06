@@ -12,6 +12,12 @@ class L10nEs extends L10n {
   String get app_title => 'Fidely';
 
   @override
+  String get backup_settings_page_title => 'Copia de seguridad y restauración';
+
+  @override
+  String get data_settings_page_title => 'Importar y Exportar';
+
+  @override
   String get card_edit_title => 'Editar';
 
   @override
@@ -162,6 +168,9 @@ class L10nEs extends L10n {
   String get home_page_favorite_section_title => 'Favoritos';
 
   @override
+  String get info_page_title => 'Información';
+
+  @override
   String get info_page_repository_title => 'Repositorio';
 
   @override
@@ -172,6 +181,9 @@ class L10nEs extends L10n {
 
   @override
   String get info_page_illustrations_title => 'Ilustraciones';
+
+  @override
+  String get language_settings_page_title => 'Idioma';
 
   @override
   String get photo_pick_title => 'Elegir una foto';
@@ -265,13 +277,6 @@ class L10nEs extends L10n {
   String get settings_page_sort_reverse_direction_desc => 'descendente';
 
   @override
-  String get settings_page_language_title => 'Idioma';
-
-  @override
-  String get settings_page_language_description =>
-      'Selecciona tu idioma preferido';
-
-  @override
   String get settings_page_language_option_system => 'Sistema';
 
   @override
@@ -285,4 +290,7 @@ class L10nEs extends L10n {
 
   @override
   String get settings_page_language_option_italian => 'Italiano';
+
+  @override
+  String get ui_settings_page_title => 'Interfaz';
 }

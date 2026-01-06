@@ -5,12 +5,14 @@ import 'package:flutter/services.dart';
 
 class TopBar extends StatelessWidget implements PreferredSizeWidget {
   final Color? backgroundColor;
+  final String? title;
   final bool showTitle;
   final List<Widget>? actions;
 
   const TopBar({
     super.key,
     this.backgroundColor,
+    this.title,
     this.showTitle = true,
     this.actions,
   });
@@ -34,10 +36,12 @@ class TopBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: showTitle
           ? Text(
-              L10n.of(context)?.app_title ?? "Fidely",
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                color: Theme.of(context).colorScheme.primary,
-              ),
+              title ?? L10n.of(context)?.app_title ?? "Fidely",
+              style: title != null
+                  ? Theme.of(context).textTheme.headlineSmall
+                  : Theme.of(context).textTheme.titleLarge?.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
             )
           : null,
       centerTitle: false,

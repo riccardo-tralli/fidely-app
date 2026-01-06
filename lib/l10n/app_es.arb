@@ -1,6 +1,8 @@
 {
     "@@locale": "es",
     "app_title": "Fidely",
+    "backup_settings_page_title": "Copia de seguridad y restauración",
+    "data_settings_page_title": "Importar y Exportar",
     "card_edit_title": "Editar",
     "card_delete_title": "Eliminar",
     "card_delete_description": "¿Estás seguro de que deseas eliminar esta tarjeta de fidelidad?",
@@ -49,10 +51,12 @@
     "home_page_search_close_button": "Cerrar",
     "home_page_search_empty_results": "No se han encontrado resultados",
     "home_page_favorite_section_title": "Favoritos",
+    "info_page_title": "Información",
     "info_page_repository_title": "Repositorio",
     "info_page_terms_title": "Términos de uso",
     "info_page_privacy_title": "Política de privacidad",
     "info_page_illustrations_title": "Ilustraciones",
+    "language_settings_page_title": "Idioma",
     "photo_pick_title": "Elegir una foto",
     "photo_pick_buttons_camera": "Cámara",
     "photo_pick_buttons_gallery": "Galería",
@@ -81,11 +85,10 @@
     "settings_page_sort_reverse_description": "Las tarjetas están ordenadas en orden {direction}",
     "settings_page_sort_reverse_direction_asc": "ascendente",
     "settings_page_sort_reverse_direction_desc": "descendente",
-    "settings_page_language_title": "Idioma",
-    "settings_page_language_description": "Selecciona tu idioma preferido",
     "settings_page_language_option_system": "Sistema",
     "settings_page_language_option_english": "Inglés",
     "settings_page_language_option_french": "Francés",
     "settings_page_language_option_spanish": "Español",
-    "settings_page_language_option_italian": "Italiano"
+    "settings_page_language_option_italian": "Italiano",
+    "ui_settings_page_title": "Interfaz"
 }

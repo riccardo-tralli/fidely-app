@@ -1,4 +1,4 @@
-part of "../settings_page.dart";
+part of "../ui_settings_page.dart";
 
 Widget viewMode({required BuildContext context}) =>
     BlocBuilder<ViewModeCubit, ViewMode>(
@@ -41,6 +41,7 @@ Widget gridView(BuildContext context) => Expanded(
 );
 
 Widget usePhoto(BuildContext context) => SwitchListTile(
+  contentPadding: EdgeInsets.zero,
   title: Text(L10n.of(context)!.settings_page_view_mode_use_photo_title),
   subtitle: Text(
     L10n.of(context)!.settings_page_view_mode_use_photo_description,
