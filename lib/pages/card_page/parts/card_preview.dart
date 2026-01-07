@@ -10,9 +10,9 @@ Widget cardPreview({
   required bool flashOn,
   required bool frontCamera,
   required Function(BarcodeCapture capture) onDetect,
-  required Function onClose,
-  required Function onToggleFlash,
-  required Function onSwitchCamera,
+  required Function() onClose,
+  required Function() onToggleFlash,
+  required Function() onSwitchCamera,
 }) => Container(
   key: key,
   padding: EdgeInsets.only(
@@ -50,65 +50,82 @@ Widget scanner(
   Function(BarcodeCapture capture) onDetect,
   bool flashOn,
   bool frontCamera,
-  Function onClose,
-  Function onToggleFlash,
-  Function onSwitchCamera,
+  Function() onClose,
+  Function() onToggleFlash,
+  Function() onSwitchCamera,
 ) => Padding(
   padding: EdgeInsets.symmetric(horizontal: Spaces.small),
   child: SizedBox(
     width: double.infinity,
-    height: 260,
+    height: 240,
     child: ClipRRect(
       borderRadius: BorderRadius.circular(RRadius.medium),
-      child: MobileScanner(
-        controller: controller,
-        onDetect: (value) => onDetect(value),
-        overlayBuilder: (context, constraints) => Container(
-          margin: EdgeInsets.only(
-            top: Spaces.medium,
-            right: Spaces.medium,
-            bottom: Spaces.medium,
-            left: constraints.maxWidth - 76,
-          ),
-          padding: EdgeInsets.all(Spaces.small),
-          decoration: BoxDecoration(
-            color: Colors.black.withAlpha(100),
-            borderRadius: BorderRadius.circular(RRadius.medium),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              spacing: Spaces.small,
-              children: [
-                IconButton.filled(
-                  onPressed: () => onClose(),
-                  icon: Hicon(
-                    HugeIcons.strokeRoundedCancel01,
-                    color: Colors.white,
-                  ),
-                ),
-                IconButton.filled(
-                  onPressed: () => onToggleFlash(),
-                  icon: Hicon(
-                    flashOn
-                        ? HugeIcons.strokeRoundedFlash
-                        : HugeIcons.strokeRoundedFlashOff,
-                    color: Colors.white,
-                  ),
-                ),
-                IconButton.filled(
-                  onPressed: () => onSwitchCamera(),
-                  icon: Hicon(
-                    frontCamera
-                        ? HugeIcons.strokeRoundedCamera01
-                        : HugeIcons.strokeRoundedFaceId,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: MobileScanner(
+              controller: controller,
+              onDetect: (value) => onDetect(value),
             ),
           ),
-        ),
+          buttons(
+            context,
+            flashOn,
+            frontCamera,
+            onClose,
+            onToggleFlash,
+            onSwitchCamera,
+          ),
+        ],
       ),
+    ),
+  ),
+);
+
+Widget buttons(
+  BuildContext context,
+  bool flashOn,
+  bool frontCamera,
+  Function() onClose,
+  Function() onToggleFlash,
+  Function() onSwitchCamera,
+) => Positioned(
+  top: Spaces.zero,
+  right: Spaces.zero,
+  bottom: Spaces.zero,
+  child: Container(
+    padding: EdgeInsets.all(Spaces.small),
+    decoration: BoxDecoration(
+      color: Colors.black.withAlpha(100),
+      borderRadius: BorderRadius.circular(RRadius.medium),
+    ),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      spacing: Spaces.small,
+      children: [
+        IconButton.filled(
+          onPressed: () => onClose(),
+          icon: Hicon(HugeIcons.strokeRoundedCancel01, color: Colors.white),
+        ),
+        IconButton.filled(
+          onPressed: () => onToggleFlash(),
+          icon: Hicon(
+            flashOn
+                ? HugeIcons.strokeRoundedFlash
+                : HugeIcons.strokeRoundedFlashOff,
+            color: Colors.white,
+          ),
+        ),
+        IconButton.filled(
+          onPressed: () => onSwitchCamera(),
+          icon: Hicon(
+            frontCamera
+                ? HugeIcons.strokeRoundedCamera01
+                : HugeIcons.strokeRoundedFaceId,
+            color: Colors.white,
+          ),
+        ),
+      ],
     ),
   ),
 );

@@ -1,4 +1,7 @@
 class Spaces {
+  /// 0.0
+  static final double zero = 0;
+
   /// 4.0
   static final double extraSmall = 4;
 
