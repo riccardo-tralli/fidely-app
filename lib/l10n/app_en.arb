@@ -70,6 +70,21 @@
         "description": "Title for color picker dialog",
         "type": "text"
     },
+    "card_page_color_pick_colors_tab_title": "Colors",
+    "@card_page_color_pick_colors_tab_title": {
+        "description": "Title for the colors tab in color picker",
+        "type": "text"
+    },
+    "card_page_color_pick_list_tab_title": "List",
+    "@card_page_color_pick_list_tab_title": {
+        "description": "Title for the list tab in color picker",
+        "type": "text"
+    },
+    "card_page_color_pick_palette_tab_title": "Palette",
+    "@card_page_color_pick_palette_tab_title": {
+        "description": "Title for the palette tab in color picker",
+        "type": "text"
+    },
     "card_page_color_pick_buttons_confirm": "Select",
     "@card_page_color_pick_buttons_confirm": {
         "description": "Confirm button label in color picker",

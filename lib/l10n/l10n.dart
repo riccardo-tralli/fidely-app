@@ -185,6 +185,24 @@ abstract class L10n {
   /// **'Pick a color'**
   String get card_page_color_pick_title;
 
+  /// Title for the colors tab in color picker
+  ///
+  /// In en, this message translates to:
+  /// **'Colors'**
+  String get card_page_color_pick_colors_tab_title;
+
+  /// Title for the list tab in color picker
+  ///
+  /// In en, this message translates to:
+  /// **'List'**
+  String get card_page_color_pick_list_tab_title;
+
+  /// Title for the palette tab in color picker
+  ///
+  /// In en, this message translates to:
+  /// **'Palette'**
+  String get card_page_color_pick_palette_tab_title;
+
   /// Confirm button label in color picker
   ///
   /// In en, this message translates to:

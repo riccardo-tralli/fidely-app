@@ -53,6 +53,15 @@ class L10nEn extends L10n {
   String get card_page_color_pick_title => 'Pick a color';
 
   @override
+  String get card_page_color_pick_colors_tab_title => 'Colors';
+
+  @override
+  String get card_page_color_pick_list_tab_title => 'List';
+
+  @override
+  String get card_page_color_pick_palette_tab_title => 'Palette';
+
+  @override
   String get card_page_color_pick_buttons_confirm => 'Select';
 
   @override

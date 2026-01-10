@@ -54,15 +54,9 @@ void _onTap(
     context: context,
     builder: (context) => AlertDialog(
       title: Text(L10n.of(context)!.card_page_color_pick_title),
-      content: SingleChildScrollView(
-        child: ColorPicker(
-          pickerColor: colorValue,
-          onColorChanged: (color) => tempColor = color,
-          pickerAreaHeightPercent: 0.8,
-          enableAlpha: false,
-          labelTypes: [],
-          pickerAreaBorderRadius: BorderRadius.circular(RRadius.medium),
-        ),
+      content: ColorDialog(
+        initialColor: colorValue,
+        onColorChange: (color) => tempColor = color,
       ),
       actionsAlignment: MainAxisAlignment.spaceBetween,
       actionsOverflowButtonSpacing: Spaces.small,
