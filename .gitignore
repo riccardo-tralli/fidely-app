@@ -123,3 +123,7 @@ app.*.symbols
 # Android Studio
 .idea/
 *.iml
+
+# Visual Studio Code
+.vscode/
+devtools_options.yaml
