@@ -155,9 +155,9 @@
         "description": "Category option: market and grocery",
         "type": "text"
     },
-    "card_page_input_category_option_food": "Food",
+    "card_page_input_category_option_food": "Restaurants and Fast-Food",
     "@card_page_input_category_option_food": {
-        "description": "Category option: food",
+        "description": "Category option: restaurants and fast-food",
         "type": "text"
     },
     "card_page_input_category_option_pets": "Pets",
@@ -178,6 +178,11 @@
     "card_page_input_category_option_fashion": "Fashion and Beauty",
     "@card_page_input_category_option_fashion": {
         "description": "Category option: fashion and beauty",
+        "type": "text"
+    },
+    "card_page_input_category_option_home": "Home and Gardening",
+    "@card_page_input_category_option_home": {
+        "description": "Category option: home and gardening",
         "type": "text"
     },
     "card_page_input_category_option_electronics": "Electronics",

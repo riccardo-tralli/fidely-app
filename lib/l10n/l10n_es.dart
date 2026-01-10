@@ -106,7 +106,8 @@ class L10nEs extends L10n {
   String get card_page_input_category_option_grocery => 'Supermercado y Tienda';
 
   @override
-  String get card_page_input_category_option_food => 'Comida';
+  String get card_page_input_category_option_food =>
+      'Restaurantes y Comida Rápida';
 
   @override
   String get card_page_input_category_option_pets => 'Mascotas';
@@ -119,6 +120,9 @@ class L10nEs extends L10n {
 
   @override
   String get card_page_input_category_option_fashion => 'Moda y Belleza';
+
+  @override
+  String get card_page_input_category_option_home => 'Hogar y Jardinería';
 
   @override
   String get card_page_input_category_option_electronics => 'Electrónica';

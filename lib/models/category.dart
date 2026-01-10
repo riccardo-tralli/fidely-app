@@ -53,6 +53,11 @@ class Categories {
       icon: HugeIcons.strokeRoundedDress03,
     ),
     Category(
+      name: "home",
+      label: L10n.of(context)!.card_page_input_category_option_home,
+      icon: HugeIcons.strokeRoundedHouse04,
+    ),
+    Category(
       name: "electronics",
       label: L10n.of(context)!.card_page_input_category_option_electronics,
       icon: HugeIcons.strokeRoundedElectricPlugs,

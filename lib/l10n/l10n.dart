@@ -287,10 +287,10 @@ abstract class L10n {
   /// **'Market and Grocery'**
   String get card_page_input_category_option_grocery;
 
-  /// Category option: food
+  /// Category option: restaurants and fast-food
   ///
   /// In en, this message translates to:
-  /// **'Food'**
+  /// **'Restaurants and Fast-Food'**
   String get card_page_input_category_option_food;
 
   /// Category option: pets
@@ -316,6 +316,12 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'Fashion and Beauty'**
   String get card_page_input_category_option_fashion;
+
+  /// Category option: home and gardening
+  ///
+  /// In en, this message translates to:
+  /// **'Home and Gardening'**
+  String get card_page_input_category_option_home;
 
   /// Category option: electronics
   ///
