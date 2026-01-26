@@ -2,6 +2,9 @@
 
 **Fidely is an open-source, free and offline loyalty card wallet.**
 
+<a href="https://apps.apple.com/app/fidely-wallet/id6757391736" target="_blank"><img src="docs/images/download/download_appstore.svg" height="50"></a>
+<!-- <img src="docs/images/download/download_googleplay.svg" height="50"> -->
+
 ## Screenshots
 <a href="docs/images/empty.png" target="_blank"><img src="docs/images/empty.png" width="150"></a>
 <a href="docs/images/list-view.png" target="_blank"><img src="docs/images/list-view.png" width="150"></a>
