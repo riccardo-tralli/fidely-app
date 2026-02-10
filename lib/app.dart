@@ -8,6 +8,7 @@ import 'package:fidely_app/models/loyalty_card.dart';
 import 'package:fidely_app/pages/card_page/card_page.dart';
 import 'package:fidely_app/pages/home_page/home_page.dart';
 import 'package:fidely_app/pages/info_page.dart';
+import 'package:fidely_app/pages/settings_page/export_import_settings_page.dart';
 import 'package:fidely_app/pages/settings_page/language_settings_page.dart';
 import 'package:fidely_app/pages/settings_page/settings_page.dart';
 import 'package:fidely_app/pages/settings_page/ui/ui_settings_page.dart';
@@ -37,6 +38,8 @@ class App extends StatelessWidget {
             SettingsPage.route: (_) => const SettingsPage(),
             UiSettingsPage.route: (_) => const UiSettingsPage(),
             LanguageSettingsPage.route: (_) => const LanguageSettingsPage(),
+            ExportImportSettingsPage.route: (_) =>
+                const ExportImportSettingsPage(),
             InfoPage.route: (_) => const InfoPage(),
           },
           onGenerateRoute: (settings) {

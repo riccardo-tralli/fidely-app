@@ -15,9 +15,6 @@ class L10nIt extends L10n {
   String get backup_settings_page_title => 'Backup e Ripristino';
 
   @override
-  String get data_settings_page_title => 'Importa & Esporta';
-
-  @override
   String get card_edit_title => 'Modifica';
 
   @override
@@ -163,6 +160,50 @@ class L10nIt extends L10n {
 
   @override
   String get card_page_save_button_title => 'Salva';
+
+  @override
+  String get export_import_settings_page_title => 'Esporta & Importa';
+
+  @override
+  String get export_import_settings_page_export_title => 'Esporta dati';
+
+  @override
+  String get export_import_settings_page_export_description =>
+      'Puoi esportare i tuoi dati come file JSON o ZIP.\nQuesto file può essere utilizzato per fare un backup dei tuoi dati o per trasferirli su un altro dispositivo.';
+
+  @override
+  String get export_import_settings_page_export_images_options_title =>
+      'Includi foto delle carte';
+
+  @override
+  String get export_import_settings_page_export_images_options_include =>
+      'Il file esportato includerà le immagini, rendendolo più grande.';
+
+  @override
+  String get export_import_settings_page_export_images_options_exclude =>
+      'Il file esportato non includerà le immagini, rendendolo più piccolo.';
+
+  @override
+  String get export_import_settings_page_export_button =>
+      'Seleziona dove salvare il file esportato';
+
+  @override
+  String get export_import_settings_page_import_title => 'Importa dati';
+
+  @override
+  String get export_import_settings_page_import_description =>
+      'Puoi importare i tuoi dati da un file JSON o ZIP.\nI file JSON includono solo i tuoi dati, mentre i file ZIP possono includere anche le immagini.';
+
+  @override
+  String get export_import_settings_page_import_alert_title => 'Avviso';
+
+  @override
+  String get export_import_settings_page_import_alert_description =>
+      'L\'importazione dei dati sovrascriverà i tuoi dati attuali. Assicurati di creare un backup prima di procedere.';
+
+  @override
+  String get export_import_settings_page_import_button =>
+      'Seleziona file da importare';
 
   @override
   String get home_page_no_cards_title => 'Woah, così vuoto!';

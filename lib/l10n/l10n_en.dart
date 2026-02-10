@@ -15,9 +15,6 @@ class L10nEn extends L10n {
   String get backup_settings_page_title => 'Backup & Restore';
 
   @override
-  String get data_settings_page_title => 'Import & Export';
-
-  @override
   String get card_edit_title => 'Edit';
 
   @override
@@ -164,6 +161,50 @@ class L10nEn extends L10n {
 
   @override
   String get card_page_save_button_title => 'Save';
+
+  @override
+  String get export_import_settings_page_title => 'Export & Import';
+
+  @override
+  String get export_import_settings_page_export_title => 'Export Data';
+
+  @override
+  String get export_import_settings_page_export_description =>
+      'You can export your data as a JSON or ZIP file.\nThis file can be used to backup your data or to transfer it to another device.';
+
+  @override
+  String get export_import_settings_page_export_images_options_title =>
+      'Include Card Photos';
+
+  @override
+  String get export_import_settings_page_export_images_options_include =>
+      'Exported file will include images, making it larger.';
+
+  @override
+  String get export_import_settings_page_export_images_options_exclude =>
+      'Exported file will not include images, making it smaller.';
+
+  @override
+  String get export_import_settings_page_export_button =>
+      'Select where to save the exported file';
+
+  @override
+  String get export_import_settings_page_import_title => 'Import Data';
+
+  @override
+  String get export_import_settings_page_import_description =>
+      'You can import your data from a JSON or ZIP file.\nJSON files include only your data, while ZIP files can include images as well.';
+
+  @override
+  String get export_import_settings_page_import_alert_title => 'Warning';
+
+  @override
+  String get export_import_settings_page_import_alert_description =>
+      'Importing data will overwrite your current data. Make sure to create a backup before proceeding.';
+
+  @override
+  String get export_import_settings_page_import_button =>
+      'Select file to import';
 
   @override
   String get home_page_no_cards_title => 'Whoa, such empty!';

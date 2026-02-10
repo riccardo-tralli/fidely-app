@@ -15,9 +15,6 @@ class L10nFr extends L10n {
   String get backup_settings_page_title => 'Sauvegarde et restauration';
 
   @override
-  String get data_settings_page_title => 'Importer et exporter';
-
-  @override
   String get card_edit_title => 'Modifier';
 
   @override
@@ -164,6 +161,50 @@ class L10nFr extends L10n {
 
   @override
   String get card_page_save_button_title => 'Enregistrer';
+
+  @override
+  String get export_import_settings_page_title => 'Exportation et Importation';
+
+  @override
+  String get export_import_settings_page_export_title => 'Exporter les données';
+
+  @override
+  String get export_import_settings_page_export_description =>
+      'Vous pouvez exporter vos données sous forme de fichier JSON ou ZIP.\nCe fichier peut être utilisé pour sauvegarder vos données ou les transférer vers un autre appareil.';
+
+  @override
+  String get export_import_settings_page_export_images_options_title =>
+      'Inclure les photos de cartes';
+
+  @override
+  String get export_import_settings_page_export_images_options_include =>
+      'Le fichier exporté inclura les images, le rendant plus volumineux.';
+
+  @override
+  String get export_import_settings_page_export_images_options_exclude =>
+      'Le fichier exporté n\'inclura pas les images, le rendant plus léger.';
+
+  @override
+  String get export_import_settings_page_export_button =>
+      'Sélectionner où enregistrer le fichier exporté';
+
+  @override
+  String get export_import_settings_page_import_title => 'Importer les données';
+
+  @override
+  String get export_import_settings_page_import_description =>
+      'Vous pouvez importer vos données à partir d\'un fichier JSON ou ZIP.\nLes fichiers JSON incluent uniquement vos données, tandis que les fichiers ZIP peuvent également inclure des images.';
+
+  @override
+  String get export_import_settings_page_import_alert_title => 'Avertissement';
+
+  @override
+  String get export_import_settings_page_import_alert_description =>
+      'L\'importation de données écrasera vos données actuelles. Assurez-vous de créer une sauvegarde avant de continuer.';
+
+  @override
+  String get export_import_settings_page_import_button =>
+      'Sélectionner le fichier à importer';
 
   @override
   String get home_page_no_cards_title => 'Woah, tellement vide !';

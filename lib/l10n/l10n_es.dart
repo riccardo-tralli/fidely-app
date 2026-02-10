@@ -15,9 +15,6 @@ class L10nEs extends L10n {
   String get backup_settings_page_title => 'Copia de seguridad y restauración';
 
   @override
-  String get data_settings_page_title => 'Importar y Exportar';
-
-  @override
   String get card_edit_title => 'Editar';
 
   @override
@@ -163,6 +160,50 @@ class L10nEs extends L10n {
 
   @override
   String get card_page_save_button_title => 'Guardar';
+
+  @override
+  String get export_import_settings_page_title => 'Exportar e Importar';
+
+  @override
+  String get export_import_settings_page_export_title => 'Exportar datos';
+
+  @override
+  String get export_import_settings_page_export_description =>
+      'Puedes exportar tus datos como un archivo JSON o ZIP.\nEste archivo se puede usar para respaldar tus datos o transferirlos a otro dispositivo.';
+
+  @override
+  String get export_import_settings_page_export_images_options_title =>
+      'Incluir fotos de tarjetas';
+
+  @override
+  String get export_import_settings_page_export_images_options_include =>
+      'El archivo exportado incluirá imágenes, haciéndolo más grande.';
+
+  @override
+  String get export_import_settings_page_export_images_options_exclude =>
+      'El archivo exportado no incluirá imágenes, haciéndolo más pequeño.';
+
+  @override
+  String get export_import_settings_page_export_button =>
+      'Seleccionar dónde guardar el archivo exportado';
+
+  @override
+  String get export_import_settings_page_import_title => 'Importar datos';
+
+  @override
+  String get export_import_settings_page_import_description =>
+      'Puedes importar tus datos desde un archivo JSON o ZIP.\nLos archivos JSON incluyen solo tus datos, mientras que los archivos ZIP pueden incluir imágenes también.';
+
+  @override
+  String get export_import_settings_page_import_alert_title => 'Advertencia';
+
+  @override
+  String get export_import_settings_page_import_alert_description =>
+      'Importar datos sobrescribirá tus datos actuales. Asegúrate de crear una copia de seguridad antes de continuar.';
+
+  @override
+  String get export_import_settings_page_import_button =>
+      'Seleccionar archivo para importar';
 
   @override
   String get home_page_no_cards_title => 'Woah, así vacío!';

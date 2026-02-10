@@ -10,11 +10,6 @@
         "description": "Title for the backup and restore settings page",
         "type": "text"
     },
-    "data_settings_page_title": "Import & Export",
-    "@data_settings_page_title": {
-        "description": "Title for the data import and export settings page",
-        "type": "text"
-    },
     "card_edit_title": "Edit",
     "@card_edit_title": {
         "description": "Label for edit action on a loyalty card",
@@ -248,6 +243,66 @@
     "card_page_save_button_title": "Save",
     "@card_page_save_button_title": {
         "description": "Save button label on card page",
+        "type": "text"
+    },
+    "export_import_settings_page_title": "Export & Import",
+    "@export_import_settings_page_title": {
+        "description": "Title for the data export and import settings page",
+        "type": "text"
+    },
+    "export_import_settings_page_export_title": "Export Data",
+    "@export_import_settings_page_export_title": {
+        "description": "Title for the export data section",
+        "type": "text"
+    },
+    "export_import_settings_page_export_description": "You can export your data as a JSON or ZIP file.\nThis file can be used to backup your data or to transfer it to another device.",
+    "@export_import_settings_page_export_description": {
+        "description": "Description for the export data section",
+        "type": "text"
+    },
+    "export_import_settings_page_export_images_options_title": "Include Card Photos",
+    "@export_import_settings_page_export_images_options_title": {
+        "description": "Label for the option to include card photos in the export",
+        "type": "text"
+    },
+    "export_import_settings_page_export_images_options_include": "Exported file will include images, making it larger.",
+    "@export_import_settings_page_export_images_options_include": {
+        "description": "Helper text explaining the effect of including images in the export",
+        "type": "text"
+    },
+    "export_import_settings_page_export_images_options_exclude": "Exported file will not include images, making it smaller.",
+    "@export_import_settings_page_export_images_options_exclude": {
+        "description": "Helper text explaining the effect of excluding images in the export",
+        "type": "text"
+    },
+        "export_import_settings_page_export_button": "Select where to save the exported file",
+    "@export_import_settings_page_export_button": {
+        "description": "Label for the button to start the export process",
+        "type": "text"
+    },
+    "export_import_settings_page_import_title": "Import Data",
+    "@export_import_settings_page_import_title": {
+        "description": "Title for the data import section",
+        "type": "text"
+    },
+    "export_import_settings_page_import_description": "You can import your data from a JSON or ZIP file.\nJSON files include only your data, while ZIP files can include images as well.",
+    "@export_import_settings_page_import_description": {
+        "description": "Description for the data import section",
+        "type": "text"
+    },
+    "export_import_settings_page_import_alert_title": "Warning",
+    "@export_import_settings_page_import_alert_title": {
+        "description": "Title for the import warning dialog",
+        "type": "text"
+    },
+    "export_import_settings_page_import_alert_description": "Importing data will overwrite your current data. Make sure to create a backup before proceeding.",
+    "@export_import_settings_page_import_alert_description": {
+        "description": "Description for the import warning dialog",
+        "type": "text"
+    },
+    "export_import_settings_page_import_button": "Select file to import",
+    "@export_import_settings_page_import_button": {
+        "description": "Label for the button to start the import process",
         "type": "text"
     },
     "home_page_no_cards_title": "Whoa, such empty!",

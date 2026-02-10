@@ -113,12 +113,6 @@ abstract class L10n {
   /// **'Backup & Restore'**
   String get backup_settings_page_title;
 
-  /// Title for the data import and export settings page
-  ///
-  /// In en, this message translates to:
-  /// **'Import & Export'**
-  String get data_settings_page_title;
-
   /// Label for edit action on a loyalty card
   ///
   /// In en, this message translates to:
@@ -400,6 +394,78 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'Save'**
   String get card_page_save_button_title;
+
+  /// Title for the data export and import settings page
+  ///
+  /// In en, this message translates to:
+  /// **'Export & Import'**
+  String get export_import_settings_page_title;
+
+  /// Title for the export data section
+  ///
+  /// In en, this message translates to:
+  /// **'Export Data'**
+  String get export_import_settings_page_export_title;
+
+  /// Description for the export data section
+  ///
+  /// In en, this message translates to:
+  /// **'You can export your data as a JSON or ZIP file.\nThis file can be used to backup your data or to transfer it to another device.'**
+  String get export_import_settings_page_export_description;
+
+  /// Label for the option to include card photos in the export
+  ///
+  /// In en, this message translates to:
+  /// **'Include Card Photos'**
+  String get export_import_settings_page_export_images_options_title;
+
+  /// Helper text explaining the effect of including images in the export
+  ///
+  /// In en, this message translates to:
+  /// **'Exported file will include images, making it larger.'**
+  String get export_import_settings_page_export_images_options_include;
+
+  /// Helper text explaining the effect of excluding images in the export
+  ///
+  /// In en, this message translates to:
+  /// **'Exported file will not include images, making it smaller.'**
+  String get export_import_settings_page_export_images_options_exclude;
+
+  /// Label for the button to start the export process
+  ///
+  /// In en, this message translates to:
+  /// **'Select where to save the exported file'**
+  String get export_import_settings_page_export_button;
+
+  /// Title for the data import section
+  ///
+  /// In en, this message translates to:
+  /// **'Import Data'**
+  String get export_import_settings_page_import_title;
+
+  /// Description for the data import section
+  ///
+  /// In en, this message translates to:
+  /// **'You can import your data from a JSON or ZIP file.\nJSON files include only your data, while ZIP files can include images as well.'**
+  String get export_import_settings_page_import_description;
+
+  /// Title for the import warning dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Warning'**
+  String get export_import_settings_page_import_alert_title;
+
+  /// Description for the import warning dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Importing data will overwrite your current data. Make sure to create a backup before proceeding.'**
+  String get export_import_settings_page_import_alert_description;
+
+  /// Label for the button to start the import process
+  ///
+  /// In en, this message translates to:
+  /// **'Select file to import'**
+  String get export_import_settings_page_import_button;
 
   /// Message shown on home when no cards are present
   ///

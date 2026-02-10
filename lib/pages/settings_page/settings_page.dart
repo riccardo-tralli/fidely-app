@@ -1,6 +1,7 @@
 import 'package:fidely_app/l10n/l10n.dart';
 import 'package:fidely_app/misc/themes/spaces.dart';
 import 'package:fidely_app/pages/info_page.dart';
+import 'package:fidely_app/pages/settings_page/export_import_settings_page.dart';
 import 'package:fidely_app/pages/settings_page/language_settings_page.dart';
 import 'package:fidely_app/pages/settings_page/ui/ui_settings_page.dart';
 import 'package:fidely_app/widgets/hicon.dart';
@@ -31,7 +32,7 @@ class _SettingsPageState extends State<SettingsPage> {
     spacing: Spaces.medium,
     children: [
       Card(child: Column(children: interface(context))),
-      // Card(child: Column(children: data(context))),
+      Card(child: Column(children: data(context))),
       Card(child: Column(children: other(context))),
     ],
   );
@@ -53,18 +54,18 @@ class _SettingsPageState extends State<SettingsPage> {
   ];
 
   List<Widget> data(BuildContext context) => [
-    ListTile(
-      leading: Hicon(HugeIcons.strokeRoundedCloudServer),
-      title: Text(L10n.of(context)!.backup_settings_page_title),
-      trailing: Hicon(HugeIcons.strokeRoundedArrowRight01),
-      onTap: () => Navigator.pushNamed(context, UiSettingsPage.route),
-    ),
+    // ListTile(
+    //   leading: Hicon(HugeIcons.strokeRoundedCloudServer),
+    //   title: Text(L10n.of(context)!.backup_settings_page_title),
+    //   trailing: Hicon(HugeIcons.strokeRoundedArrowRight01),
+    //   onTap: () => Navigator.pushNamed(context, UiSettingsPage.route),
+    // ),
     Divider(color: Theme.of(context).colorScheme.surface, height: 0),
     ListTile(
       leading: Hicon(HugeIcons.strokeRoundedDownload03),
-      title: Text(L10n.of(context)!.data_settings_page_title),
+      title: Text(L10n.of(context)!.export_import_settings_page_title),
       trailing: Hicon(HugeIcons.strokeRoundedArrowRight01),
-      onTap: () => Navigator.pushNamed(context, UiSettingsPage.route),
+      onTap: () => Navigator.pushNamed(context, ExportImportSettingsPage.route),
     ),
   ];
 
