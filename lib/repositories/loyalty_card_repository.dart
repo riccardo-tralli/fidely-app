@@ -8,9 +8,12 @@ class LoyaltyCardRepository {
 
   LoyaltyCardRepository(this.service);
 
-  Future<List<LoyaltyCard>> get(SortMode mode) async {
+  Future<dynamic> get(SortMode mode, [bool raw = false]) async {
     try {
       final List<Map<String, dynamic>> data = await service.get(mode);
+      if (raw) {
+        return data;
+      }
       return data.map((e) => LoyaltyCard.fromMap(e)).toList();
     } catch (e) {
       rethrow;

@@ -206,6 +206,41 @@ class L10nEs extends L10n {
       'Seleccionar archivo para importar';
 
   @override
+  String get export_import_settings_page_operation_title_export =>
+      'Exportando datos';
+
+  @override
+  String get export_import_settings_page_operation_title_import =>
+      'Importando datos';
+
+  @override
+  String get export_import_settings_page_operation_title_success =>
+      'Operación exitosa';
+
+  @override
+  String get export_import_settings_page_operation_title_failure =>
+      'Operación fallida';
+
+  @override
+  String get export_import_settings_page_operation_message_loading =>
+      'Por favor espera...';
+
+  @override
+  String get export_import_settings_page_operation_message_export_success =>
+      'Ahora puedes mover o compartir el archivo exportado de forma segura. Recuerda que contiene todos tus datos, ¡mantenlo a salvo!';
+
+  @override
+  String get export_import_settings_page_operation_message_import_success =>
+      'La importación de datos fue exitosa. Tus datos han sido actualizados. ¡Disfruta!';
+
+  @override
+  String get export_import_settings_page_operation_message_failure_no_data =>
+      'No hay datos para exportar. Por favor agrega algunas tarjetas antes de exportar.';
+
+  @override
+  String get export_import_settings_page_operation_close => 'Cerrar';
+
+  @override
   String get home_page_no_cards_title => 'Woah, así vacío!';
 
   @override

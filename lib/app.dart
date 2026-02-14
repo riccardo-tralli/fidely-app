@@ -8,7 +8,7 @@ import 'package:fidely_app/models/loyalty_card.dart';
 import 'package:fidely_app/pages/card_page/card_page.dart';
 import 'package:fidely_app/pages/home_page/home_page.dart';
 import 'package:fidely_app/pages/info_page.dart';
-import 'package:fidely_app/pages/settings_page/export_import_settings_page.dart';
+import 'package:fidely_app/pages/settings_page/data/export_import_settings_page.dart';
 import 'package:fidely_app/pages/settings_page/language_settings_page.dart';
 import 'package:fidely_app/pages/settings_page/settings_page.dart';
 import 'package:fidely_app/pages/settings_page/ui/ui_settings_page.dart';

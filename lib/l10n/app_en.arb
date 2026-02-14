@@ -305,6 +305,51 @@
         "description": "Label for the button to start the import process",
         "type": "text"
     },
+    "export_import_settings_page_operation_title_export": "Exporting Data",
+    "@export_import_settings_page_operation_title_export": {
+        "description": "Title for the export data in progress dialog",
+        "type": "text"
+    },
+    "export_import_settings_page_operation_title_import": "Importing Data",
+    "@export_import_settings_page_operation_title_import": {
+        "description": "Title for the import data in progress dialog",
+        "type": "text"
+    },
+    "export_import_settings_page_operation_title_success": "Operation Successful",
+    "@export_import_settings_page_operation_title_success": {
+        "description": "Title for the success dialog after export or import",
+        "type": "text"
+    },
+    "export_import_settings_page_operation_title_failure": "Operation Failed",
+    "@export_import_settings_page_operation_title_failure": {
+        "description": "Title for the failure dialog after export or import",
+        "type": "text"
+    },
+    "export_import_settings_page_operation_message_loading": "Please wait...",
+    "@export_import_settings_page_operation_message_loading": {
+        "description": "Message shown while export or import is in progress",
+        "type": "text"
+    },
+    "export_import_settings_page_operation_message_export_success": "Now you can safely move or share the exported file. Remember that it contains all your data, so keep it safe!",
+    "@export_import_settings_page_operation_message_export_success": {
+        "description": "Message shown when data export is successful",
+        "type": "text"
+    },
+    "export_import_settings_page_operation_message_import_success": "Data import was successful. Your data has been updated. Enjoy!",
+    "@export_import_settings_page_operation_message_import_success": {
+        "description": "Message shown when data import is successful",
+        "type": "text"
+    },
+    "export_import_settings_page_operation_message_failure_no_data": "No data to export. Please add some cards before exporting.",
+    "@export_import_settings_page_operation_message_failure_no_data": {
+        "description": "Error message shown when there is no data to export",
+        "type": "text"
+    },
+    "export_import_settings_page_operation_close": "Close",
+    "@export_import_settings_page_operation_close": {
+        "description": "Label for the button to close the operation result dialog",
+        "type": "text"
+    },
     "home_page_no_cards_title": "Whoa, such empty!",
     "@home_page_no_cards_title": {
         "description": "Message shown on home when no cards are present",

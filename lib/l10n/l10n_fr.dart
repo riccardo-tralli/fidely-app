@@ -207,6 +207,41 @@ class L10nFr extends L10n {
       'Sélectionner le fichier à importer';
 
   @override
+  String get export_import_settings_page_operation_title_export =>
+      'Exportation des données';
+
+  @override
+  String get export_import_settings_page_operation_title_import =>
+      'Importation des données';
+
+  @override
+  String get export_import_settings_page_operation_title_success =>
+      'Opération réussie';
+
+  @override
+  String get export_import_settings_page_operation_title_failure =>
+      'Opération échouée';
+
+  @override
+  String get export_import_settings_page_operation_message_loading =>
+      'Veuillez patienter...';
+
+  @override
+  String get export_import_settings_page_operation_message_export_success =>
+      'Vous pouvez maintenant déplacer ou partager le fichier exporté en toute sécurité. N\'oubliez pas qu\'il contient toutes vos données, gardez-le en sécurité !';
+
+  @override
+  String get export_import_settings_page_operation_message_import_success =>
+      'L\'importation des données a réussi. Vos données ont été mises à jour. Profitez-en !';
+
+  @override
+  String get export_import_settings_page_operation_message_failure_no_data =>
+      'Aucune donnée à exporter. Veuillez ajouter des cartes avant d\'exporter.';
+
+  @override
+  String get export_import_settings_page_operation_close => 'Fermer';
+
+  @override
   String get home_page_no_cards_title => 'Woah, tellement vide !';
 
   @override

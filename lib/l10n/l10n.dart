@@ -467,6 +467,60 @@ abstract class L10n {
   /// **'Select file to import'**
   String get export_import_settings_page_import_button;
 
+  /// Title for the export data in progress dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Exporting Data'**
+  String get export_import_settings_page_operation_title_export;
+
+  /// Title for the import data in progress dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Importing Data'**
+  String get export_import_settings_page_operation_title_import;
+
+  /// Title for the success dialog after export or import
+  ///
+  /// In en, this message translates to:
+  /// **'Operation Successful'**
+  String get export_import_settings_page_operation_title_success;
+
+  /// Title for the failure dialog after export or import
+  ///
+  /// In en, this message translates to:
+  /// **'Operation Failed'**
+  String get export_import_settings_page_operation_title_failure;
+
+  /// Message shown while export or import is in progress
+  ///
+  /// In en, this message translates to:
+  /// **'Please wait...'**
+  String get export_import_settings_page_operation_message_loading;
+
+  /// Message shown when data export is successful
+  ///
+  /// In en, this message translates to:
+  /// **'Now you can safely move or share the exported file. Remember that it contains all your data, so keep it safe!'**
+  String get export_import_settings_page_operation_message_export_success;
+
+  /// Message shown when data import is successful
+  ///
+  /// In en, this message translates to:
+  /// **'Data import was successful. Your data has been updated. Enjoy!'**
+  String get export_import_settings_page_operation_message_import_success;
+
+  /// Error message shown when there is no data to export
+  ///
+  /// In en, this message translates to:
+  /// **'No data to export. Please add some cards before exporting.'**
+  String get export_import_settings_page_operation_message_failure_no_data;
+
+  /// Label for the button to close the operation result dialog
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get export_import_settings_page_operation_close;
+
   /// Message shown on home when no cards are present
   ///
   /// In en, this message translates to:

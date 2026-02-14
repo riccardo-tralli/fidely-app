@@ -1,7 +1,7 @@
 import 'package:fidely_app/l10n/l10n.dart';
 import 'package:fidely_app/misc/themes/spaces.dart';
 import 'package:fidely_app/pages/info_page.dart';
-import 'package:fidely_app/pages/settings_page/export_import_settings_page.dart';
+import 'package:fidely_app/pages/settings_page/data/export_import_settings_page.dart';
 import 'package:fidely_app/pages/settings_page/language_settings_page.dart';
 import 'package:fidely_app/pages/settings_page/ui/ui_settings_page.dart';
 import 'package:fidely_app/widgets/hicon.dart';
